@@ -1,0 +1,32 @@
+# generated with command: cmd> grails integrate-with --git
+
+*.iws
+*Db.properties
+*Db.script
+
+# logs
+stacktrace.log
+
+/*.zip
+/*.log
+
+# general HSQL database files
+/*DB.*
+
+/cobertura.ser
+.DS_Store
+
+# "temporary" build files
+/target/
+/out/
+
+# web application files
+/web-app/plugins
+/web-app/WEB-INF/classes
+
+/.link_to_grails_plugins/
+/target-eclipse/
+
+# project release file
+/*.war
+
