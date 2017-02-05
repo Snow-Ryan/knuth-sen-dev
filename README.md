@@ -11,4 +11,4 @@ Java jdk-7u79
 
 Git
 
-MySQL community server
+MySQL
