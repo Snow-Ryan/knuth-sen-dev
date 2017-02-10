@@ -13,26 +13,26 @@
 </head>
 
 <body>
-    <div class="equalizer">
-        <div class="block-element-container">
+    %{--<div class="equalizer">--}%
+        %{--<div class="block-element-container">--}%
 
 
-        <div class="block-element">
-            <div class="block-element-header"><h2>Login</h2></div>
-        </div>
+        %{--<div class="block-element">--}%
+            %{--<div class="block-element-header"><h2>Login</h2></div>--}%
+        %{--</div>--}%
 
 
-            <div class="block-element">
-                <div class="block-element-header"><h2>Login</h2></div>
-            </div>
-            <div class="block-element">
-                <div class="block-element-header"><h2>Login</h2></div>
-            </div>
-            <div class="block-element">
-                <div class="block-element-header"><h2>Login</h2></div>
-            </div>
+            %{--<div class="block-element">--}%
+                %{--<div class="block-element-header"><h2>Login</h2></div>--}%
+            %{--</div>--}%
+            %{--<div class="block-element">--}%
+                %{--<div class="block-element-header"><h2>Login</h2></div>--}%
+            %{--</div>--}%
+            %{--<div class="block-element">--}%
+                %{--<div class="block-element-header"><h2>Login</h2></div>--}%
+            %{--</div>--}%
 
 
-    </div>
+    %{--</div>--}%
 </body>
 </html>
