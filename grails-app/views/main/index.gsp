@@ -8,9 +8,31 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-  <title></title>
+    <title></title>
+    <meta name="layout" content="main"/>
 </head>
-<body>
 
+<body>
+    <div class="equalizer">
+        <div class="block-element-container">
+
+
+        <div class="block-element">
+            <div class="block-element-header"><h2>Login</h2></div>
+        </div>
+
+
+            <div class="block-element">
+                <div class="block-element-header"><h2>Login</h2></div>
+            </div>
+            <div class="block-element">
+                <div class="block-element-header"><h2>Login</h2></div>
+            </div>
+            <div class="block-element">
+                <div class="block-element-header"><h2>Login</h2></div>
+            </div>
+
+
+    </div>
 </body>
 </html>
