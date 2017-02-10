@@ -7,6 +7,8 @@
 <head>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:600,400&subset=latin,latin-ext' rel='stylesheet'
 		  type='text/css'>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title><g:layoutTitle default="CAS"/></title>
@@ -20,6 +22,41 @@
 
 <body>
 <div id="wrapper">
+
+	<header>
+		<div class="equalizer">
+			<div id="ritLogo">
+				<ul class="navbar-right">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Login</a></li>
+				</ul>
+			</div>
+
+
+		</div>
+
+
+
+
+
+	</header>
+
+
+
+
+	<nav class="nav">
+		<div class="equalizer">
+
+			<ul class="navbar-right">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Roles</a></li>
+				<li><a href="#">Forms</a></li>
+				<li><a href="#">Professor View</a></li>
+			</ul>
+
+		</div>
+	</nav>
+	<div style="margin-top:100px"></div>
 
 	<g:layoutBody/>
 
