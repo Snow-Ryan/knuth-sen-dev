@@ -55,10 +55,10 @@
 <div class="second-level-nav navbar-fixed-top">
         <div class="container">
             <ul class="nav navbar-nav">
-                <li><a href="main.gsp">Home</a></li>
-                <li><a href="#">Roles</a></li>
-                <li><a href="#">Forms</a></li>
-                <li><a href="#">Professor View</a></li>
+                <li><a class="home" href="main.gsp">Home</a></li>
+                <li><a class="roles" href="#">Roles</a></li>
+                <li><a class="forms" href="#">Forms</a></li>
+                <li><a class="pView" href="#">Professor View</a></li>
             </ul>
         </div>
 </div>
