@@ -5,6 +5,7 @@
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -51,21 +52,29 @@
         </div><!--/.nav-collapse -->
     </div>
 </nav>
-<div class="second-level-nav ">
+<div class="second-level-nav navbar-fixed-top">
         <div class="container">
             <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
+                <li><a href="main.gsp">Home</a></li>
                 <li><a href="#">Roles</a></li>
                 <li><a href="#">Forms</a></li>
                 <li><a href="#">Professor View</a></li>
             </ul>
         </div>
 </div>
-
+<div style="margin-bottom: 130px"></div>
 
 
 
 	<g:layoutBody/>
+
+
+
+<nav class="navbar navbar-brown navbar-fixed-bottom">
+    <div class="container">
+        <div class="text-align-middle"> Copyright © Knuth </div>
+    </div>
+</nav>
 
 	<br/>
 </div>

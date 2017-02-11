@@ -12,27 +12,24 @@
     <meta name="layout" content="main"/>
 </head>
 
-<body>
-    %{--<div class="equalizer">--}%
-        %{--<div class="block-element-container">--}%
+<body >
 
+    <div class="container block-element-container">
 
-        %{--<div class="block-element">--}%
-            %{--<div class="block-element-header"><h2>Login</h2></div>--}%
-        %{--</div>--}%
+        <div class="card text-center flex-item">
+            <div class="card-header">
+                <h2>Welcome</h2>
+            </div>
+            <div class="card-block">
+                <h4 class="card-title">Hello!</h4>
+                <p class="card-text">Please Sign in to access the course assessment tool.</p>
+                <a href="#" class="btn btn-primary">Sign in</a>
+            </div>
+            <div class="card-footer text-muted">
+                .
+            </div>
+        </div>
 
-
-            %{--<div class="block-element">--}%
-                %{--<div class="block-element-header"><h2>Login</h2></div>--}%
-            %{--</div>--}%
-            %{--<div class="block-element">--}%
-                %{--<div class="block-element-header"><h2>Login</h2></div>--}%
-            %{--</div>--}%
-            %{--<div class="block-element">--}%
-                %{--<div class="block-element-header"><h2>Login</h2></div>--}%
-            %{--</div>--}%
-
-
-    %{--</div>--}%
+    </div>
 </body>
 </html>
