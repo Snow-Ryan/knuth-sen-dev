@@ -1,31 +1,23 @@
 package cas
 
 class Faculty {
+    int facultyId
+    String fName
+    String lName
+    String mName
     String username
-    String name
-    String tagline
-    String imagePath
-    String title
-    String interestArea
-    String office
-    String website
-    String phone
-    String email
-    String twitter
-    String facebook
+    int sectionId
+    int roleId
+    String facultyCol
 
     static constraints = {
-        username nullable: false
-        name nullable: true
-        tagline nullable: true
-        imagePath nullable: true
-        title nullable: true
-        interestArea nullable: true
-        office nullable: true
-        website nullable: true
-        phone nullable: true
-        email nullable: true
-        twitter nullable: true
-        facebook nullable: true
+        facultyId nullable: false
+        fName nullable: true
+        lName nullable: true
+        mName nullable: true
+        username nullable: true
+        sectionId nullable: true
+        roleId nullable: true
+        facultyCol nullable: true
     }
 }
