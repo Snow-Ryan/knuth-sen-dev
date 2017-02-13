@@ -6,8 +6,10 @@
 // to create separate JavaScript files as needed.
 //
 //= require jquery
+//= require jquery.dataTables.min.js
 //= require_tree .
 //= require_self
+
 
 if (typeof jQuery !== 'undefined') {
 	(function($) {
@@ -18,4 +20,3 @@ if (typeof jQuery !== 'undefined') {
 		});
 	})(jQuery);
 }
-E

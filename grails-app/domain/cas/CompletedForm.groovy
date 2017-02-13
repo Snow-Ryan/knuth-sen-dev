@@ -1,15 +1,19 @@
 package cas
 
 class CompletedForm {
-    int completedFormId
+
     String content
-    int formId
-    long completionDate
+    Long completionDate
+    Form form
+
+    static belongsTo = [Form]
+
+    static mapping = {
+        version false
+    }
 
     static constraints = {
-        completedFormId nullable: false
         content nullable: true
-        formId nullable: true
         completionDate nullable: true
     }
 }

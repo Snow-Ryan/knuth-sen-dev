@@ -1,15 +1,18 @@
 package cas
 
 class Department {
-    int departmentId
+
     String name
-    int coordinatorId
-    int courseId
+    Course course
+    Faculty faculty
+
+    static belongsTo = [Course, Faculty]
+
+    static mapping = {
+        version false
+    }
 
     static constraints = {
-        departmentId nullable: false
-        name nullable: true
-        coordinatorId nullable: true
-        courseId nullable: true
+        name nullable: true, maxSize: 45
     }
 }

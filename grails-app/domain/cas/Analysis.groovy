@@ -1,19 +1,24 @@
 package cas
 
 class Analysis {
-    int analysisId
-    long creationDate
-    int formId
-    int facultyId
+
+    Long creationDate
     String name
     String feedback
+    Form form
+    Faculty faculty
+
+    static hasMany = [secondaryAnalysises: SecondaryAnalysis]
+    static belongsTo = [Faculty, Form]
+
+    static mapping = {
+        version false
+    }
 
     static constraints = {
-        analysisId nullable: false
         creationDate nullable: true
-        formId nullable: true
-        facultyId nullable: true
-        name nullable: true
-        feedback nullable: true
+        name nullable: true, maxSize: 45
+        feedback nullable: true, maxSize: 45
     }
 }
+
