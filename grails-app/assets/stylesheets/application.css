@@ -8,6 +8,8 @@
 * compiled file, but it's generally better to create a new file per style scope.
 *
 *= require main
+*= require dataTables.min
+*= require font-awesome
 *= require casSpecific
 *= require mobile
 *= require_self

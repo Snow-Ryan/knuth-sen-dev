@@ -1,11 +1,16 @@
 package cas
 
 class Role {
-    int roleId
+
     String role
 
+    static hasMany = [faculties: Faculty]
+
+    static mapping = {
+        version false
+    }
+
     static constraints = {
-        roleId nullable: false
         role nullable: true
     }
 }
