@@ -46,19 +46,19 @@
 
         <div id="navbar" class="navbar-collapse collapse navbar-right">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">Login</a></li>
+                %{--<li class="active"><a href="#">Home</a></li>--}%
+                <li><a class="loginBtn" href="#about">Login</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 <div class="second-level-nav navbar-fixed-top">
         <div class="container">
-            <ul class="nav navbar-nav">
-                <li><a class="home" href="main.gsp">Home</a></li>
-                <li><a class="roles" href="#">Roles</a></li>
-                <li><a class="forms" href="#">Forms</a></li>
-                <li><a class="pView" href="#">Professor View</a></li>
+            <ul class="nav navbar-nav secondNav">
+                %{--<li class="mainLi"><a class="home" href="main.gsp">Home</a></li>--}%
+                <li class="rolesLi"><a class="admin" href="#">Admin</a></li>
+                <li class="formsLi"><a class="forms" href="#">Forms</a></li>
+                <li class="pViewLiv"><a class="pView" href="#">Professor View</a></li>
             </ul>
         </div>
 </div>

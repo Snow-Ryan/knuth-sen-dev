@@ -1,8 +1,10 @@
 package cas
 
 import grails.converters.JSON
+import knuth.sen.dev.Md5passService
 
 class MainController {
+    Md5passService md5passService
 
     def index() { }
 
@@ -85,5 +87,38 @@ class MainController {
         }
 
         render resultJson
+    }
+
+    def loadLogIn(){
+
+        TestingUser testingUser
+
+        testingUser = TestingUser.findByUsername("admin@admin.com")
+
+        if(!testingUser){
+            TestingRole testingRole = new TestingRole(role: "Wizard");
+            testingRole.save(flush: true)
+
+            testingUser = new TestingUser(fname: "Admin", lname: "Admin", username: "admin@admin.com", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(1).id)
+
+            testingUser.save(flush: true)
+        }
+        render template: 'loginPage'
+    }
+
+    def login(String username, String password){
+
+        TestingUser testingUser = TestingUser.findByUsernameAndPassword(username, md5passService.getEncryptedPass(password))
+
+
+        testingUser = TestingUser.findByUsername(username)
+
+
+        if(testingUser){
+            render((testingUser.role).role)
+        }
+        else{
+            render("fail")
+        }
     }
 }

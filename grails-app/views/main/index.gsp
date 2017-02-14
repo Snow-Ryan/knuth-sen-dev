@@ -22,8 +22,8 @@
             </div>
             <div class="card-block">
                 <h4 class="card-title">Hello!</h4>
-                <p class="card-text">Please Sign in to access the course assessment tool.</p>
-                <a href="#" class="btn btn-primary">Sign in</a>
+                <p class="card-text">Please Log in to access the course assessment tool.</p>
+                <a href="#" class="btn btn-primary loginBtn">Log in</a>
             </div>
             <div class="card-footer text-muted">
                 .
@@ -34,8 +34,76 @@
 
 <script>
     var $body = $('body');
-    $body.on('click', '.forms', function () {
+
+    $('.secondNav').css("visibility", "hidden");
+
+    $body.on('click', '.forms', function (event) {
+        event.preventDefault();
         loadForms();
+    });
+
+    $body.on('click', '.pView', function (event) {
+        event.preventDefault();
+    });
+
+    $body.on('click', '.admin', function (event) {
+        event.preventDefault();
+    });
+
+    $body.on('click', '.loginBtn', function (event) {
+        event.preventDefault();;
+    });
+
+    $body.on('click', '.loginBtn', function () {
+        loadLogInPage();
+    });
+
+    function loadLogInPage(){
+        $('#mainContainer').empty();
+
+        $.ajax({
+            url: "${g.createLink(controller: 'main', action: 'loadLogIn')}",
+            success: function (data) {
+                $('#mainContainer').append(data);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
+            }
+        });
+    }
+
+    $body.on('click', '.cancelAttemptLogin', function () {
+        location.reload();
+    });
+
+    $body.on('click', '.attemptLogin', function () {
+
+
+        var username = $('.usernameInput').val();
+        var password = $('.passwordInput').val();
+
+        $('#mainContainer').empty();
+
+        $.ajax({
+            url: "${g.createLink(action: 'login')}",
+            type: "POST",
+            data:{
+                username:username,
+                password:password
+            },
+            success: function (data) {
+                if(data==="Wizard"){
+                    $('.secondNav').css("visibility", "");
+                }
+                else {
+                    alert("Failed to log in")
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+                loadLogInPage();
+            }
+        });
     });
 
     function loadForms(){

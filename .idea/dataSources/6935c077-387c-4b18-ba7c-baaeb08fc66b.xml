@@ -390,7 +390,13 @@
     <column id="117" parent="29" name="title">
       <data-type>varchar(255)|0</data-type>
     </column>
-    <key id="118" parent="29" name="PRIMARY">
+    <column id="118" parent="29" name="description">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="119" parent="29" name="question">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <key id="120" parent="29" name="PRIMARY">
       <columns>id</columns>
       <primary>1</primary>
     </key>
