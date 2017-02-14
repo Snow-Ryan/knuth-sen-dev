@@ -3,7 +3,7 @@
 
     <div class="card text-center flex-item">
         <div class="card-header">
-            <h2>Welcome</h2>
+            <h2>Create Form</h2>
         </div>
         <div class="card-block">
 

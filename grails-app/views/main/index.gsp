@@ -22,8 +22,8 @@
             </div>
             <div class="card-block">
                 <h4 class="card-title">Hello!</h4>
-                <p class="card-text">Please Sign in to access the course assessment tool.</p>
-                <a href="#" class="btn btn-primary">Sign in</a>
+                <p class="card-text">Please Log in to access the course assessment tool.</p>
+                <a href="#" class="btn btn-primary loginBtn">Log in</a>
             </div>
             <div class="card-footer text-muted">
                 .
@@ -33,8 +33,77 @@
     </div>
 
 <script>
-    $('body').on('click', '.forms', function () {
+    var $body = $('body');
+
+    $('.secondNav').css("visibility", "hidden");
+
+    $body.on('click', '.forms', function (event) {
+        event.preventDefault();
         loadForms();
+    });
+
+    $body.on('click', '.pView', function (event) {
+        event.preventDefault();
+    });
+
+    $body.on('click', '.admin', function (event) {
+        event.preventDefault();
+    });
+
+    $body.on('click', '.loginBtn', function (event) {
+        event.preventDefault();;
+    });
+
+    $body.on('click', '.loginBtn', function () {
+        loadLogInPage();
+    });
+
+    function loadLogInPage(){
+        $('#mainContainer').empty();
+
+        $.ajax({
+            url: "${g.createLink(controller: 'main', action: 'loadLogIn')}",
+            success: function (data) {
+                $('#mainContainer').append(data);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
+            }
+        });
+    }
+
+    $body.on('click', '.cancelAttemptLogin', function () {
+        location.reload();
+    });
+
+    $body.on('click', '.attemptLogin', function () {
+
+
+        var username = $('.usernameInput').val();
+        var password = $('.passwordInput').val();
+
+        $('#mainContainer').empty();
+
+        $.ajax({
+            url: "${g.createLink(action: 'login')}",
+            type: "POST",
+            data:{
+                username:username,
+                password:password
+            },
+            success: function (data) {
+                if(data==="Wizard"){
+                    $('.secondNav').css("visibility", "");
+                }
+                else {
+                    alert("Failed to log in")
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+                loadLogInPage();
+            }
+        });
     });
 
     function loadForms(){
@@ -52,7 +121,7 @@
         });
     }
 
-    $('body').on('click', '.newFormButton', function () {
+    $body.on('click', '.newFormButton', function () {
         $('#mainContainer').empty();
 
         $.ajax({
@@ -66,22 +135,113 @@
         });
     });
 
-    $('body').on('click', '.saveNewForm', function () {
+    $body.on('click', '.editBtn', function () {
+        $('#mainContainer').empty();
+
+        var id = $(this).parent().find('.hiddenId').html();
+
+        $.ajax({
+            url: "${g.createLink(action: 'loadFormEdit')}",
+            type: "POST",
+            data:{
+                id:id
+            },
+            success: function (data) {
+                $('#mainContainer').append(data);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+                loadForms();
+            }
+        });
+    });
+
+    $body.on('click', '.saveEditForm', function () {
+        var title;
+        var question = $('.questionInput').val();
+        var description = $('.descriptionTextArea').val();
+
+        if(!(title = $('.titleInput').val())){
+            title = $('.titleInput').attr('placeholder');
+        }
+
+        if(!(question = $('.questionInput').val())){
+            question = $('.questionInput').attr('placeholder');
+        }
+
+        var id = $('.card-block').find('.hiddenId').html();
+        $.ajax({
+            url: "${g.createLink(action: 'saveEditForm')}",
+            type: "POST",
+            data:{
+                title:title,
+                question:question,
+                description:description,
+                id:id
+            },
+            success: function (data) {
+                if(data.status===2){
+                    alert("Assessment form with that title already exists")
+                }
+                else{
+                    loadForms();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+                loadForms();
+            }
+        });
+    });
+
+    $body.on('click', '.cancelEditForm', function () {
+        loadForms();
+    });
+
+    $body.on('click', '.cancelNewForm', function () {
+        loadForms();
+    });
+
+    $body.on('click', '.saveNewForm', function () {
 
         var title = $('.titleInput').val();
         var creationDate = new Date()
+        var question = $('.questionInput').val();
         var description = $('.descriptionTextArea').val();
-        var content = {
-            question: $('.questionInput').val()
-        };
+
         $.ajax({
             url: "${g.createLink(action: 'saveNewForm')}",
             type: "POST",
             data:{
                 title:title,
-                content:JSON.stringify(content),
-                creationDate:creationDate.getMonth() + 1 + ". " + creationDate.getDate() + ". " + creationDate.getFullYear()+ "." ,
-                description:description
+                question:question,
+                description:description,
+                creationDate:creationDate.getMonth() + 1 + ". " + creationDate.getDate() + ". " + creationDate.getFullYear()+ "."
+            },
+            success: function (data) {
+                if(data.status===2){
+                    alert("Assessment form with that title already exists")
+                }
+                else{
+                    loadForms();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+                loadForms();
+            }
+        });
+    });
+
+    $body.on('click', '.deleteBtn', function () {
+
+        var id = $(this).parent().find('.hiddenId').html();
+
+        $.ajax({
+            url: "${g.createLink(action: 'deleteForm')}",
+            type: "POST",
+            data:{
+                id:id
             },
             success: function (data) {
                 loadForms();

@@ -7,6 +7,7 @@
 //
 //= require jquery
 //= require jquery.dataTables.min.js
+//= require bootstrap.min.js
 //= require_tree .
 //= require_self
 

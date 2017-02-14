@@ -1,8 +1,10 @@
 package cas
 
 import grails.converters.JSON
+import knuth.sen.dev.Md5passService
 
 class MainController {
+    Md5passService md5passService
 
     def index() { }
 
@@ -15,18 +17,108 @@ class MainController {
         render (template: "formCreation")
     }
 
-    def saveNewForm(String title, String content, String creationDate, String description){
+    def saveNewForm(String title, String question, String description, String creationDate){
         JSON resultJson
         TestingForm testingForm;
+        testingForm = TestingForm.findByTitle(title);
 
-        testingForm = new TestingForm(title: title, content: content, creationDate: creationDate, published: 0, description: description);
-        if(testingForm.save(flush: true)){
+        if(!testingForm){
+            testingForm = new TestingForm(title: title, question: question, description: description, creationDate: creationDate, published: 0);
+            if(testingForm.save(flush: true)){
+                resultJson = [status:0, message:"Success"] as JSON
+            } else {
+                resultJson = [status:1, message:"Error"] as JSON
+            }
+        }
+        else{
+            resultJson = [status:2, message:"Error"] as JSON
+        }
+        render(resultJson)
+
+    }
+
+    def loadFormEdit(int id){
+        render(template: 'formEdit', model: [form: TestingForm.findById(id)]);
+    }
+
+    def saveEditForm(String title, String question, String description, int id){
+        JSON resultJson
+        TestingForm testingForm;
+        testingForm = TestingForm.findByTitle(title);
+
+        if(testingForm){
+            if(testingForm.id==id){
+                testingForm.question = question;
+                testingForm.description = description;
+
+                if (testingForm.save(flush: true)) {
+                    resultJson = [status:0, message:"Success"] as JSON
+                } else {
+                    resultJson = [status:1, message:"Error"] as JSON
+                }
+            }
+            else{
+                resultJson = [status:2, message:"Error"] as JSON
+            }
+        }
+        else{
+            testingForm = TestingForm.findById(id);
+
+            testingForm.title = title;
+            testingForm.question = question;
+            testingForm.description = description;
+            if (testingForm.save(flush: true)) {
+                resultJson = [status:0, message:"Success"] as JSON
+            } else {
+                resultJson = [status:1, message:"Error"] as JSON
+            }
+        }
+        render(resultJson)
+    }
+
+    def deleteForm(int id){
+        TestingForm testingForm = TestingForm.findById(id);
+
+        JSON resultJson
+        if (testingForm.delete(flush: true)) {
             resultJson = [status:0, message:"Success"] as JSON
         } else {
             resultJson = [status:1, message:"Error"] as JSON
         }
 
-        render(resultJson)
+        render resultJson
+    }
 
+    def loadLogIn(){
+
+        TestingUser testingUser
+
+        testingUser = TestingUser.findByUsername("admin@admin.com")
+
+        if(!testingUser){
+            TestingRole testingRole = new TestingRole(role: "Wizard");
+            testingRole.save(flush: true)
+
+            testingUser = new TestingUser(fname: "Admin", lname: "Admin", username: "admin@admin.com", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(1).id)
+
+            testingUser.save(flush: true)
+        }
+        render template: 'loginPage'
+    }
+
+    def login(String username, String password){
+
+        TestingUser testingUser = TestingUser.findByUsernameAndPassword(username, md5passService.getEncryptedPass(password))
+
+
+        testingUser = TestingUser.findByUsername(username)
+
+
+        if(testingUser){
+            render((testingUser.role).role)
+        }
+        else{
+            render("fail")
+        }
     }
 }
