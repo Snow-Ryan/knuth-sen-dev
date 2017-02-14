@@ -33,7 +33,8 @@
     </div>
 
 <script>
-    $('body').on('click', '.forms', function () {
+    var $body = $('body');
+    $body.on('click', '.forms', function () {
         loadForms();
     });
 
@@ -52,7 +53,7 @@
         });
     }
 
-    $('body').on('click', '.newFormButton', function () {
+    $body.on('click', '.newFormButton', function () {
         $('#mainContainer').empty();
 
         $.ajax({
@@ -66,22 +67,113 @@
         });
     });
 
-    $('body').on('click', '.saveNewForm', function () {
+    $body.on('click', '.editBtn', function () {
+        $('#mainContainer').empty();
+
+        var id = $(this).parent().find('.hiddenId').html();
+
+        $.ajax({
+            url: "${g.createLink(action: 'loadFormEdit')}",
+            type: "POST",
+            data:{
+                id:id
+            },
+            success: function (data) {
+                $('#mainContainer').append(data);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+                loadForms();
+            }
+        });
+    });
+
+    $body.on('click', '.saveEditForm', function () {
+        var title;
+        var question = $('.questionInput').val();
+        var description = $('.descriptionTextArea').val();
+
+        if(!(title = $('.titleInput').val())){
+            title = $('.titleInput').attr('placeholder');
+        }
+
+        if(!(question = $('.questionInput').val())){
+            question = $('.questionInput').attr('placeholder');
+        }
+
+        var id = $('.card-block').find('.hiddenId').html();
+        $.ajax({
+            url: "${g.createLink(action: 'saveEditForm')}",
+            type: "POST",
+            data:{
+                title:title,
+                question:question,
+                description:description,
+                id:id
+            },
+            success: function (data) {
+                if(data.status===2){
+                    alert("Assessment form with that title already exists")
+                }
+                else{
+                    loadForms();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+                loadForms();
+            }
+        });
+    });
+
+    $body.on('click', '.cancelEditForm', function () {
+        loadForms();
+    });
+
+    $body.on('click', '.cancelNewForm', function () {
+        loadForms();
+    });
+
+    $body.on('click', '.saveNewForm', function () {
 
         var title = $('.titleInput').val();
         var creationDate = new Date()
+        var question = $('.questionInput').val();
         var description = $('.descriptionTextArea').val();
-        var content = {
-            question: $('.questionInput').val()
-        };
+
         $.ajax({
             url: "${g.createLink(action: 'saveNewForm')}",
             type: "POST",
             data:{
                 title:title,
-                content:JSON.stringify(content),
-                creationDate:creationDate.getMonth() + 1 + ". " + creationDate.getDate() + ". " + creationDate.getFullYear()+ "." ,
-                description:description
+                question:question,
+                description:description,
+                creationDate:creationDate.getMonth() + 1 + ". " + creationDate.getDate() + ". " + creationDate.getFullYear()+ "."
+            },
+            success: function (data) {
+                if(data.status===2){
+                    alert("Assessment form with that title already exists")
+                }
+                else{
+                    loadForms();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+                loadForms();
+            }
+        });
+    });
+
+    $body.on('click', '.deleteBtn', function () {
+
+        var id = $(this).parent().find('.hiddenId').html();
+
+        $.ajax({
+            url: "${g.createLink(action: 'deleteForm')}",
+            type: "POST",
+            data:{
+                id:id
             },
             success: function (data) {
                 loadForms();

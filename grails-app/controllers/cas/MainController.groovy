@@ -15,18 +15,75 @@ class MainController {
         render (template: "formCreation")
     }
 
-    def saveNewForm(String title, String content, String creationDate, String description){
+    def saveNewForm(String title, String question, String description, String creationDate){
         JSON resultJson
         TestingForm testingForm;
+        testingForm = TestingForm.findByTitle(title);
 
-        testingForm = new TestingForm(title: title, content: content, creationDate: creationDate, published: 0, description: description);
-        if(testingForm.save(flush: true)){
+        if(!testingForm){
+            testingForm = new TestingForm(title: title, question: question, description: description, creationDate: creationDate, published: 0);
+            if(testingForm.save(flush: true)){
+                resultJson = [status:0, message:"Success"] as JSON
+            } else {
+                resultJson = [status:1, message:"Error"] as JSON
+            }
+        }
+        else{
+            resultJson = [status:2, message:"Error"] as JSON
+        }
+        render(resultJson)
+
+    }
+
+    def loadFormEdit(int id){
+        render(template: 'formEdit', model: [form: TestingForm.findById(id)]);
+    }
+
+    def saveEditForm(String title, String question, String description, int id){
+        JSON resultJson
+        TestingForm testingForm;
+        testingForm = TestingForm.findByTitle(title);
+
+        if(testingForm){
+            if(testingForm.id==id){
+                testingForm.question = question;
+                testingForm.description = description;
+
+                if (testingForm.save(flush: true)) {
+                    resultJson = [status:0, message:"Success"] as JSON
+                } else {
+                    resultJson = [status:1, message:"Error"] as JSON
+                }
+            }
+            else{
+                resultJson = [status:2, message:"Error"] as JSON
+            }
+        }
+        else{
+            testingForm = TestingForm.findById(id);
+
+            testingForm.title = title;
+            testingForm.question = question;
+            testingForm.description = description;
+            if (testingForm.save(flush: true)) {
+                resultJson = [status:0, message:"Success"] as JSON
+            } else {
+                resultJson = [status:1, message:"Error"] as JSON
+            }
+        }
+        render(resultJson)
+    }
+
+    def deleteForm(int id){
+        TestingForm testingForm = TestingForm.findById(id);
+
+        JSON resultJson
+        if (testingForm.delete(flush: true)) {
             resultJson = [status:0, message:"Success"] as JSON
         } else {
             resultJson = [status:1, message:"Error"] as JSON
         }
 
-        render(resultJson)
-
+        render resultJson
     }
 }

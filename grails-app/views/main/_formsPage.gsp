@@ -1,10 +1,8 @@
-
-
 <div id="mainContainer" class="container block-element-container">
 
     <div class="card text-center flex-item">
         <div class="card-header">
-            <h2>Fourms</h2>
+            <h2>Forms</h2>
         </div>
         <div class="card-block">
             <g:if test="${forms.size() == 0}">
@@ -43,19 +41,27 @@
                             <tr>
                                 <td>${it.title}</td>
                                 <td>${it.creationDate}</td>
-                                <td>
-                                    <g:if test="${it.published == 0}">
+
+                                <g:if test="${it.published == 0}">
+                                    <td>
                                         <i class="fa fa-times" aria-hidden="true" style="color: red"></i>
-                                    </g:if>
-                                    <g:else>
+                                    </td>
+                                    <td>N/A</td>
+                                    <td>
+                                        <label class="hiddenId" style="display: none">${it.id}</label>
+                                        <i class="fa fa-paper-plane publishBtn fa-2x" aria-hidden="true"></i><i style="padding-left: 15px" class='fa fa-pencil editBtn fa-2x' aria-hidden='true'></i><i style="padding-left: 15px" class='fa fa-trash-o deleteBtn fa-2x' aria-hidden='true'></i>
+                                    </td>
+                                </g:if>
+                                <g:else>
+                                    <td>
                                         <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
-                                    </g:else>
-                                </td>
-                                <td>${it.publishDate}</td>
-                                <td>
-                                    <label style="display: none">${it.id}</label>
-                                    <i class='fa fa-pencil editBtn fa-2x' aria-hidden='true'></i><i style="padding-left: 15px" class='fa fa-trash-o deleteBtn fa-2x' aria-hidden='true'></i>
-                                </td>
+                                    </td>
+                                    <td>${it.publishDate}</td>
+                                    <td>
+                                        <label class="hiddenId" style="display: none">${it.id}</label>
+                                        <i class="fa fa-download downloadBtn fa-2x" aria-hidden="true"></i>
+                                    </td>
+                                </g:else>
                             </tr>
                         </g:each>
                         </tbody>
