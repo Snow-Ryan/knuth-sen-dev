@@ -83,3 +83,17 @@ h2{
    color:#666;
     margin:10px;
 }
+
+.btn-default{
+    background: #262626;
+    color:white;
+}
+.btn-danger{
+    color:white;
+}
+
+.btn-default:hover{
+    background: #191919;
+    color:white;
+
+}
