@@ -11,11 +11,11 @@
             <div>
                 <div class="form-group">
                     <label>Title </label>
-                    <input type="text" class="form-control titleInput" id="formGroupExampleInput" placeholder=${form.title}>
+                    <input type="text" class="form-control titleInput" id="formGroupExampleInput" value=${form.title}>
                 </div>
                 <div class="form-group">
                     <label>Question </label>
-                    <input type="text" class="form-control questionInput"  placeholder=${form.question}>
+                    <input type="text" class="form-control questionInput"  value=${form.question}>
                 </div>
                 <div class="form-group">
                     <label>Description</label>
