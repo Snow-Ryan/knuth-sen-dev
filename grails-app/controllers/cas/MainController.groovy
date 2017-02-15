@@ -37,8 +37,6 @@ class MainController {
     }
 
     def loadFormEdit(int id){
-//        println TestingForm.findById(id).title
-//        println TestingForm.findById(id).question
         render(template: 'formEdit', model: [form: TestingForm.findById(id)]);
     }
 
