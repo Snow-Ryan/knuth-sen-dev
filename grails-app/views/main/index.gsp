@@ -157,17 +157,9 @@
     });
 
     $body.on('click', '.saveEditForm', function () {
-        var title;
+        var title = $('.titleInput').val();
         var question = $('.questionInput').val();
         var description = $('.descriptionTextArea').val();
-
-        if(!(title = $('.titleInput').val())){
-            title = $('.titleInput').attr('placeholder');
-        }
-
-        if(!(question = $('.questionInput').val())){
-            question = $('.questionInput').attr('placeholder');
-        }
 
         var id = $('.card-block').find('.hiddenId').html();
         $.ajax({

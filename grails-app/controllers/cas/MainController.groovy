@@ -1,7 +1,6 @@
 package cas
 
 import grails.converters.JSON
-import knuth.sen.dev.Md5passService
 
 class MainController {
     Md5passService md5passService
@@ -38,6 +37,8 @@ class MainController {
     }
 
     def loadFormEdit(int id){
+//        println TestingForm.findById(id).title
+//        println TestingForm.findById(id).question
         render(template: 'formEdit', model: [form: TestingForm.findById(id)]);
     }
 
@@ -91,15 +92,15 @@ class MainController {
 
     def loadLogIn(){
 
-        TestingUser testingUser
+        TestingFaculty testingUser
 
-        testingUser = TestingUser.findByUsername("admin@admin.com")
+        testingUser = TestingFaculty.findByUsername("admin@admin.com")
 
         if(!testingUser){
             TestingRole testingRole = new TestingRole(role: "Wizard");
             testingRole.save(flush: true)
 
-            testingUser = new TestingUser(fname: "Admin", lname: "Admin", username: "admin@admin.com", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(1).id)
+            testingUser = new TestingFaculty(fname: "Admin", lname: "Admin", username: "admin@admin.com", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(1).id)
 
             testingUser.save(flush: true)
         }
@@ -108,11 +109,7 @@ class MainController {
 
     def login(String username, String password){
 
-        TestingUser testingUser = TestingUser.findByUsernameAndPassword(username, md5passService.getEncryptedPass(password))
-
-
-        testingUser = TestingUser.findByUsername(username)
-
+        TestingFaculty testingUser = TestingFaculty.findByUsernameAndPassword(username, md5passService.getEncryptedPass(password))
 
         if(testingUser){
             render((testingUser.role).role)

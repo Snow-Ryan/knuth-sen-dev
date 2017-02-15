@@ -8,6 +8,7 @@ class TestingForm {
     Integer published
     String publishDate
     String creationDate
+    TestingCourse course
 
 
     static constraints = {
@@ -17,5 +18,6 @@ class TestingForm {
         question nullable: true
         description nullable: true
         published nullable: true
+        course nullable: true
     }
 }
