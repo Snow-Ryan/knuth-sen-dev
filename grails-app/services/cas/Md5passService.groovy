@@ -1,4 +1,4 @@
-package knuth.sen.dev
+package cas
 
 import grails.transaction.Transactional
 import java.nio.charset.Charset;
@@ -10,7 +10,7 @@ class Md5passService {
     def getEncryptedPass(String pass) {
         MessageDigest md = MessageDigest.getInstance("MD5");
 
-        md.update("asdsadasd".getBytes(Charset.forName("UTF-8")));
+        md.update(pass.getBytes(Charset.forName("UTF-8")));
 
         byte[] mdbytes = md.digest();
 

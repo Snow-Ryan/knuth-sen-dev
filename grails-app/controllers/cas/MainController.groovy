@@ -1,7 +1,6 @@
 package cas
 
 import grails.converters.JSON
-import knuth.sen.dev.Md5passService
 
 class MainController {
     Md5passService md5passService
@@ -109,10 +108,6 @@ class MainController {
     def login(String username, String password){
 
         TestingUser testingUser = TestingUser.findByUsernameAndPassword(username, md5passService.getEncryptedPass(password))
-
-
-        testingUser = TestingUser.findByUsername(username)
-
 
         if(testingUser){
             render((testingUser.role).role)

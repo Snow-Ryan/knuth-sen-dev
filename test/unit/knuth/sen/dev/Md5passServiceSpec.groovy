@@ -1,5 +1,6 @@
 package knuth.sen.dev
 
+import cas.Md5passService
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
