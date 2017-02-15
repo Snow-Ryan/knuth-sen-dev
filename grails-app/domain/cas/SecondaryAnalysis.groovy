@@ -1,17 +1,21 @@
 package cas
 
 class SecondaryAnalysis {
-    int secondaryAnalysisId
-    int analysisId
+
     String name
     String feedback
-    int facultyId
+    Faculty faculty
+    Analysis analysis
+
+    static belongsTo = [Analysis, Faculty]
+
+    static mapping = {
+        version false
+    }
 
     static constraints = {
-        secondaryAnalysisId nullable: false
-        analysisId nullable: true
-        name nullable: true
+        name nullable: true, maxSize: 45
         feedback nullable: true
-        facultyId nullable: true
     }
 }
+

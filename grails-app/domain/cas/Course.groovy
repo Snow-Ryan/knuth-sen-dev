@@ -1,15 +1,21 @@
 package cas
 
 class Course {
-    int courseId
+
     String name
-    int departmentId
-    int sectionId
+    Integer departmentId
+    Section section
+
+    static hasMany = [departments: Department]
+    static belongsTo = [Section]
+
+    static mapping = {
+        version false
+    }
 
     static constraints = {
-        courseId nullable: false
-        name nullable: true
+        name nullable: true, maxSize: 45
         departmentId nullable: true
-        sectionId nullable: true
     }
 }
+

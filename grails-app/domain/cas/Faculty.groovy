@@ -1,23 +1,29 @@
 package cas
 
 class Faculty {
-    int facultyId
-    String fName
-    String lName
-    String mName
+
+    String fname
+    String lname
+    String mname
     String username
-    int sectionId
-    int roleId
-    String facultyCol
+    String facultycol
+    Role role
+    Section section
+
+    static hasMany = [analysises: Analysis,
+                      departments: Department,
+                      secondaryAnalysises: SecondaryAnalysis]
+    static belongsTo = [Role, Section]
+
+    static mapping = {
+        version false
+    }
 
     static constraints = {
-        facultyId nullable: false
-        fName nullable: true
-        lName nullable: true
-        mName nullable: true
+        fname nullable: true, maxSize: 45
+        lname nullable: true, maxSize: 45
+        mname nullable: true, maxSize: 45
         username nullable: true
-        sectionId nullable: true
-        roleId nullable: true
-        facultyCol nullable: true
+        facultycol nullable: true, maxSize: 45
     }
 }
