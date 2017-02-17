@@ -6,6 +6,7 @@
 // to create separate JavaScript files as needed.
 //
 //= require jquery
+//= require js.cookie.js
 //= require jquery.dataTables.min.js
 //= require bootstrap.min.js
 //= require_tree .

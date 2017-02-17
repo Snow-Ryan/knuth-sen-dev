@@ -6128,3 +6128,8 @@ n:7168:org/springframework/jndi/JndiObjectFactoryBean
 n:1661:org/springframework/jndi/JndiObjectLocator
 n:2812:org/springframework/jndi/JndiLocatorSupport
 n:1338:org/springframework/jndi/JndiAccessor
+n:1199:org/codehaus/groovy/grails/web/converters/configuration/ConverterConfiguration
+n:2141:org/codehaus/groovy/grails/web/converters/Converter$CircularReferenceBehaviour
+n:6057:org/codehaus/groovy/grails/web/json/JSONWriter
+n:812:org/codehaus/groovy/grails/web/json/JSONException
+n:167:org/codehaus/groovy/grails/web/json/JSONElement
