@@ -6128,6 +6128,7 @@ n:7168:org/springframework/jndi/JndiObjectFactoryBean
 n:1661:org/springframework/jndi/JndiObjectLocator
 n:2812:org/springframework/jndi/JndiLocatorSupport
 n:1338:org/springframework/jndi/JndiAccessor
+<<<<<<< HEAD
 n:1323:org/fusesource/jansi/internal/CLibrary
 n:5484:jline/internal/TerminalLineSettings
 n:2486:org/apache/tools/ant/taskdefs/Execute$ScriptCommandLauncher
@@ -6445,3 +6446,10 @@ n:1265:com/sun/tools/javac/tree/TreeInfo$1
 n:4712:com/sun/tools/javac/comp/Lower$FreeVarCollector
 n:6800:sun/tools/native2ascii/Main
 n:1245:sun/tools/native2ascii/N2AFilter
+=======
+n:1199:org/codehaus/groovy/grails/web/converters/configuration/ConverterConfiguration
+n:2141:org/codehaus/groovy/grails/web/converters/Converter$CircularReferenceBehaviour
+n:6057:org/codehaus/groovy/grails/web/json/JSONWriter
+n:812:org/codehaus/groovy/grails/web/json/JSONException
+n:167:org/codehaus/groovy/grails/web/json/JSONElement
+>>>>>>> e632cf05fa4a8241e8efaf788ba59997eb74839a
