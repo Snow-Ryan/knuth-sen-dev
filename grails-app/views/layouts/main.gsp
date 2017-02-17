@@ -47,7 +47,7 @@
         <div id="navbar" class="navbar-collapse collapse navbar-right">
             <ul class="nav navbar-nav">
                 %{--<li class="active"><a href="#">Home</a></li>--}%
-                <li><a class="loginBtn" href="#about">Login</a></li>
+                %{--<li><a class="loginBtn" href="#about">Login</a></li>--}%
             </ul>
         </div><!--/.nav-collapse -->
     </div>
