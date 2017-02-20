@@ -4015,3 +4015,7 @@ n:2519:org/codehaus/groovy/grails/project/compiler/GrailsProjectWatcher$1
 n:11683:org/springframework/uaa/client/protobuf/UaaClient$UaaEnvelope$Builder
 n:2511:org/springframework/uaa/client/util/Base64$OutputStream
 n:3103:jline/console/history/MemoryHistory$EntriesIterator
+n:1826:grails/util/BuildSettings$getClassesDir$2
+n:2009:java_io_File$createTempFile$6
+n:1385:java_io_File$deleteOnExit$7
+n:1489:java_io_File$delete$8
