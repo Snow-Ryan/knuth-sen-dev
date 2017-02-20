@@ -4019,3 +4019,4 @@ n:1826:grails/util/BuildSettings$getClassesDir$2
 n:2009:java_io_File$createTempFile$6
 n:1385:java_io_File$deleteOnExit$7
 n:1489:java_io_File$delete$8
+n:1887:org/codehaus/groovy/grails/cli/interactive/InteractiveMode$getCurrent

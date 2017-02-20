@@ -139,11 +139,52 @@ class MainController {
 
         if(!testingUser){
             TestingRole testingRole = new TestingRole(role: "Wizard");
+            TestingRole testingRole2 = new TestingRole(role: "Coordinator");
+            TestingRole testingRole3 = new TestingRole(role: "Professor");
+
             testingRole.save(flush: true)
+            testingRole2.save(flush: true)
+            testingRole3.save(flush: true)
 
             testingUser = new TestingFaculty(fname: "Admin", lname: "Admin", username: "admin@admin.com", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(1).id)
+            TestingFaculty testingUser2 = new TestingFaculty(fname: "CourseCoord", lname: "CourseCoord", username: "coursecoord@coordinator.com", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(2).id)
+            TestingFaculty testingUser3 = new TestingFaculty(fname: "Professor", lname: "Professor", username: "professor@professor.com", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(3).id)
+            TestingFaculty testingUser4 = new TestingFaculty(fname: "Professor2", lname: "Professor2", username: "professor2@professor.com", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(3).id)
+            TestingFaculty testingUser5 = new TestingFaculty(fname: "Professor3", lname: "Professor3", username: "professor3@professor.com", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(3).id)
+            TestingFaculty testingUser6 = new TestingFaculty(fname: "DeptCoord", lname: "DeptCoord", username: "deptcoord@coordinator.com", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(2).id)
+            TestingFaculty testingUser7 = new TestingFaculty(fname: "DeptCoord2", lname: "DeptCoord2", username: "deptcoord2@coordinator.com", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(2).id)
 
             testingUser.save(flush: true)
+            testingUser2.save(flush: true)
+            testingUser3.save(flush: true)
+            testingUser4.save(flush: true)
+            testingUser5.save(flush: true)
+            testingUser6.save(flush: true)
+            testingUser7.save(flush: true)
+
+            TestingSection testingSection = new TestingSection(professor: testingUser3, title: "testSec1");
+            TestingSection testingSection2 = new TestingSection(professor: testingUser4, title: "testSec2");
+            TestingSection testingSection3 = new TestingSection(professor: testingUser5, title: "testSec1");
+
+            testingSection.save(flush: true)
+            testingSection2.save(flush: true)
+            testingSection3.save(flush: true)
+
+            TestingCourse testingCourse = new TestingCourse(name: "TestCourse1", courseCoordinator: testingUser2, sections: [testingSection, testingSection2]);
+            TestingCourse testingCourse2 = new TestingCourse(name: "TestCourse2", courseCoordinator: testingUser2, sections: testingSection3);
+            TestingCourse testingCourse3 = new TestingCourse(name: "TestCourse3");
+            TestingCourse testingCourse4 = new TestingCourse(name: "TestCourse4");
+
+            testingCourse.save(flush: true)
+            testingCourse2.save(flush: true)
+            testingCourse3.save(flush: true)
+            testingCourse4.save(flush: true)
+
+            TestingDepartment testingDepartment = new TestingDepartment(name: "TestDept1", courses: [testingCourse, testingCourse2], departmentCoordinator: testingUser6);
+            TestingDepartment testingDepartment2 = new TestingDepartment(name: "TestDept2", courses: [testingCourse3, testingCourse4], departmentCoordinator: testingUser7);
+
+            testingDepartment.save(flush: true)
+            testingDepartment2.save(flush: true)
         }
         render template: 'loginPage'
     }
