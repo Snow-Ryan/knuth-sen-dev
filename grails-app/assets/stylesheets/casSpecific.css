@@ -44,6 +44,7 @@ a:active {  color: white; }
     color:white;
     margin-top:62px;
     margin-bottom: 20px;
+    z-index: 2;
 }
 
 .second-level-nav .container .nav li a{
@@ -53,12 +54,16 @@ a:active {  color: white; }
 .second-level-nav .container .nav li a:hover{
     color:black;
 }
-
+.second-level-nav .container .nav li a:active{
+    color:black;
+}
 .card-header{
     background: #F36E21 ;
 
 }
-
+.top-nav-bar-buttons:active{
+    background: #F36E21;
+}
 
 .block-element-container{
     display: -webkit-flex; /* Safari */
@@ -97,3 +102,4 @@ h2{
     color:white;
 
 }
+

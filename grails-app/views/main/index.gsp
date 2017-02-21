@@ -117,6 +117,8 @@
 
                 if($('#mainContainer').find('.formsDisplayTable')){
                     $('.formsDisplayTable').DataTable();
+                    $('[data-toggle="tooltip"]').tooltip();
+
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -149,7 +151,7 @@
     });
 
     $body.on('click', '.loginBtn', function (event) {
-        event.preventDefault();;
+        event.preventDefault();
     });
 
     $body.on('click', '.loginBtn', function () {
@@ -168,6 +170,14 @@
         loadForms();
     });
 
+
+
+    $body.on('click', '.publishBtn', function () {
+
+
+
+
+    });
 
     $body.on('click', '.newFormButton', function () {
         $('#mainContainer').empty();

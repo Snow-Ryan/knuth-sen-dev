@@ -38,7 +38,7 @@
                         </thead>
                         <tbody>
                         <g:each in="${forms}">
-                            <tr>
+                            <tr data-toggle="tooltip" title="${it.description}" >
                                 <td>${it.title}</td>
                                 <td>${it.creationDate}</td>
 
@@ -49,7 +49,7 @@
                                     <td>N/A</td>
                                     <td>
                                         <label class="hiddenId" style="display: none">${it.id}</label>
-                                        <i class="fa fa-paper-plane publishBtn fa-2x" aria-hidden="true"></i><i style="padding-left: 15px" class='fa fa-pencil editBtn fa-2x' aria-hidden='true'></i><i style="padding-left: 15px" class='fa fa-trash-o deleteBtn fa-2x' aria-hidden='true'></i>
+                                        <i class="fa fa-paper-plane publishBtn fa-2x" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i><i style="padding-left: 15px" class='fa fa-pencil editBtn fa-2x' aria-hidden='true'></i><i style="padding-left: 15px" class='fa fa-trash-o deleteBtn fa-2x' aria-hidden='true'></i>
                                     </td>
                                 </g:if>
                                 <g:else>
@@ -66,9 +66,16 @@
                         </g:each>
                         </tbody>
                     </table>
+
+
+
+
+
                 </div>
                 <br>
-                <button class="newFormButton  btn btn-default">New Form <span class="glyphicon glyphicon-plus "></span></button>
+                <button type="button" class="newFormButton  btn btn-default">New Form <span class="glyphicon glyphicon-plus "></span></button>
+
+
             </g:else>
         </div>
         <div class="card-footer text-muted">

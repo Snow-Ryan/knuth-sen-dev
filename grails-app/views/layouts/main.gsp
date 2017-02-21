@@ -16,8 +16,13 @@
     <!-- Latest compiled and minified JavaScript -->
     %{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>--}%
 
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:600,400&subset=latin,latin-ext' rel='stylesheet'
-		  type='text/css'>
+
+    <!--bootstrap growl -->
+
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:600,400&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
 	<!-- Latest compiled and minified CSS -->
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -46,17 +51,31 @@
 
         <div id="navbar" class="navbar-collapse collapse navbar-right">
             <ul class="nav navbar-nav">
-                %{--<li class="active"><a href="#">Home</a></li>--}%
-                %{--<li><a class="loginBtn" href="#about">Login</a></li>--}%
+
+                <li class="dropdown rolesLi"><a class="dropdown-toggle admin top-nav-bar-buttons" data-toggle="dropdown" href="#">USERNAME</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </li>
+                <li><a class="loginBtn" href="#about">Login</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
-<div class="second-level-nav navbar-fixed-top">
+<div class="navbar-fixed-top second-level-nav">
         <div class="container">
             <ul class="nav navbar-nav secondNav">
                 %{--<li class="mainLi"><a class="home" href="main.gsp">Home</a></li>--}%
-                <li class="rolesLi"><a class="admin" href="#">Admin</a></li>
+
+                <li class="dropdown rolesLi"><a class="dropdown-toggle admin" data-toggle="dropdown" href="#">Admin</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Faculty</a></li>
+                        <li><a href="#">Sections</a></li>
+                        <li><a href="#">Courses</a></li>
+                        <li><a href="#">Departments</a></li>
+                    </ul>
+                </li>
+
                 <li class="formsLi"><a class="forms" href="#">Forms</a></li>
                 <li class="pViewLiv"><a class="pView" href="#">Professor View</a></li>
             </ul>
@@ -68,7 +87,24 @@
 
 	<g:layoutBody/>
 
-
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header card-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title " id="myModalLabel">Modal title</h2>
+            </div>
+            <div class="modal-body">
+                class="modal-body"
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <nav class="navbar navbar-brown navbar-fixed-bottom">
     <div class="container">
