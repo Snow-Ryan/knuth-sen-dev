@@ -174,7 +174,7 @@
 
     $body.on('click', '.publishBtn', function () {
 
-
+        $.growl.warning({ message: "The kitten is ugly!" });
 
 
     });

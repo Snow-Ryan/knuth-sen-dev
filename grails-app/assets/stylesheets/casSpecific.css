@@ -103,3 +103,14 @@ h2{
 
 }
 
+i{
+    cursor: pointer;
+}
+.top-nav-bar-buttons:hover {
+    text-decoration: underline;
+}
+
+.table-hover:hover{
+    background-color: rgba(25,25,25,0.15);
+
+}

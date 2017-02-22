@@ -38,7 +38,7 @@
                         </thead>
                         <tbody>
                         <g:each in="${forms}">
-                            <tr data-toggle="tooltip" title="${it.description}" >
+                            <tr class="table-hover" data-toggle="tooltip" data-placement="bottom" title="${it.description}" >
                                 <td>${it.title}</td>
                                 <td>${it.creationDate}</td>
 

@@ -9,6 +9,7 @@
 //= require js.cookie.js
 //= require jquery.dataTables.min.js
 //= require bootstrap.min.js
+//= require jquery.growl.js
 //= require_tree .
 //= require_self
 

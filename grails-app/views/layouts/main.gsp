@@ -37,6 +37,12 @@
 
 <body>
 
+
+
+
+
+
+
 <nav class="navbar navbar-orange navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -52,37 +58,50 @@
         <div id="navbar" class="navbar-collapse collapse navbar-right">
             <ul class="nav navbar-nav">
 
-                <li class="dropdown rolesLi"><a class="dropdown-toggle admin top-nav-bar-buttons" data-toggle="dropdown" href="#">USERNAME</a>
-                    <ul class="dropdown-menu">
+                <li class="dropdown rolesLi top-nav-bar-buttons"><a class="dropdown-toggle admin" data-toggle="dropdown" href="#" style="background-color: #f36e21;">USERNAME</a>
+                    <ul class="dropdown-menu" style="margin-top:6px;">
+                        <li><a href="#">Profile</a></li>
                         <li><a href="#">Logout</a></li>
                     </ul>
                 </li>
-                <li><a class="loginBtn" href="#about">Login</a></li>
+                <li class="top-nav-bar-buttons"><a class="loginBtn" href="#about" style="background-color: #f36e21;">Login</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
+
 <div class="navbar-fixed-top second-level-nav">
         <div class="container">
-            <ul class="nav navbar-nav secondNav">
-                %{--<li class="mainLi"><a class="home" href="main.gsp">Home</a></li>--}%
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target="#secondNavbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
 
-                <li class="dropdown rolesLi"><a class="dropdown-toggle admin" data-toggle="dropdown" href="#">Admin</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Faculty</a></li>
-                        <li><a href="#">Sections</a></li>
-                        <li><a href="#">Courses</a></li>
-                        <li><a href="#">Departments</a></li>
-                    </ul>
-                </li>
 
-                <li class="formsLi"><a class="forms" href="#">Forms</a></li>
-                <li class="pViewLiv"><a class="pView" href="#">Professor View</a></li>
-            </ul>
+            <div id="secondNavbar" class="navbar-collapse collapse navbar-left">
+
+                <ul class="nav navbar-nav secondNav">
+                    <li class="dropdown rolesLi"><a class="dropdown-toggle admin" data-toggle="dropdown" href="#">Admin</a>
+                        <ul class="dropdown-menu" >
+                            <li><a href="#">Faculty</a></li>
+                            <li><a href="#">Sections</a></li>
+                            <li><a href="#">Courses</a></li>
+                            <li><a href="#">Departments</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="formsLi"><a class="forms" href="#">Forms</a></li>
+                    <li class="pViewLiv"><a class="pView" href="#">Professor View</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
         </div>
 </div>
-<div style="margin-bottom: 130px"></div>
 
+<div style="margin-bottom: 130px"></div>
 
 
 	<g:layoutBody/>
@@ -114,5 +133,8 @@
 
 	<br/>
 </div>
+
+
+
 </body>
 </html>
