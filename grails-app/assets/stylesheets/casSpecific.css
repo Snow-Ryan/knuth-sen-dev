@@ -139,6 +139,7 @@ body.loading {
    modal element will be visible */
 body.loading .loading-modal {
     display: block;
+<<<<<<< HEAD
 }
 
 #imaginary_container{
@@ -271,3 +272,6 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+=======
+}
+>>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
