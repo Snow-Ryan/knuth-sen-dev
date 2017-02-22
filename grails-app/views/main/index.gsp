@@ -35,106 +35,6 @@
             loadLoadingScreen();
         }
     });
-
-    function checkLoginStatus(token){
-        $.ajax({
-            url: "${g.createLink(action: 'getRole')}",
-            type: "GET",
-            headers: {
-                'Authorization':token
-            },
-            success: function (data) {
-                if(data.status===0){
-                    Cookies.remove('token');
-                    loadExpiredSession();
-                }
-                else if (data.status===1) {
-                    displayOptions(data.role);
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-            }
-        });
-    }
-
-    function loadLoadingScreen(){
-        $('#mainContainer').empty();
-
-        $.ajax({
-            url: "${g.createLink(controller: 'main', action: 'loadingScreen')}",
-            success: function (data) {
-                $('#mainContainer').append(data);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
-            }
-        });
-    }
-
-    function loadExpiredSession(){
-        $('#mainContainer').empty();
-
-        $.ajax({
-            url: "${g.createLink(controller: 'main', action: 'loadExpiredSession')}",
-            success: function (data) {
-                $('#mainContainer').append(data);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
-            }
-        });
-    }
-
-    function loadLogInPage(){
-        $('#mainContainer').empty();
-
-        $('.secondNav').css("visibility", "hidden");
-        Cookies.remove('token');
-
-        $.ajax({
-            url: "${g.createLink(controller: 'main', action: 'loadLogIn')}",
-            success: function (data) {
-                $('#mainContainer').append(data);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
-            }
-        });
-    }
-
-    function loadForms(){
-        $('#mainContainer').empty();
-
-
-        $.ajax({
-            url: "${g.createLink(controller: 'main', action: 'loadForms')}",
-            headers: {
-                'Authorization':Cookies.get('token')
-            },
-            success: function (data) {
-                $('#mainContainer').append(data);
-
-                if($('#mainContainer').find('.formsDisplayTable')){
-                    $('.formsDisplayTable').DataTable();
-                    $('[data-toggle="tooltip"]').tooltip();
-
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
-            }
-        });
-    }
-
-    function displayOptions(role){
-        if(role==="Wizard"){
-            $('.secondNav').css("visibility", "");
-        }
-        else{
-            alert("loginFailed")
-        }
-    }
         //-----------------------------------------------EVENTS---------------------------------------------------------------
 
     $body.on('click', '.forms', function (event) {
@@ -170,183 +70,32 @@
         loadForms();
     });
 
-
-
     $body.on('click', '.publishBtn', function () {
-
         $.growl.warning({ message: "The kitten is ugly!" });
-
-
     });
 
     $body.on('click', '.newFormButton', function () {
-        $('#mainContainer').empty();
-
-        $.ajax({
-            url: "${g.createLink(controller: 'main', action: 'loadFormCreation')}",
-            headers: {
-                'Authorization':Cookies.get('token')
-            },
-            success: function (data) {
-                $('#mainContainer').append(data);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
-            }
-        });
+        loadFormCreation();
     });
 
     $body.on('click', '.attemptLogin', function () {
-        var username = $('.usernameInput').val();
-        var password = $('.passwordInput').val();
-
-        $('#mainContainer').empty();
-
-        $.ajax({
-            url: "${g.createLink(action: 'login')}",
-            type: "POST",
-            data:{
-                username:username,
-                password:password
-            },
-            success: function (data) {
-                if(data.role) {
-                    Cookies.set('token', data.token, {expires: 1});
-                    displayOptions(data.role);
-                }
-                else{
-                    loadLogInPage()
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-            }
-        });
+        attemptLogin();
     });
 
     $body.on('click', '.editBtn', function () {
-        $('#mainContainer').empty();
-
-        var id = $(this).parent().find('.hiddenId').html();
-
-        $.ajax({
-            url: "${g.createLink(action: 'loadFormEdit')}",
-            headers: {
-                'Authorization':Cookies.get('token')
-            },
-            type: "POST",
-            data:{
-                id:id
-            },
-            success: function (data) {
-                $('#mainContainer').append(data);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-                loadForms();
-            }
-        });
+        loadFormEdit(this);
     });
 
     $body.on('click', '.saveEditForm', function () {
-        var title = $('.titleInput').val();
-        var question = $('.questionInput').val();
-        var description = $('.descriptionTextArea').val();
-
-        var id = $('.card-block').find('.hiddenId').html();
-        $.ajax({
-            url: "${g.createLink(action: 'saveEditForm')}",
-            headers: {
-                'Authorization':Cookies.get('token')
-            },
-            type: "POST",
-            data:{
-                title:title,
-                question:question,
-                description:description,
-                id:id
-            },
-            success: function (data) {
-                if(data.status===2){
-                    alert("Assessment form with that title already exists")
-                }
-                else if(data.status===5){
-                    loadExpiredSession();
-                }
-                else{
-                    loadForms();
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-                loadForms();
-            }
-        });
+        saveEditForm();
     });
 
     $body.on('click', '.saveNewForm', function () {
-
-        var title = $('.titleInput').val();
-        var creationDate = new Date()
-        var question = $('.questionInput').val();
-        var description = $('.descriptionTextArea').val();
-
-        $.ajax({
-            url: "${g.createLink(action: 'saveNewForm')}",
-            headers: {
-                'Authorization':Cookies.get('token')
-            },
-            type: "POST",
-            data:{
-                title:title,
-                question:question,
-                description:description,
-                creationDate:creationDate.getMonth() + 1 + ". " + creationDate.getDate() + ". " + creationDate.getFullYear()+ "."
-            },
-            success: function (data) {
-                if(data.status===2){
-                    alert("Assessment form with that title already exists")
-                }
-                else if(data.status===5){
-                    loadExpiredSession();
-                }
-                else{
-                    loadForms();
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-                loadForms();
-            }
-        });
+        saveNewForm();
     });
 
     $body.on('click', '.deleteBtn', function () {
-
-        var id = $(this).parent().find('.hiddenId').html();
-
-        $.ajax({
-            url: "${g.createLink(action: 'deleteForm')}",
-            headers: {
-                'Authorization':Cookies.get('token')
-            },
-            type: "POST",
-            data:{
-                id:id
-            },
-            success: function (data) {
-                if(data.status===5){
-                    loadExpiredSession();
-                }
-                else{
-                    loadForms();
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-                loadForms();
-            }
-        });
+        deleteForm(this);
     });
 
 </script>
