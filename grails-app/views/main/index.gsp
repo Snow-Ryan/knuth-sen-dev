@@ -106,6 +106,11 @@
         loadLoadingScreen();
     });
 
+    $body.on('click', '.facultyAdminBtn', function (event) {
+        event.preventDefault();
+        loadAdminFaculty();
+    });
+
 </script>
 </body>
 </html>

@@ -168,6 +168,33 @@ function loadFormEdit(that){
     });
 }
 
+function loadAdminFaculty(){
+    $('#mainContainer').empty();
+
+    $.ajax({
+        url: "/knuth-sen-dev/main/loadFaculty",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
+        success: function (data) {
+            $('#mainContainer').append(data);
+
+            if($('#mainContainer').find('.formsDisplayTable')){
+                if($('.formsDisplayTable').length){
+                    $('.formsDisplayTable').DataTable();
+                    // $('[data-toggle="tooltip"]').tooltip();
+                }
+                else{
+                    showLoginBtn();
+                }
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
+        }
+    });
+}
+
 function attemptLogin(){
     var username = $('.usernameInput').val();
     var password = $('.passwordInput').val();

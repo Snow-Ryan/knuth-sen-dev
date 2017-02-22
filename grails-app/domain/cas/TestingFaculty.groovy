@@ -9,6 +9,8 @@ class TestingFaculty {
     TestingRole role
     String token
     long expiration
+    Integer active
+    String email
 
     static constraints = {
         fname nullable: true, maxSize: 45
@@ -19,5 +21,7 @@ class TestingFaculty {
         password nullable: false
         token nullable: true
         expiration nullable: true
+        active nullable: true
+        email nullable: true
     }
 }

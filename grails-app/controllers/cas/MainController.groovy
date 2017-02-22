@@ -20,6 +20,17 @@ class MainController {
         }
     };
 
+    def loadFaculty(){
+        if(checkExpiration(request.getHeader('Authorization'))){
+            render template: "expiredSession"
+        }
+        else{
+            expandExpiration(request.getHeader('Authorization'))
+            def faculty = TestingFaculty.findAll()
+            render (template: "adminFaculty", model: [faculty: faculty])
+        }
+    };
+
     def loadFormCreation(){
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
@@ -31,6 +42,30 @@ class MainController {
     }
 
     def saveNewForm(String title, String question, String description, String creationDate){
+        JSON resultJson
+        TestingForm testingForm;
+        testingForm = TestingForm.findByTitle(title);
+
+        if(checkExpiration(request.getHeader('Authorization'))){
+            resultJson = [status: 5, message: "Expired"] as JSON
+        }
+        else {
+            expandExpiration(request.getHeader('Authorization'))
+            if (!testingForm) {
+                testingForm = new TestingForm(title: title, question: question, description: description, creationDate: creationDate, published: 0);
+                if (testingForm.save(flush: true)) {
+                    resultJson = [status: 0, message: "Success"] as JSON
+                } else {
+                    resultJson = [status: 1, message: "Error"] as JSON
+                }
+            } else {
+                resultJson = [status: 2, message: "Error"] as JSON
+            }
+        }
+        render(resultJson)
+    }
+
+    def saveNewFaculty(String fname, String mname, String lname, String email, int active, int roleId){
         JSON resultJson
         TestingForm testingForm;
         testingForm = TestingForm.findByTitle(title);
