@@ -17,7 +17,6 @@
     <div id="mainContainer" class="container block-element-container">
 
 
-
     </div>
 
 <script>
@@ -347,6 +346,13 @@
                 loadForms();
             }
         });
+    });
+
+    $body = $("body");
+
+    $(document).on({
+        ajaxStart: function() { $body.addClass("loading");    },
+        ajaxStop: function() { $body.removeClass("loading"); }
     });
 
 </script>
