@@ -71,7 +71,8 @@
     });
 
     $body.on('click', '.publishBtn', function () {
-        $.growl.warning({ message: "The kitten is ugly!" });
+        $('.modal-body').empty();
+        $('.modal-body').append("BANANAZ");
     });
 
     $body.on('click', '.newFormButton', function () {
@@ -96,6 +97,13 @@
 
     $body.on('click', '.deleteBtn', function () {
         deleteForm(this);
+    });
+
+    $body.on('click', '.logoutBtn', function (event) {
+        event.preventDefault();
+        Cookies.remove('token');
+        showLoginBtn();
+        loadLoadingScreen();
     });
 
 </script>

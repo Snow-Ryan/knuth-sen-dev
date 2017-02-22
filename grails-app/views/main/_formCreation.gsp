@@ -6,8 +6,6 @@
             <h2>Create Form</h2>
         </div>
         <div class="card-block">
-
-
             <div>
                 <div class="form-group">
                     <label>Title </label>
@@ -26,8 +24,6 @@
                 <button class="saveNewForm btn btn-default">Save</button>
                 <button class="cancelNewForm btn btn-danger">Cancel</button>
             </div>
-
-
         </div>
         <div class="card-footer text-muted">
             .

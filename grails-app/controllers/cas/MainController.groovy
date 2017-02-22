@@ -200,7 +200,7 @@ class MainController {
 
             testingFaculty.save(flush: true)
 
-            render([role:(testingFaculty.role).role, token:token] as JSON)
+            render([role:(testingFaculty.role).role, token:token, name: testingFaculty.fname + " " + testingFaculty.lname] as JSON)
         }
         else{
             render("fail")
@@ -219,7 +219,7 @@ class MainController {
 
             expandExpiration(request.getHeader('Authorization'))
 
-            resultJson = [status:1, message:"Valid", role: (testingFaculty.role).role] as JSON
+            resultJson = [status:1, message:"Valid", role: (testingFaculty.role).role, name: testingFaculty.fname + " " + testingFaculty.lname] as JSON
         }
 
         render resultJson

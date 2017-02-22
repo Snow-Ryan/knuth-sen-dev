@@ -58,13 +58,13 @@
         <div id="navbar" class="navbar-collapse collapse navbar-right">
             <ul class="nav navbar-nav">
 
-                <li class="dropdown rolesLi top-nav-bar-buttons"><a class="dropdown-toggle admin" data-toggle="dropdown" href="#" style="background-color: #f36e21;">USERNAME</a>
+                <li class="dropdown rolesLi top-nav-bar-buttons"><a class="dropdown-toggle admin userLocation" data-toggle="dropdown" href="#" style="background-color: #f36e21; display: none;">USERNAME</a>
                     <ul class="dropdown-menu" style="margin-top:6px;">
                         <li><a href="#">Profile</a></li>
-                        <li><a href="#">Logout</a></li>
+                        <li class="logoutBtn"><a href="#">Logout</a></li>
                     </ul>
                 </li>
-                <li class="top-nav-bar-buttons"><a class="loginBtn" href="#about" style="background-color: #f36e21;">Login</a></li>
+                <li class="top-nav-bar-buttons"><a class="loginBtn hideMe" href="#about" style="background-color: #f36e21;">Login</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

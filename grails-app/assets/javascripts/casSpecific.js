@@ -2,6 +2,13 @@
  * Created by asuta on 22-Feb-17.
  */
 // /knuth-sen-dev/main/login
+function showLoginBtn(){
+    Cookies.remove('token');
+    $('.secondNav').css("visibility", "");
+    $('.userLocation').html("USERNAME");
+    $('.userLocation').css("display", "none");
+    $('.hideMe').css("display", "");
+}
 
 function loadExpiredSession(){
     $('#mainContainer').empty();
@@ -10,6 +17,7 @@ function loadExpiredSession(){
         url: "/knuth-sen-dev/main/loadExpiredSession",
         success: function (data) {
             $('#mainContainer').append(data);
+            showLoginBtn();
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
@@ -81,7 +89,7 @@ function saveNewForm(){
         },
         success: function (data) {
             if(data.status===2){
-                alert("Assessment form with that title already exists")
+                $.growl.warning({ message: "Assessment form with that title already exists" });
             }
             else if(data.status===5){
                 loadExpiredSession();
@@ -117,7 +125,7 @@ function saveEditForm(){
         },
         success: function (data) {
             if(data.status===2){
-                alert("Assessment form with that title already exists")
+                $.growl.warning({ message: "Assessment form with that title already exists" });
             }
             else if(data.status===5){
                 loadExpiredSession();
@@ -149,6 +157,9 @@ function loadFormEdit(that){
         },
         success: function (data) {
             $('#mainContainer').append(data);
+            if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
+                showLoginBtn();
+            }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
@@ -172,9 +183,10 @@ function attemptLogin(){
         success: function (data) {
             if(data.role) {
                 Cookies.set('token', data.token, {expires: 1});
-                displayOptions(data.role);
+                displayOptions(data.role, data.name);
             }
             else{
+                $.growl.warning({ message: "Login failed" });
                 loadLogInPage()
             }
         },
@@ -193,6 +205,10 @@ function loadFormCreation(){
         },
         success: function (data) {
             $('#mainContainer').append(data);
+
+            if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
+                showLoginBtn();
+            }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
@@ -203,7 +219,6 @@ function loadFormCreation(){
 function loadForms(){
     $('#mainContainer').empty();
 
-
     $.ajax({
         url: "/knuth-sen-dev/main/loadForms",
         headers: {
@@ -213,9 +228,13 @@ function loadForms(){
             $('#mainContainer').append(data);
 
             if($('#mainContainer').find('.formsDisplayTable')){
-                $('.formsDisplayTable').DataTable();
-                $('[data-toggle="tooltip"]').tooltip();
-
+                if($('.formsDisplayTable').length){
+                    $('.formsDisplayTable').DataTable();
+                    $('[data-toggle="tooltip"]').tooltip();
+                }
+                else{
+                    showLoginBtn();
+                }
             }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -251,7 +270,7 @@ function checkLoginStatus(token){
                 loadExpiredSession();
             }
             else if (data.status===1) {
-                displayOptions(data.role);
+                displayOptions(data.role, data.name);
             }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -260,12 +279,17 @@ function checkLoginStatus(token){
     });
 }
 
-function displayOptions(role){
+function displayOptions(role, name){
     if(role==="Wizard"){
         $('.secondNav').css("visibility", "");
+        $('.userLocation').html(name);
+        $('.userLocation').css("display", "");
+        $('.hideMe').css("display", "none");
         loadForms();
     }
     else{
-        alert("loginFailed")
+        $.growl.warning({ message: "Unrecognized user" });
+        Cookies.remove('token');
+        loadLogInPage();
     }
 }

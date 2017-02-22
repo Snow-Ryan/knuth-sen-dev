@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96558d68-82a3-4e99-8a53-4a52ccfdf32b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/grails-app/assets/javascripts/casSpecific.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/6935c077-387c-4b18-ba7c-baaeb08fc66b.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/6935c077-387c-4b18-ba7c-baaeb08fc66b.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/grails-app/assets/javascripts/application.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.slcache/.index" afterPath="$PROJECT_DIR$/.slcache/.index" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/assets/javascripts/casSpecific.js" afterPath="$PROJECT_DIR$/grails-app/assets/javascripts/casSpecific.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/controllers/cas/MainController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/cas/MainController.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/layouts/main.gsp" afterPath="$PROJECT_DIR$/grails-app/views/layouts/main.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/main/_formCreation.gsp" afterPath="$PROJECT_DIR$/grails-app/views/main/_formCreation.gsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/main/index.gsp" afterPath="$PROJECT_DIR$/grails-app/views/main/index.gsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/knuth-sen-dev.iml" afterPath="$PROJECT_DIR$/knuth-sen-dev.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/stacktrace.log" afterPath="$PROJECT_DIR$/target/stacktrace.log" />
     </list>
     <ignored path="knuth-sen-dev.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,21 +43,61 @@
       <file leaf-file-name="index.gsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/views/main/index.gsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-107">
-              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+            <state relative-caret-position="354">
+              <caret line="104" column="23" selection-start-line="104" selection-start-column="23" selection-end-line="104" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="casSpecific.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="casSpecific.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/assets/javascripts/casSpecific.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="478">
-              <caret line="265" column="20" selection-start-line="265" selection-start-column="20" selection-end-line="265" selection-end-column="20" />
+            <state relative-caret-position="403">
+              <caret line="161" column="13" selection-start-line="161" selection-start-column="13" selection-end-line="161" selection-end-column="13" />
               <folding>
-                <element signature="n#!!doc;n#loadExpiredSession#0" expanded="false" />
+                <element signature="n#!!doc;n#showLoginBtn#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_formCreation.gsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/views/main/_formCreation.gsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_expiredSession.gsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/views/main/_expiredSession.gsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="27" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.gsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/views/layouts/main.gsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="66" column="73" selection-start-line="66" selection-start-column="67" selection-end-line="66" selection-end-column="73" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainController.groovy" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/grails-app/controllers/cas/MainController.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="75" column="26" selection-start-line="75" selection-start-column="11" selection-end-line="75" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -122,7 +162,6 @@
         <option value="$PROJECT_DIR$/grails-app/assets/stylesheets/main.css" />
         <option value="$PROJECT_DIR$/grails-app/assets/stylesheets/mobile.css" />
         <option value="$PROJECT_DIR$/grails-app/conf/casSpecific.css" />
-        <option value="$PROJECT_DIR$/grails-app/views/main/_formCreation.gsp" />
         <option value="$PROJECT_DIR$/grails-app/views/main/_loginPage.gsp" />
         <option value="$PROJECT_DIR$/grails-app/services/knuth/sen/dev/Md5passService.groovy" />
         <option value="$PROJECT_DIR$/grails-app/services/cas/Md5passService.groovy" />
@@ -145,14 +184,15 @@
         <option value="$PROJECT_DIR$/grails-app/views/main/_formEdit.gsp" />
         <option value="$PROJECT_DIR$/grails-app/conf/BuildConfig.groovy" />
         <option value="$PROJECT_DIR$/grails-app/conf/Config.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/controllers/cas/MainController.groovy" />
         <option value="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" />
         <option value="$PROJECT_DIR$/grails-app/assets/stylesheets/application.css" />
         <option value="$PROJECT_DIR$/grails-app/views/main/_formsPage.gsp" />
         <option value="$PROJECT_DIR$/grails-app/assets/stylesheets/casSpecific.css" />
-        <option value="$PROJECT_DIR$/grails-app/views/layouts/main.gsp" />
         <option value="$PROJECT_DIR$/grails-app/assets/javascripts/application.js" />
+        <option value="$PROJECT_DIR$/grails-app/controllers/cas/MainController.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/views/layouts/main.gsp" />
         <option value="$PROJECT_DIR$/grails-app/views/main/index.gsp" />
+        <option value="$PROJECT_DIR$/grails-app/views/main/_formCreation.gsp" />
         <option value="$PROJECT_DIR$/grails-app/assets/javascripts/casSpecific.js" />
       </list>
     </option>
@@ -572,6 +612,11 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="MongoRunConfiguration" factoryName="Mongo">
+      <setting name="path" value="" />
+      <setting name="shellParams" value="" />
+      <method />
+    </configuration>
     <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -952,12 +997,12 @@
       <workItem from="1487696876297" duration="18838000" />
       <workItem from="1487756677544" duration="506000" />
       <workItem from="1487757576137" duration="54000" />
-      <workItem from="1487780846858" duration="940000" />
+      <workItem from="1487780846858" duration="4644000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103645000" />
+    <option name="totallyTimeSpent" value="107349000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -969,7 +1014,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1075,7 +1120,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/grails-app/views/test/banana.gsp" />
     <entry file="file://$PROJECT_DIR$/grails-app/controllers/knuth/sen/dev/MainController.groovy" />
     <entry file="file://$PROJECT_DIR$/grails-app/controllers/knuth/sen/dev/IndexController.groovy" />
     <entry file="file://$PROJECT_DIR$/target/work/plugins/cache-1.1.8/src/java/grails/plugin/cache/compiler/CacheTransformation.java" />
@@ -1142,13 +1186,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/main/_formCreation.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -1286,25 +1323,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/cas/MainController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="152" column="22" selection-start-line="152" selection-start-column="22" selection-end-line="152" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/assets/stylesheets/casSpecific.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="10" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/main/_formsPage.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="51" column="141" selection-start-line="51" selection-start-column="141" selection-end-line="51" selection-end-column="141" />
         </state>
       </provider>
     </entry>
@@ -1324,14 +1346,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/layouts/main.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="110" column="46" selection-start-line="110" selection-start-column="46" selection-end-line="110" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/assets/javascripts/application.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1340,21 +1354,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/main/_formsPage.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="51" column="141" selection-start-line="51" selection-start-column="141" selection-end-line="51" selection-end-column="141" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/views/main/index.gsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-107">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        <state relative-caret-position="354">
+          <caret line="104" column="23" selection-start-line="104" selection-start-column="23" selection-end-line="104" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/main/_expiredSession.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/main/_formCreation.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/assets/javascripts/casSpecific.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="265" column="20" selection-start-line="265" selection-start-column="20" selection-end-line="265" selection-end-column="20" />
+        <state relative-caret-position="403">
+          <caret line="161" column="13" selection-start-line="161" selection-start-column="13" selection-end-line="161" selection-end-column="13" />
           <folding>
-            <element signature="n#!!doc;n#loadExpiredSession#0" expanded="false" />
+            <element signature="n#!!doc;n#showLoginBtn#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/layouts/main.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="66" column="73" selection-start-line="66" selection-start-column="67" selection-end-line="66" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/cas/MainController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="75" column="26" selection-start-line="75" selection-start-column="11" selection-end-line="75" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
