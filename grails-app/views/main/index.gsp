@@ -17,7 +17,6 @@
     <div id="mainContainer" class="container block-element-container">
 
 
-
     </div>
 
 <script>
@@ -109,6 +108,13 @@
     $body.on('click', '.facultyAdminBtn', function (event) {
         event.preventDefault();
         loadAdminFaculty();
+    });
+
+    $body = $("body");
+
+    $(document).on({
+        ajaxStart: function() { $body.addClass("loading");    },
+        ajaxStop: function() { $body.removeClass("loading"); }
     });
 
 </script>
