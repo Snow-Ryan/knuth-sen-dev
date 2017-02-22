@@ -4,6 +4,7 @@
     <list default="true" id="96558d68-82a3-4e99-8a53-4a52ccfdf32b" name="Default" comment="">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/grails-app/views/main/_adminFaculty.gsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/6935c077-387c-4b18-ba7c-baaeb08fc66b.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/6935c077-387c-4b18-ba7c-baaeb08fc66b.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -27,6 +28,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/main/_formsPage.gsp" afterPath="$PROJECT_DIR$/grails-app/views/main/_formsPage.gsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/main/index.gsp" afterPath="$PROJECT_DIR$/grails-app/views/main/index.gsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/stacktrace.log" afterPath="$PROJECT_DIR$/target/stacktrace.log" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/assets/images/favicon.png" afterPath="$PROJECT_DIR$/grails-app/assets/images/favicon.png" />
+>>>>>>> 05b0ef2... favicon
 =======
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/assets/images/favicon.png" afterPath="$PROJECT_DIR$/grails-app/assets/images/favicon.png" />
 >>>>>>> 05b0ef2... favicon
@@ -192,6 +196,7 @@
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <state relative-caret-position="1050">
               <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
 >>>>>>> 0070530... Feat: searchable dropdown menu
@@ -210,6 +215,10 @@
             <state relative-caret-position="1050">
               <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
 >>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+            <state relative-caret-position="400">
+              <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+>>>>>>> 05b0ef2... favicon
               <folding />
             </state>
           </provider>
@@ -226,6 +235,7 @@
 =======
             <state relative-caret-position="425">
 <<<<<<< HEAD
+<<<<<<< HEAD
               <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="28" />
 >>>>>>> 0070530... Feat: searchable dropdown menu
 =======
@@ -239,6 +249,9 @@
             <state relative-caret-position="425">
               <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="28" />
 >>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+              <caret line="17" column="28" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="28" />
+>>>>>>> 05b0ef2... favicon
               <folding />
             </state>
           </provider>
@@ -408,6 +421,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -429,6 +443,12 @@
     <option name="width" value="3861" />
     <option name="height" value="2122" />
 >>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+    <option name="x" value="1185" />
+    <option name="y" value="364" />
+    <option name="width" value="3861" />
+    <option name="height" value="1617" />
+>>>>>>> 05b0ef2... favicon
 =======
     <option name="x" value="1185" />
     <option name="y" value="364" />
@@ -1387,12 +1407,17 @@
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
 =======
       <workItem from="1487788494779" duration="2375000" />
+<<<<<<< HEAD
       <workItem from="1487790890431" duration="1960000" />
 >>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+      <workItem from="1487790890431" duration="2855000" />
+>>>>>>> 05b0ef2... favicon
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1410,6 +1435,9 @@
 =======
     <option name="totallyTimeSpent" value="107939000" />
 >>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+    <option name="totallyTimeSpent" value="108834000" />
+>>>>>>> 05b0ef2... favicon
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1421,6 +1449,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1441,10 +1470,14 @@
 =======
     <frame x="-10" y="0" width="3861" height="2122" extended-state="0" />
 >>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+    <frame x="1185" y="364" width="3861" height="1617" extended-state="0" />
+>>>>>>> 05b0ef2... favicon
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1459,6 +1492,9 @@
 =======
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15507169" sideWeight="0.5237464" order="7" side_tool="true" content_ui="tabs" />
 >>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2119013" sideWeight="0.5237464" order="7" side_tool="true" content_ui="tabs" />
+>>>>>>> 05b0ef2... favicon
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1479,6 +1515,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29144096" sideWeight="0.47707888" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297929" sideWeight="0.49787912" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1486,6 +1523,9 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17217484" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
 =======
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15507169" sideWeight="0.47625366" order="2" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2119013" sideWeight="0.47625366" order="2" side_tool="false" content_ui="tabs" />
+>>>>>>> 05b0ef2... favicon
 =======
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2119013" sideWeight="0.47625366" order="2" side_tool="false" content_ui="tabs" />
 >>>>>>> 05b0ef2... favicon
@@ -2162,8 +2202,12 @@
 =======
         <state relative-caret-position="425">
 <<<<<<< HEAD
+<<<<<<< HEAD
           <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="28" />
 >>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+          <caret line="17" column="28" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="28" />
+>>>>>>> 05b0ef2... favicon
 =======
           <caret line="17" column="28" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="28" />
 >>>>>>> 05b0ef2... favicon
@@ -2180,9 +2224,14 @@
     <entry file="file://$PROJECT_DIR$/grails-app/views/main/_formsPage.gsp">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <state relative-caret-position="1050">
           <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
 >>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+        <state relative-caret-position="400">
+          <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+>>>>>>> 05b0ef2... favicon
 =======
         <state relative-caret-position="400">
           <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
