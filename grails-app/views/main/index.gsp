@@ -13,7 +13,15 @@
 </head>
 
 <body >
+<<<<<<< HEAD
     <div id="mainContainer" class="container block-element-container"></div>
+=======
+
+    <div id="mainContainer" class="container block-element-container">
+
+
+    </div>
+>>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
 
 <script>
     var $body = $('body');
@@ -234,6 +242,13 @@
         enableCourse(this);
     });
 
+
+    $(document).on({
+        ajaxStart: function() { $body.addClass("loading");    },
+        ajaxStop: function() { $body.removeClass("loading"); }
+    });
+
+    $body = $("body");
 
     $(document).on({
         ajaxStart: function() { $body.addClass("loading");    },
