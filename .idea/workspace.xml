@@ -4,9 +4,11 @@
     <list default="true" id="96558d68-82a3-4e99-8a53-4a52ccfdf32b" name="Default" comment="">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/grails-app/views/main/_adminFaculty.gsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/6935c077-387c-4b18-ba7c-baaeb08fc66b.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/6935c077-387c-4b18-ba7c-baaeb08fc66b.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+<<<<<<< HEAD
 <<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.slcache/.index" afterPath="$PROJECT_DIR$/.slcache/.index" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/assets/javascripts/casSpecific.js" afterPath="$PROJECT_DIR$/grails-app/assets/javascripts/casSpecific.js" />
@@ -18,11 +20,17 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.slcache/.index" afterPath="$PROJECT_DIR$/.slcache/.index" />
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+>>>>>>> 0070530... Feat: searchable dropdown menu
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/assets/stylesheets/casSpecific.css" afterPath="$PROJECT_DIR$/grails-app/assets/stylesheets/casSpecific.css" />
 >>>>>>> 0070530... Feat: searchable dropdown menu
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/layouts/main.gsp" afterPath="$PROJECT_DIR$/grails-app/views/layouts/main.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/main/_formsPage.gsp" afterPath="$PROJECT_DIR$/grails-app/views/main/_formsPage.gsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/main/index.gsp" afterPath="$PROJECT_DIR$/grails-app/views/main/index.gsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/stacktrace.log" afterPath="$PROJECT_DIR$/target/stacktrace.log" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/assets/images/favicon.png" afterPath="$PROJECT_DIR$/grails-app/assets/images/favicon.png" />
+>>>>>>> 05b0ef2... favicon
 =======
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/assets/images/favicon.png" afterPath="$PROJECT_DIR$/grails-app/assets/images/favicon.png" />
 >>>>>>> 05b0ef2... favicon
@@ -71,6 +79,7 @@
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <state relative-caret-position="748">
               <caret line="44" column="49" selection-start-line="44" selection-start-column="49" selection-end-line="44" selection-end-column="49" />
 =======
@@ -85,6 +94,11 @@
                 <element signature="n#!!doc" expanded="true" />
               </folding>
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+            <state relative-caret-position="275">
+              <caret line="11" column="27" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+              <folding />
+>>>>>>> 0070530... Feat: searchable dropdown menu
             </state>
           </provider>
         </entry>
@@ -92,6 +106,7 @@
       <file leaf-file-name="main.gsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/views/layouts/main.gsp">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             <state relative-caret-position="1513">
@@ -104,6 +119,10 @@
             <state relative-caret-position="1292">
               <caret line="134" column="6" lean-forward="true" selection-start-line="134" selection-start-column="6" selection-end-line="134" selection-end-column="6" />
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+            <state relative-caret-position="950">
+              <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+>>>>>>> 0070530... Feat: searchable dropdown menu
               <folding />
             </state>
           </provider>
@@ -132,6 +151,7 @@
       </file>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <file leaf-file-name="_formsPage.gsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/views/main/_formsPage.gsp">
           <provider selected="true" editor-type-id="text-editor">
@@ -151,11 +171,19 @@
             <state relative-caret-position="842">
               <caret line="120" column="21" lean-forward="true" selection-start-line="120" selection-start-column="21" selection-end-line="120" selection-end-column="21" />
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+      <file leaf-file-name="casSpecific.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/assets/stylesheets/casSpecific.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="367">
+              <caret line="166" column="1" lean-forward="false" selection-start-line="166" selection-start-column="1" selection-end-line="166" selection-end-column="13" />
+>>>>>>> 0070530... Feat: searchable dropdown menu
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
 <<<<<<< HEAD
       <file leaf-file-name="MainController.groovy" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/grails-app/controllers/cas/MainController.groovy">
@@ -166,6 +194,7 @@
       <file leaf-file-name="_formsPage.gsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/grails-app/views/main/_formsPage.gsp">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             <state relative-caret-position="1050">
@@ -179,6 +208,17 @@
             <state relative-caret-position="202">
               <caret line="35" column="44" lean-forward="true" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+      <file leaf-file-name="_formsPage.gsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/grails-app/views/main/_formsPage.gsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1050">
+              <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+>>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+            <state relative-caret-position="400">
+              <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+>>>>>>> 05b0ef2... favicon
               <folding />
             </state>
           </provider>
@@ -189,10 +229,12 @@
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <state relative-caret-position="408">
               <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
 =======
             <state relative-caret-position="425">
+<<<<<<< HEAD
 <<<<<<< HEAD
               <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="28" />
 >>>>>>> 0070530... Feat: searchable dropdown menu
@@ -203,6 +245,13 @@
             <state relative-caret-position="1303">
               <caret line="354" column="18" lean-forward="false" selection-start-line="353" selection-start-column="5" selection-end-line="354" selection-end-column="18" />
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+            <state relative-caret-position="425">
+              <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="28" />
+>>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+              <caret line="17" column="28" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="28" />
+>>>>>>> 05b0ef2... favicon
               <folding />
             </state>
           </provider>
@@ -246,7 +295,16 @@
 >>>>>>> 0070530... Feat: searchable dropdown menu
 =======
       <find>AJAX</find>
+<<<<<<< HEAD
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+      <find>second</find>
+      <find>formsPage</find>
+      <find>msie</find>
+      <find>searchable</find>
+      <find>#page-wrapper</find>
+      <find>age-wrapper</find>
+>>>>>>> 0070530... Feat: searchable dropdown menu
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Ryan\Documents\GIT\knuth-sen-dev\out\production\knuth-sen-dev</dir>
@@ -310,6 +368,7 @@
         <option value="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/grails-app/assets/stylesheets/application.css" />
         <option value="$PROJECT_DIR$/grails-app/views/main/_formsPage.gsp" />
         <option value="$PROJECT_DIR$/grails-app/assets/stylesheets/casSpecific.css" />
@@ -330,13 +389,18 @@
         <option value="$PROJECT_DIR$/grails-app/views/main/_formsPage.gsp" />
 >>>>>>> 0070530... Feat: searchable dropdown menu
 =======
+=======
+        <option value="$PROJECT_DIR$/grails-app/views/layouts/main.gsp" />
+>>>>>>> 0070530... Feat: searchable dropdown menu
         <option value="$PROJECT_DIR$/grails-app/assets/javascripts/application.js" />
         <option value="$PROJECT_DIR$/grails-app/assets/stylesheets/application.css" />
-        <option value="$PROJECT_DIR$/grails-app/views/main/_formsPage.gsp" />
-        <option value="$PROJECT_DIR$/grails-app/views/layouts/main.gsp" />
-        <option value="$PROJECT_DIR$/grails-app/assets/stylesheets/casSpecific.css" />
         <option value="$PROJECT_DIR$/grails-app/views/main/index.gsp" />
+<<<<<<< HEAD
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+        <option value="$PROJECT_DIR$/grails-app/assets/stylesheets/casSpecific.css" />
+        <option value="$PROJECT_DIR$/grails-app/views/main/_formsPage.gsp" />
+>>>>>>> 0070530... Feat: searchable dropdown menu
       </list>
     </option>
   </component>
@@ -356,6 +420,8 @@
   <component name="ProjectFrameBounds">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -371,10 +437,18 @@
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
 =======
+=======
+>>>>>>> 0070530... Feat: searchable dropdown menu
     <option name="x" value="-10" />
     <option name="width" value="3861" />
     <option name="height" value="2122" />
 >>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+    <option name="x" value="1185" />
+    <option name="y" value="364" />
+    <option name="width" value="3861" />
+    <option name="height" value="1617" />
+>>>>>>> 05b0ef2... favicon
 =======
     <option name="x" value="1185" />
     <option name="y" value="364" />
@@ -403,9 +477,13 @@
       <pane id="PackagesPane" />
       <pane id="Scratches" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <pane id="Scope" />
 =======
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+      <pane id="Scope" />
+>>>>>>> 0070530... Feat: searchable dropdown menu
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1325,11 +1403,22 @@
 =======
       <workItem from="1487784029066" duration="73000" />
       <workItem from="1487784116219" duration="1386000" />
+<<<<<<< HEAD
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+      <workItem from="1487788494779" duration="2375000" />
+<<<<<<< HEAD
+      <workItem from="1487790890431" duration="1960000" />
+>>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+      <workItem from="1487790890431" duration="2855000" />
+>>>>>>> 05b0ef2... favicon
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1343,6 +1432,12 @@
 =======
     <option name="totallyTimeSpent" value="103604000" />
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+    <option name="totallyTimeSpent" value="107939000" />
+>>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+    <option name="totallyTimeSpent" value="108834000" />
+>>>>>>> 05b0ef2... favicon
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1354,6 +1449,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1370,10 +1467,18 @@
 =======
     <frame x="-11" y="-11" width="3862" height="2122" extended-state="1" />
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+    <frame x="-10" y="0" width="3861" height="2122" extended-state="0" />
+>>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+    <frame x="1185" y="364" width="3861" height="1617" extended-state="0" />
+>>>>>>> 05b0ef2... favicon
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15507169" sideWeight="0.5237464" order="7" side_tool="true" content_ui="tabs" />
@@ -1384,6 +1489,12 @@
 =======
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15507169" sideWeight="0.5217507" order="7" side_tool="true" content_ui="tabs" />
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15507169" sideWeight="0.5237464" order="7" side_tool="true" content_ui="tabs" />
+>>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2119013" sideWeight="0.5237464" order="7" side_tool="true" content_ui="tabs" />
+>>>>>>> 05b0ef2... favicon
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1403,6 +1514,8 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29144096" sideWeight="0.47707888" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297929" sideWeight="0.49787912" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1410,6 +1523,9 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17217484" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
 =======
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15507169" sideWeight="0.47625366" order="2" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2119013" sideWeight="0.47625366" order="2" side_tool="false" content_ui="tabs" />
+>>>>>>> 05b0ef2... favicon
 =======
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2119013" sideWeight="0.47625366" order="2" side_tool="false" content_ui="tabs" />
 >>>>>>> 05b0ef2... favicon
@@ -1425,6 +1541,13 @@
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17533156" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15507169" sideWeight="0.47625366" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297929" sideWeight="0.49787912" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17856196" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> 0070530... Feat: searchable dropdown menu
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1519,9 +1642,12 @@
   </component>
   <component name="editorHistoryManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <entry file="file://$PROJECT_DIR$/grails-app/controllers/knuth/sen/dev/MainController.groovy" />
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+>>>>>>> 0070530... Feat: searchable dropdown menu
     <entry file="file://$PROJECT_DIR$/grails-app/controllers/knuth/sen/dev/IndexController.groovy" />
     <entry file="file://$PROJECT_DIR$/target/work/plugins/cache-1.1.8/src/java/grails/plugin/cache/compiler/CacheTransformation.java" />
     <entry file="file://$PROJECT_DIR$/grails-app/controllers/knuth/sen/dev/LandingPageController.groovy" />
@@ -1655,11 +1781,16 @@
         </state>
       </provider>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
         <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/domain/cas/TestingRole.groovy">
+=======
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/cas/TestingFaculty.groovy">
+>>>>>>> 0070530... Feat: searchable dropdown menu
 =======
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/domain/cas/TestingFaculty.groovy">
@@ -1674,6 +1805,7 @@
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
         </state>
       </provider>
+<<<<<<< HEAD
       <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
         <state />
       </provider>
@@ -1688,14 +1820,20 @@
           <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
         </state>
       </provider>
+=======
+>>>>>>> 0070530... Feat: searchable dropdown menu
       <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
         <state />
       </provider>
     </entry>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/grails-app/assets/stylesheets/main.css">
 =======
     <entry file="file://$PROJECT_DIR$/grails-app/domain/cas/TestingRole.groovy">
+>>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/cas/TestingSection.groovy">
 >>>>>>> 0070530... Feat: searchable dropdown menu
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -1708,6 +1846,7 @@
         </state>
       </provider>
 <<<<<<< HEAD
+<<<<<<< HEAD
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/domain/cas/TestingDepartment.groovy">
       <provider selected="true" editor-type-id="text-editor">
@@ -1717,14 +1856,20 @@
       </provider>
 =======
 >>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+>>>>>>> 0070530... Feat: searchable dropdown menu
       <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
         <state />
       </provider>
     </entry>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/.idea/dataSources.xml">
 =======
     <entry file="file://$PROJECT_DIR$/grails-app/domain/cas/TestingForm.groovy">
+>>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/cas/TestingRole.groovy">
 >>>>>>> 0070530... Feat: searchable dropdown menu
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -1737,14 +1882,21 @@
         </state>
       </provider>
 <<<<<<< HEAD
+<<<<<<< HEAD
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/conf/DataSource.groovy">
 =======
+=======
+>>>>>>> 0070530... Feat: searchable dropdown menu
       <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
         <state />
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/grails-app/domain/cas/TestingCourse.groovy">
+>>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/cas/TestingForm.groovy">
 >>>>>>> 0070530... Feat: searchable dropdown menu
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -1760,7 +1912,11 @@
         <state />
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/grails-app/assets/stylesheets/casSpecific.css">
+=======
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/cas/TestingCourse.groovy">
+>>>>>>> 0070530... Feat: searchable dropdown menu
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
         <state relative-caret-position="0">
@@ -1770,6 +1926,9 @@
           <caret line="8" column="40" lean-forward="false" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
         </state>
+      </provider>
+      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+        <state />
       </provider>
     </entry>
 <<<<<<< HEAD
@@ -1788,6 +1947,7 @@
     <entry file="file://$PROJECT_DIR$/grails-app/assets/javascripts/jquery.growl.js">
 =======
     <entry file="file://$PROJECT_DIR$/grails-app/domain/cas/TestingDepartment.groovy">
+<<<<<<< HEAD
 >>>>>>> 0070530... Feat: searchable dropdown menu
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -1799,6 +1959,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/assets/javascripts/application.js">
+=======
+>>>>>>> 0070530... Feat: searchable dropdown menu
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
         <state relative-caret-position="136">
@@ -1808,6 +1970,9 @@
           <caret line="3" column="40" lean-forward="false" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
         </state>
+      </provider>
+      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/views/main/_expiredSession.gsp">
@@ -1846,21 +2011,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/assets/javascripts/application.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="20" column="32" lean-forward="false" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.project">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/assets/javascripts/jquery.searchabledropdown-1.0.8.src.js">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+        <state relative-caret-position="3503">
+          <caret line="376" column="17" lean-forward="false" selection-start-line="376" selection-start-column="17" selection-end-line="376" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/assets/javascripts/application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" column="27" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+          <folding />
+>>>>>>> 0070530... Feat: searchable dropdown menu
         </state>
       </provider>
     </entry>
@@ -1884,8 +2060,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/knuth-sen-dev.iml">
+    <entry file="file://$PROJECT_DIR$/grails-app/views/layouts/main.gsp">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <state relative-caret-position="275">
           <caret line="11" column="27" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
@@ -1894,6 +2071,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+        <state relative-caret-position="950">
+          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+>>>>>>> 0070530... Feat: searchable dropdown menu
           <folding />
         </state>
       </provider>
@@ -1901,8 +2082,9 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/layouts/main.gsp">
+    <entry file="file://$PROJECT_DIR$/knuth-sen-dev.iml">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <state relative-caret-position="272">
           <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="44" />
@@ -1926,10 +2108,15 @@
         <state relative-caret-position="950">
           <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
 >>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> 0070530... Feat: searchable dropdown menu
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/knuth-sen-dev.iml">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -1945,6 +2132,12 @@
         <state relative-caret-position="202">
           <caret line="35" column="44" lean-forward="true" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+    <entry file="file://$PROJECT_DIR$/grails-app/assets/stylesheets/casSpecific.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="166" column="1" lean-forward="false" selection-start-line="166" selection-start-column="1" selection-end-line="166" selection-end-column="13" />
+>>>>>>> 0070530... Feat: searchable dropdown menu
           <folding />
         </state>
       </provider>
@@ -1964,9 +2157,14 @@
 =======
     <entry file="file://$PROJECT_DIR$/grails-app/views/main/index.gsp">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="1303">
           <caret line="354" column="18" lean-forward="false" selection-start-line="353" selection-start-column="5" selection-end-line="354" selection-end-column="18" />
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
+=======
+        <state relative-caret-position="425">
+          <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="28" />
+>>>>>>> 0070530... Feat: searchable dropdown menu
           <folding />
         </state>
       </provider>
@@ -1974,6 +2172,7 @@
         <state />
       </provider>
     </entry>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/grails-app/assets/javascripts/casSpecific.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1984,9 +2183,12 @@
           </folding>
 =======
     <entry file="file://$PROJECT_DIR$/grails-app/assets/stylesheets/casSpecific.css">
+=======
+    <entry file="file://$PROJECT_DIR$/grails-app/views/main/_formsPage.gsp">
+>>>>>>> 0070530... Feat: searchable dropdown menu
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="842">
-          <caret line="120" column="21" lean-forward="true" selection-start-line="120" selection-start-column="21" selection-end-line="120" selection-end-column="21" />
+        <state relative-caret-position="1050">
+          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding />
 >>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
         </state>
@@ -2000,8 +2202,12 @@
 =======
         <state relative-caret-position="425">
 <<<<<<< HEAD
+<<<<<<< HEAD
           <caret line="17" column="28" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="28" />
 >>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+          <caret line="17" column="28" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="28" />
+>>>>>>> 05b0ef2... favicon
 =======
           <caret line="17" column="28" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="28" />
 >>>>>>> 05b0ef2... favicon
@@ -2018,9 +2224,14 @@
     <entry file="file://$PROJECT_DIR$/grails-app/views/main/_formsPage.gsp">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <state relative-caret-position="1050">
           <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
 >>>>>>> 0070530... Feat: searchable dropdown menu
+=======
+        <state relative-caret-position="400">
+          <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+>>>>>>> 05b0ef2... favicon
 =======
         <state relative-caret-position="400">
           <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
