@@ -13,7 +13,9 @@
                         <th>Middle Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
+                        <th>Role</th>
                         <th>Active</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -21,7 +23,7 @@
                 </table>
             </div>
             <br>
-            <button class="newFacultyButton">New Faculty</button>
+            <button type="button" class="newFacultyButton  btn btn-default">New Faculty <span class="glyphicon glyphicon-plus "></span></button>
         </g:if>
         <g:else>
             <div>
@@ -33,6 +35,7 @@
                         <th>Middle Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
+                        <th>Role</th>
                         <th>Active</th>
                         <th>Actions</th>
                     </tr>
@@ -45,6 +48,12 @@
                             <td>${it.mname}</td>
                             <td>${it.lname}</td>
                             <td>${it.email}</td>
+                            <g:if test="${it.role}">
+                                <td>${it.role.role}</td>
+                            </g:if>
+                            <g:else>
+                                <td></td>
+                            </g:else>
 
                             <g:if test="${it.active == 0}">
                                 <td>

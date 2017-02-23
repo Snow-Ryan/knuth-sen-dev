@@ -82,8 +82,16 @@
         loadFormEdit(this);
     });
 
+    $body.on('click', '.editFacultyBtn', function () {
+        loadFacultyEdit(this);
+    });
+
     $body.on('click', '.saveEditForm', function () {
         saveEditForm();
+    });
+
+    $body.on('click', '.saveEditFaculty', function () {
+        saveEditFaculty();
     });
 
     $body.on('click', '.saveNewForm', function () {
@@ -106,9 +114,19 @@
         loadAdminFaculty();
     });
 
+    $body.on('click', '.sectionsAdminBtn', function (event) {
+        event.preventDefault();
+        loadAdminSections();
+    });
+
     $body.on('click', '.newFacultyButton', function (event) {
         event.preventDefault();
         loadFacultyCreation();
+    });
+
+    $body.on('click', '.newSectionButton', function (event) {
+        event.preventDefault();
+        loadSectionCreation();
     });
 
     $body.on('click', '.cancelNewFaculty', function (event) {
@@ -116,9 +134,19 @@
         loadAdminFaculty();
     });
 
+    $body.on('click', '.cancelNewSection', function (event) {
+        event.preventDefault();
+        loadAdminSections();
+    });
+
     $body.on('click', '.saveNewFaculty', function (event) {
         event.preventDefault();
         saveNewFaculty();
+    });
+
+    $body.on('click', '.saveNewSection', function (event) {
+        event.preventDefault();
+        saveNewSection();
     });
 
     $('.round').change(function () {

@@ -141,6 +141,56 @@ function saveEditForm(){
     });
 }
 
+function saveEditFaculty(){
+    var fName = null;
+    var mName = null;
+    var lName = null;
+    var username = null;
+    var email = null;
+
+    var role = null;
+
+    role = document.getElementById('option_box').value;
+    fName = $('.firstNameInput').val();
+    mName = $('.middleNameInput').val();
+    lName = $('.lastNameInput').val();
+    username = $('.usernameInput').val();
+    email = $('.emailInput').val();
+    var id = $('.card-block').find('.hiddenId').html();
+
+    $.ajax({
+        url: "/knuth-sen-dev/main/saveEditFaculty",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
+        type: "POST",
+        data:{
+            fName:fName,
+            mName:mName,
+            lName:lName,
+            username:username,
+            email:email,
+            role:role,
+            id:id
+        },
+        success: function (data) {
+            if(data.status===2){
+                $.growl.warning({ message: "Faculty member with that username already exists" });
+            }
+            else if(data.status===5){
+                loadExpiredSession();
+            }
+            else{
+                loadAdminFaculty();
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+            loadForms();
+        }
+    });
+}
+
 function loadFormEdit(that){
     $('#mainContainer').empty();
 
@@ -164,6 +214,60 @@ function loadFormEdit(that){
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
             loadForms();
+        }
+    });
+}
+
+function loadFacultyEdit(that){
+    $('#mainContainer').empty();
+
+    var id = $(that).parent().find('.hiddenId').html();
+
+    $.ajax({
+        url: "/knuth-sen-dev/main/loadFacultyEdit",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
+        type: "POST",
+        data:{
+            id:id
+        },
+        success: function (data) {
+            $('#mainContainer').append(data);
+            if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
+                showLoginBtn();
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+            loadAdminFaculty();
+        }
+    });
+}
+
+function loadAdminSections(){
+    $('#mainContainer').empty();
+
+    $.ajax({
+        url: "/knuth-sen-dev/main/loadSections",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
+        success: function (data) {
+            $('#mainContainer').append(data);
+
+            if($('#mainContainer').find('.formsDisplayTable')){
+                if($('.formsDisplayTable').length){
+                    $('.formsDisplayTable').DataTable();
+                    // $('[data-toggle="tooltip"]').tooltip();
+                }
+                else{
+                    showLoginBtn();
+                }
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
         }
     });
 }
@@ -195,6 +299,27 @@ function loadAdminFaculty(){
     });
 }
 
+function loadSectionCreation(){
+    $('#mainContainer').empty();
+
+    $.ajax({
+        url: "/knuth-sen-dev/main/loadSectionCreation",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
+        success: function (data) {
+            $('#mainContainer').append(data);
+
+            if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
+                showLoginBtn();
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
+        }
+    });
+}
+
 function loadFacultyCreation(){
     $('#mainContainer').empty();
 
@@ -212,6 +337,42 @@ function loadFacultyCreation(){
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
+        }
+    });
+}
+
+function saveNewSection() {
+    var title = null;
+
+    var faculty = null;
+
+    faculty = document.getElementById('option_box').value;
+    title = $('.sectiontitleinput').val();
+
+    $.ajax({
+        url: "/knuth-sen-dev/main/saveNewSection",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
+        type: "POST",
+        data:{
+            faculty:faculty,
+            title:title
+        },
+        success: function (data) {
+            if(data.status===2){
+                $.growl.warning({ message: "Section with that title already exists" });
+            }
+            else if(data.status===5){
+                loadExpiredSession();
+            }
+            else{
+                loadAdminSections();
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+            loadForms();
         }
     });
 }

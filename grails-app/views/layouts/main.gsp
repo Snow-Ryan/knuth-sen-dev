@@ -89,7 +89,7 @@
                         <ul class="dropdown-menu" >
                             <li><a class="facultyAdminBtn" href="#">Faculty</a></li>
                             <li><a class="rolesAdminBtn" href="#">Roles</a></li>
-                            <li><a href="#">Sections</a></li>
+                            <li><a class="sectionsAdminBtn" href="#">Sections</a></li>
                             <li><a href="#">Courses</a></li>
                             <li><a href="#">Departments</a></li>
                         </ul>

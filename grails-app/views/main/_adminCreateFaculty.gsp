@@ -56,10 +56,10 @@
                 </div>
                 <div class="form-group">
                     <label for="option_box">User Role</label>
-                    <input type="text" name = "roleList" id="option_box" list="json-datalist" placeholder="e.g. ISTE-240">
+                    <input type="text" name = "roleList" id="option_box" list="json-datalist" placeholder="">
                     <datalist id="json-datalist">
                     <g:each in="${roles}">
-                        <option value="${it.id}">${it.role}</option>
+                        <option value="${it.role}"></option>
                     </g:each>
                     </datalist>
                 </div>

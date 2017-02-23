@@ -73,7 +73,6 @@
     </content>
     <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="grails-2.4.4" level="application" />
     <orderEntry type="module-library" exported="">
       <library name="Grails User Library (knuth-sen-dev-grailsPlugins)">
         <CLASSES>
