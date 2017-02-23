@@ -31,6 +31,16 @@ class MainController {
         }
     };
 
+    def loadFacultyCreation(){
+        if(checkExpiration(request.getHeader('Authorization'))){
+            render template: "expiredSession"
+        }
+        else {
+            expandExpiration(request.getHeader('Authorization'))
+            render(template: "adminCreateFaculty", model: [roles: TestingRole.findAll()])
+        }
+    }
+
     def loadFormCreation(){
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
@@ -65,19 +75,20 @@ class MainController {
         render(resultJson)
     }
 
-    def saveNewFaculty(String fname, String mname, String lname, String email, int active, int roleId){
+    def saveNewFaculty(String fName, String mName, String lName, String username, String email, int role){
         JSON resultJson
-        TestingForm testingForm;
-        testingForm = TestingForm.findByTitle(title);
+        TestingFaculty testingFaculty;
+        testingFaculty = TestingFaculty.findByUsername(username);
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
         }
         else {
             expandExpiration(request.getHeader('Authorization'))
-            if (!testingForm) {
-                testingForm = new TestingForm(title: title, question: question, description: description, creationDate: creationDate, published: 0);
-                if (testingForm.save(flush: true)) {
+            if (!testingFaculty) {
+                testingFaculty = new TestingFaculty(fname: fName, mname: mName, lname: lName, username: username, email: email, role: TestingRole.findById(role).id, password: md5passService.getEncryptedPass("testing"));
+
+                if (testingFaculty.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
                 } else {
                     resultJson = [status: 1, message: "Error"] as JSON
@@ -87,7 +98,6 @@ class MainController {
             }
         }
         render(resultJson)
-
     }
 
     def loadFormEdit(int id){

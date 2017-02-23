@@ -88,6 +88,7 @@
                     <li class="dropdown rolesLi"><a class="dropdown-toggle admin" data-toggle="dropdown" href="#">Admin</a>
                         <ul class="dropdown-menu" >
                             <li><a class="facultyAdminBtn" href="#">Faculty</a></li>
+                            <li><a class="rolesAdminBtn" href="#">Roles</a></li>
                             <li><a href="#">Sections</a></li>
                             <li><a href="#">Courses</a></li>
                             <li><a href="#">Departments</a></li>

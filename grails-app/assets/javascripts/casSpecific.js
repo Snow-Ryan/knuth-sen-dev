@@ -195,6 +195,75 @@ function loadAdminFaculty(){
     });
 }
 
+function loadFacultyCreation(){
+    $('#mainContainer').empty();
+
+    $.ajax({
+        url: "/knuth-sen-dev/main/loadFacultyCreation",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
+        success: function (data) {
+            $('#mainContainer').append(data);
+
+            if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
+                showLoginBtn();
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
+        }
+    });
+}
+
+function saveNewFaculty() {
+    var fName = null;
+    var mName = null;
+    var lName = null;
+    var username = null;
+    var email = null;
+
+    var role = null;
+
+    role = document.getElementById('option_box').value;
+    fName = $('.firstNameInput').val();
+    mName = $('.middleNameInput').val();
+    lName = $('.lastNameInput').val();
+    username = $('.usernameInput').val();
+    email = $('.emailInput').val();
+
+    $.ajax({
+        url: "/knuth-sen-dev/main/saveNewFaculty",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
+        type: "POST",
+        data:{
+            fName:fName,
+            mName:mName,
+            lName:lName,
+            username:username,
+            email:email,
+            role: role
+        },
+        success: function (data) {
+            if(data.status===2){
+                $.growl.warning({ message: "Faculty with that username already exists" });
+            }
+            else if(data.status===5){
+                loadExpiredSession();
+            }
+            else{
+                loadAdminFaculty();
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+            loadForms();
+        }
+    });
+}
+
 function attemptLogin(){
     var username = $('.usernameInput').val();
     var password = $('.passwordInput').val();
