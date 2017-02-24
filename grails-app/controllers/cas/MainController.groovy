@@ -20,6 +20,17 @@ class MainController {
         }
     };
 
+    def loadPeopleForms(){
+        if(checkExpiration(request.getHeader('Authorization'))){
+            render template: "expiredSession"
+        }
+        else{
+            expandExpiration(request.getHeader('Authorization'))
+            def forms = TestingFaculty.findAll();
+            render (template: "formsPage", model: [forms: forms])
+        }
+    };
+
     def loadFormCreation(){
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
