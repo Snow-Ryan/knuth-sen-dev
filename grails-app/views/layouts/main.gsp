@@ -5,21 +5,6 @@
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
 <head>
-    %{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">--}%
-
-    <!-- Latest compiled and minified CSS -->
-    %{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">--}%
-
-    <!-- Optional theme -->
-    %{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">--}%
-
-    <!-- Latest compiled and minified JavaScript -->
-    %{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>--}%
-
-
-    <!--bootstrap growl -->
-
-
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:600,400&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
@@ -36,13 +21,6 @@
 </head>
 
 <body>
-
-
-
-
-
-
-
 <nav class="navbar navbar-orange navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -81,16 +59,15 @@
                 </button>
             </div>
 
-
             <div id="secondNavbar" class="navbar-collapse collapse navbar-left">
 
                 <ul class="nav navbar-nav secondNav">
                     <li class="dropdown rolesLi"><a class="dropdown-toggle admin" data-toggle="dropdown" href="#">Admin</a>
                         <ul class="dropdown-menu" >
                             <li><a class="facultyAdminBtn" href="#">Faculty</a></li>
-                            <li><a href="#">Sections</a></li>
-                            <li><a href="#">Courses</a></li>
-                            <li><a href="#">Departments</a></li>
+                            <li><a class="sectionsAdminBtn" href="#">Sections</a></li>
+                            <li><a class="coursesAdminBtn" href="#">Courses</a></li>
+                            <li><a class="departmentsAdminBtn" href="#">Departments</a></li>
                         </ul>
                     </li>
 
@@ -101,7 +78,10 @@
         </div>
 </div>
 
+
+
 <div style="margin-bottom: 130px"></div>
+
 
 
 	<g:layoutBody/>
@@ -135,6 +115,7 @@
 </div>
 
 
+<div class="loading-modal"><!-- Place at bottom of page --></div>
 
 </body>
 </html>

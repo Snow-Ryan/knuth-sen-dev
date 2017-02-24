@@ -13,12 +13,7 @@
 </head>
 
 <body >
-
-    <div id="mainContainer" class="container block-element-container">
-
-
-
-    </div>
+<div id="mainContainer" class="container block-element-container"></div>
 
 <script>
     var $body = $('body');
@@ -35,7 +30,7 @@
             loadLoadingScreen();
         }
     });
-        //-----------------------------------------------EVENTS---------------------------------------------------------------
+    //-----------------------------------------------EVENTS---------------------------------------------------------------
 
     $body.on('click', '.forms', function (event) {
         event.preventDefault();
@@ -70,6 +65,10 @@
         loadForms();
     });
 
+    $body.on('click', '.cancelNewDepartment', function () {
+        loadAdminDepartments();
+    });
+
     $body.on('click', '.publishBtn', function () {
         $('.modal-body').empty();
         $('.modal-body').append("BANANAZ");
@@ -87,8 +86,40 @@
         loadFormEdit(this);
     });
 
+    $body.on('click', '.editFacultyBtn', function () {
+        loadFacultyEdit(this);
+    });
+
+    $body.on('click', '.editDepartmentBtn', function () {
+        loadDepartmentEdit(this);
+    });
+
+    $body.on('click', '.editSectionBtn', function () {
+        loadSectionEdit(this);
+    });
+
+    $body.on('click', '.editCourseBtn', function () {
+        loadCourseEdit(this);
+    });
+
     $body.on('click', '.saveEditForm', function () {
         saveEditForm();
+    });
+
+    $body.on('click', '.saveEditDepartment', function () {
+        saveEditDepartment();
+    });
+
+    $body.on('click', '.saveEditSection', function () {
+        saveEditSection();
+    });
+
+    $body.on('click', '.saveEditCourse', function () {
+        saveEditCourse();
+    });
+
+    $body.on('click', '.saveEditFaculty', function () {
+        saveEditFaculty();
     });
 
     $body.on('click', '.saveNewForm', function () {
@@ -109,6 +140,104 @@
     $body.on('click', '.facultyAdminBtn', function (event) {
         event.preventDefault();
         loadAdminFaculty();
+    });
+
+    $body.on('click', '.departmentsAdminBtn', function (event) {
+        event.preventDefault();
+        loadAdminDepartments();
+    });
+
+    $body.on('click', '.coursesAdminBtn', function (event) {
+        event.preventDefault();
+        loadAdminCourses();
+    });
+
+    $body.on('click', '.sectionsAdminBtn', function (event) {
+        event.preventDefault();
+        loadAdminSections();
+    });
+
+    $body.on('click', '.newFacultyButton', function () {
+        loadFacultyCreation();
+    });
+
+    $body.on('click', '.newDepartmentButton', function () {
+        loadDepartmentCreation();
+    });
+
+    $body.on('click', '.newCourseButton', function () {
+        loadCourseCreation();
+    });
+
+    $body.on('click', '.newSectionButton', function () {
+        loadSectionCreation();
+    });
+
+    $body.on('click', '.cancelNewCourse', function () {
+        loadAdminCourses();
+    });
+
+    $body.on('click', '.cancelNewFaculty', function () {
+        loadAdminFaculty();
+    });
+
+    $body.on('click', '.cancelNewSection', function () {
+        loadAdminSections();
+    });
+
+    $body.on('click', '.saveNewFaculty', function () {
+        saveNewFaculty();
+    });
+
+    $body.on('click', '.saveNewDepartment', function () {
+        saveNewDepartment();
+    });
+
+    $body.on('click', '.saveNewSection', function () {
+        saveNewSection();
+    });
+
+    $body.on('click', '.saveNewCourse', function () {
+        saveNewCourse(this);
+    });
+
+    $body.on('click', '.disableFacultyBtn', function () {
+        disableFaculty(this);
+    });
+
+
+    $body.on('click', '.enableFacultyBtn', function () {
+        enableFaculty(this);
+    });
+
+    $body.on('click', '.enableDepartmentBtn', function () {
+        enableDepartment(this);
+    });
+
+    $body.on('click', '.disableDepartmentBtn', function () {
+        disableDepartment(this);
+    });
+
+    $body.on('click', '.disableSectionBtn', function () {
+        disableSection(this);
+    });
+
+    $body.on('click', '.enableSectionBtn', function () {
+        enableSection(this);
+    });
+
+    $body.on('click', '.disableCourseBtn', function () {
+        disableCourse(this);
+    });
+
+    $body.on('click', '.enableCourseBtn', function () {
+        enableCourse(this);
+    });
+
+
+    $(document).on({
+        ajaxStart: function() { $body.addClass("loading");    },
+        ajaxStop: function() { $body.removeClass("loading"); }
     });
 
 </script>

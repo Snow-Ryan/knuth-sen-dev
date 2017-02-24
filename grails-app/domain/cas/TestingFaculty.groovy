@@ -1,6 +1,7 @@
 package cas
 
 class TestingFaculty {
+    Integer id
     String fname
     String lname
     String mname

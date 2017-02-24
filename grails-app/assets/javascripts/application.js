@@ -7,6 +7,8 @@
 //
 //= require jquery
 //= require casSpecific.js
+//= require casSpecific.js
+//= require casSpecific.js
 //= require js.cookie.js
 //= require jquery.dataTables.min.js
 //= require bootstrap.min.js
