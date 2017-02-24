@@ -31,9 +31,9 @@
                 <label for="option_box">User Role</label>
                 <input type="text" name = "roleList" id="option_box" list="json-datalist" placeholder="Select a Role">
                 <datalist id="json-datalist">
-                <g:each in="${roles}">
-                    <option value="${it.role}"></option>
-                </g:each>
+                    <g:each in="${roles}">
+                        <option value="${it.role}"></option>
+                    </g:each>
                 </datalist>
             </div>
             <button class="saveNewFaculty btn btn-default">Save</button>

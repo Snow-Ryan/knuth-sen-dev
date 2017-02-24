@@ -1,43 +1,3 @@
-<<<<<<< HEAD
-
-
-<div id="mainContainer" class="container block-element-container">
-
-    <div class="card text-center flex-item ">
-        <div class="card-header">
-            <h2>Forms</h2>
-        </div>
-        <div class="card-block">
-            <g:if test="${forms.size() == 0}">
-                <div>
-                    <table class="formsDisplayTable" class="display" cellspacing="0" width="100%">
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Creation Date</th>
-                            <th>Published</th>
-                            <th>Publish Date</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-                <br>
-                <button class="newFormButton">New Form</button>
-            </g:if>
-            <g:else>
-                <div>
-                    <table class="formsDisplayTable" class="display" cellspacing="0" width="100%" min>
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Creation Date</th>
-                            <th>Published</th>
-                            <th>Publish Date</th>
-                            <th>Actions</th>
-=======
 <div class="card text-center flex-item ">
     <div class="card-header">
         <h2>Forms</h2>
@@ -100,7 +60,6 @@
                                     <i class="fa fa-download downloadBtn fa-2x" aria-hidden="true"></i>
                                 </td>
                             </g:else>
->>>>>>> c0fb066c509ed607135a0f8abd2e84a6d14e6272
                         </tr>
                     </g:each>
                     </tbody>

@@ -216,8 +216,6 @@ button:active {
     opacity: 1;
     box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1) inset;
 }
-<<<<<<< HEAD
-=======
 
 .switch {
     position: relative;
@@ -273,4 +271,3 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
->>>>>>> c0fb066c509ed607135a0f8abd2e84a6d14e6272
