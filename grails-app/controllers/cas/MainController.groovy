@@ -22,12 +22,17 @@ class MainController {
         }
     };
 
+<<<<<<< HEAD
     def loadFaculty(){
+=======
+    def loadPeopleForms(){
+>>>>>>> 789f61a5f388542051d16d8c52b8bf170dadf414
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
         }
         else{
             expandExpiration(request.getHeader('Authorization'))
+<<<<<<< HEAD
             def faculty = TestingFaculty.findAll()
             render (template: "adminFaculty", model: [faculty: faculty])
         }
@@ -105,6 +110,13 @@ class MainController {
         }
     }
 
+=======
+            def forms = TestingFaculty.findAll();
+            render (template: "formsPage", model: [forms: forms])
+        }
+    };
+
+>>>>>>> 789f61a5f388542051d16d8c52b8bf170dadf414
     def loadFormCreation(){
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
