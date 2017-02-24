@@ -3,7 +3,7 @@
         <h2>Faculty</h2>
     </div>
     <div class="card-block">
-        <g:if test="${faculty.size() == 0}">
+        <g:if test="${!faculty}">
             <div>
                 <table class="formsDisplayTable" class="display" cellspacing="0" width="100%">
                     <thead>

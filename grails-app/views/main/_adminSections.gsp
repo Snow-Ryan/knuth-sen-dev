@@ -1,15 +1,16 @@
 <div class="card text-center flex-item">
     <div class="card-header">
-        <h2>Faculty</h2>
+        <h2>Sections</h2>
     </div>
     <div class="card-block">
-        <g:if test="${sections.size() == 0}">
+        <g:if test="${!sections}">
             <div>
-                <table class="formsDisplayTable" class="display" cellspacing="0" width="100%">
+                <table class="sectionsDisplayTable" class="display" cellspacing="0" width="100%">
                     <thead>
                     <tr>
                         <th>Title</th>
                         <th>Active</th>
+                        <th>Professor</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -22,11 +23,12 @@
         </g:if>
         <g:else>
             <div>
-                <table class="formsDisplayTable" class="display" cellspacing="0" width="100%" min>
+                <table class="sectionsDisplayTable" class="display" cellspacing="0" width="100%" min>
                     <thead>
                     <tr>
                         <th>Title</th>
                         <th>Active</th>
+                        <th>Professor</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -38,6 +40,12 @@
                                 <td>
                                     <i class="fa fa-times" aria-hidden="true" style="color: red"></i>
                                 </td>
+                                <g:if test="${it.professor}">
+                                    <td>${it.professor.fname} ${it.professor.lname}</td>
+                                </g:if>
+                                <g:else>
+                                    <td></td>
+                                </g:else>
                                 <td>
                                     <label class="hiddenId" style="display: none">${it.id}</label>
                                     <i style="padding-left: 15px" class='fa fa-pencil editSectionBtn fa-2x' aria-hidden='true'></i><i style="padding-left: 15px" class='fa fa-toggle-off enableSectionBtn fa-2x' aria-hidden='true'></i>
@@ -47,6 +55,12 @@
                                 <td>
                                     <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
                                 </td>
+                                <g:if test="${it.professor}">
+                                    <td>${it.professor.fname} ${it.professor.lname}</td>
+                                </g:if>
+                                <g:else>
+                                    <td></td>
+                                </g:else>
                                 <td>
                                     <label class="hiddenId" style="display: none">${it.id}</label>
                                     <i style="padding-left: 15px" class='fa fa-pencil editSectionBtn fa-2x' aria-hidden='true'></i><i style="padding-left: 15px" class='fa fa-toggle-on disableSectionBtn fa-2x' aria-hidden='true'></i>

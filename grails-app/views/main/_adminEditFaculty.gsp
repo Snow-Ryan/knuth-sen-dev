@@ -30,11 +30,14 @@
             </div>
             <div class="form-group">
                 <label for="option_box">User Role</label>
-                <input type="text" name = "roleList" id="option_box" list="json-datalist" value=${faculty.role.id}>
+                <g:if test="${faculty.role}">
+                    <input type="text" name = "roleList" id="option_box" list="json-datalist" value=${faculty.role.role}>
+                </g:if>
+                <g:else>
+                    <input type="text" name = "roleList" id="option_box" list="json-datalist" >
+                </g:else>
+
                 <datalist id="json-datalist">
-                    <g:if test="${faculty.role}">
-                        %{--<option value=${faculty.role.id} selected>${faculty.role.role}</option>--}%
-                    </g:if>
                     <g:each in="${roles}">
                         <option value="${it.role}"></option>
                     </g:each>

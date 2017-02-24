@@ -65,6 +65,10 @@
         loadForms();
     });
 
+    $body.on('click', '.cancelNewDepartment', function () {
+        loadAdminDepartments();
+    });
+
     $body.on('click', '.publishBtn', function () {
         $('.modal-body').empty();
         $('.modal-body').append("BANANAZ");
@@ -86,8 +90,32 @@
         loadFacultyEdit(this);
     });
 
+    $body.on('click', '.editDepartmentBtn', function () {
+        loadDepartmentEdit(this);
+    });
+
+    $body.on('click', '.editSectionBtn', function () {
+        loadSectionEdit(this);
+    });
+
+    $body.on('click', '.editCourseBtn', function () {
+        loadCourseEdit(this);
+    });
+
     $body.on('click', '.saveEditForm', function () {
         saveEditForm();
+    });
+
+    $body.on('click', '.saveEditDepartment', function () {
+        saveEditDepartment();
+    });
+
+    $body.on('click', '.saveEditSection', function () {
+        saveEditSection();
+    });
+
+    $body.on('click', '.saveEditCourse', function () {
+        saveEditCourse();
     });
 
     $body.on('click', '.saveEditFaculty', function () {
@@ -114,93 +142,103 @@
         loadAdminFaculty();
     });
 
+    $body.on('click', '.departmentsAdminBtn', function (event) {
+        event.preventDefault();
+        loadAdminDepartments();
+    });
+
+    $body.on('click', '.coursesAdminBtn', function (event) {
+        event.preventDefault();
+        loadAdminCourses();
+    });
+
     $body.on('click', '.sectionsAdminBtn', function (event) {
         event.preventDefault();
         loadAdminSections();
     });
 
-    $body.on('click', '.newFacultyButton', function (event) {
-        event.preventDefault();
+    $body.on('click', '.newFacultyButton', function () {
         loadFacultyCreation();
     });
 
-    $body.on('click', '.newSectionButton', function (event) {
-        event.preventDefault();
+    $body.on('click', '.newDepartmentButton', function () {
+        loadDepartmentCreation();
+    });
+
+    $body.on('click', '.newCourseButton', function () {
+        loadCourseCreation();
+    });
+
+    $body.on('click', '.newSectionButton', function () {
         loadSectionCreation();
     });
 
-    $body.on('click', '.cancelNewFaculty', function (event) {
-        event.preventDefault();
+    $body.on('click', '.cancelNewCourse', function () {
+        loadAdminCourses();
+    });
+
+    $body.on('click', '.cancelNewFaculty', function () {
         loadAdminFaculty();
     });
 
-    $body.on('click', '.cancelNewSection', function (event) {
-        event.preventDefault();
+    $body.on('click', '.cancelNewSection', function () {
         loadAdminSections();
     });
 
-    $body.on('click', '.saveNewFaculty', function (event) {
-        event.preventDefault();
+    $body.on('click', '.saveNewFaculty', function () {
         saveNewFaculty();
     });
 
-    $body.on('click', '.saveNewSection', function (event) {
-        event.preventDefault();
+    $body.on('click', '.saveNewDepartment', function () {
+        saveNewDepartment();
+    });
+
+    $body.on('click', '.saveNewSection', function () {
         saveNewSection();
     });
 
-    $('.round').change(function () {
-       console.log("switch")
+    $body.on('click', '.saveNewCourse', function () {
+        saveNewCourse(this);
     });
+
+    $body.on('click', '.disableFacultyBtn', function () {
+        disableFaculty(this);
+    });
+
+
+    $body.on('click', '.enableFacultyBtn', function () {
+        enableFaculty(this);
+    });
+
+    $body.on('click', '.enableDepartmentBtn', function () {
+        enableDepartment(this);
+    });
+
+    $body.on('click', '.disableDepartmentBtn', function () {
+        disableDepartment(this);
+    });
+
+    $body.on('click', '.disableSectionBtn', function () {
+        disableSection(this);
+    });
+
+    $body.on('click', '.enableSectionBtn', function () {
+        enableSection(this);
+    });
+
+    $body.on('click', '.disableCourseBtn', function () {
+        disableCourse(this);
+    });
+
+    $body.on('click', '.enableCourseBtn', function () {
+        enableCourse(this);
+    });
+
 
     $(document).on({
         ajaxStart: function() { $body.addClass("loading");    },
         ajaxStop: function() { $body.removeClass("loading"); }
     });
-
-
-    //DROP DOWN SEARCH
-    // Get the <datalist> and <input> elements.
-    var dataList = document.getElementById('json-datalist');
-    var input = document.getElementById('ajax');
-
-    // Create a new XMLHttpRequest.
-//    var request = new XMLHttpRequest();
-//
-//    // Handle state changes for the request.
-//    request.onreadystatechange = function(response) {
-//        if (request.readyState === 4) {
-//            if (request.status === 200) {
-//                // Parse the JSON
-//                var jsonOptions = JSON.parse(request.responseText);
-//
-//                // Loop over the JSON array.
-//                jsonOptions.forEach(function(item) {
-//                    // Create a new <option> element.
-//                    var option = document.createElement('option');
-//                    // Set the value using the item in the JSON array.
-//                    option.value = item;
-//                    // Add the <option> element to the <datalist>.
-//                    dataList.appendChild(option);
-//                });
-//
-//                // Update the placeholder text.
-//                input.placeholder = "e.g. Course";
-//            } else {
-//                // An error occured :(
-//                input.placeholder = "Couldn't load datalist options :(";
-//            }
-//        }
-//    };
-//
-//    // Update the placeholder text.
-//    input.placeholder = "Loading options...";
-//
-//    // Set up and make the request.
-//    request.open('GET', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json', true);
-//    request.send();
-
-
 
 </script>
 </body>

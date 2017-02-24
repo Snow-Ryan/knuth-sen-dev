@@ -10,5 +10,6 @@ class TestingSection {
     static constraints = {
         professor nullable: true
         title nullable: false
+        active nullable: true
     }
 }

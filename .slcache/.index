@@ -5112,3 +5112,6 @@ n:3175:org/codehaus/groovy/tools/ErrorReporter
 n:1820:grails/util/BuildSettings$getBaseDir$3
 n:1408:java_io_File$getCanonicalPath$9
 n:2879:org/apache/commons/lang/RandomStringUtils
+n:13397:org/codehaus/groovy/grails/web/json/JSONArray
+n:1117:jline/console/history/MemoryHistory$EntryImpl
+n:264:jline/console/history/History$Entry

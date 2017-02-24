@@ -16,8 +16,6 @@
                 <label>Description</label>
                 <textarea class="form-control descriptionTextArea" id="exampleTextarea" rows="3"></textarea>
             </div>
-
-
             <button class="saveNewForm btn btn-default">Save</button>
             <button class="cancelNewForm btn btn-danger">Cancel</button>
         </div>
