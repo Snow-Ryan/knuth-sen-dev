@@ -4968,7 +4968,6 @@ n:6755:sun/tools/native2ascii/Main
 n:697:sun/tools/native2ascii/resources/MsgNative2ascii
 n:1239:sun/tools/native2ascii/N2AFilter
 n:6065:org/codehaus/groovy/grails/project/container/GrailsProjectRunner$1
-<<<<<<< HEAD
 n:1885:org/codehaus/groovy/grails/project/compiler/GrailsProjectCompiler$compile$6
 n:4111:org/codehaus/groovy/runtime/HandleMetaClass
 n:1568:java_io_File$equals$10
@@ -4999,15 +4998,12 @@ n:715:org/codehaus/groovy/runtime/dgm$994
 n:1389:java_io_PrintWriter$println$0
 n:2302:org/codehaus/groovy/grails/project/compiler/GrailsProjectWatcher$2
 n:375:org/codehaus/groovy/grails/project/compiler/GrailsProjectWatcher$ClassUpdate
-=======
->>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
 n:5135:sl/org/objectweb/asm/tree/ClassNode
 n:2483:sl/org/objectweb/asm/tree/AnnotationNode
 n:538:sl/org/objectweb/asm/tree/InnerClassNode
 n:3307:sl/org/objectweb/asm/tree/FieldNode
 n:11626:sl/org/objectweb/asm/tree/MethodNode
 n:3184:sl/org/objectweb/asm/tree/InsnList
-<<<<<<< HEAD
 n:768:sl/org/objectweb/asm/tree/VarInsnNode
 n:2843:sl/org/objectweb/asm/tree/AbstractInsnNode
 n:937:sl/org/objectweb/asm/tree/MethodInsnNode
@@ -5119,18 +5115,3 @@ n:2879:org/apache/commons/lang/RandomStringUtils
 n:13397:org/codehaus/groovy/grails/web/json/JSONArray
 n:1117:jline/console/history/MemoryHistory$EntryImpl
 n:264:jline/console/history/History$Entry
-=======
-n:881:sl/org/objectweb/asm/tree/LabelNode
-n:2843:sl/org/objectweb/asm/tree/AbstractInsnNode
-n:937:sl/org/objectweb/asm/tree/MethodInsnNode
-n:768:sl/org/objectweb/asm/tree/VarInsnNode
-n:668:sl/org/objectweb/asm/tree/InsnNode
-n:942:sl/org/objectweb/asm/tree/LocalVariableNode
-n:732:sl/org/objectweb/asm/tree/LdcInsnNode
-n:809:sl/org/objectweb/asm/tree/TypeInsnNode
-n:925:sl/org/objectweb/asm/tree/FieldInsnNode
-n:772:sl/org/objectweb/asm/tree/IntInsnNode
-n:1090:sl/org/objectweb/asm/tree/JumpInsnNode
-n:1831:sl/org/objectweb/asm/tree/TryCatchBlockNode
-n:2181:org/springframework/util/ConcurrentReferenceHashMap$2
->>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop

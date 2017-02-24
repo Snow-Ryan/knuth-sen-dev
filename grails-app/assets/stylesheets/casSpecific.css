@@ -85,7 +85,7 @@ h2{
     font-size: 24px;
 }
 .text-align-middle{
-   color:#666;
+    color:#666;
     margin:10px;
 }
 
@@ -139,10 +139,6 @@ body.loading {
    modal element will be visible */
 body.loading .loading-modal {
     display: block;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 0070530... Feat: searchable dropdown menu
 }
 
 #imaginary_container{
@@ -220,7 +216,6 @@ button:active {
     opacity: 1;
     box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1) inset;
 }
-<<<<<<< HEAD
 
 .switch {
     position: relative;
@@ -276,8 +271,3 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
-=======
-}
->>>>>>> fd2cd51... Feat: loading spinner on ajax start on stop
-=======
->>>>>>> 0070530... Feat: searchable dropdown menu
