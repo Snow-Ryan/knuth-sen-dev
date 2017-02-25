@@ -926,14 +926,14 @@ class MainController {
         }
     }
 
-    def publishingPage(int id){
+    def loadFormPublishing(int id) {
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
         }
         else{
             expandExpiration(request.getHeader('Authorization'))
-            def courses = TestingCourse.findAll();
-            render (template: "formsPage", model: [courses: courses])}
+            def departments = TestingDepartment.findAll();
+            render (template: "formPublish", model: [departments: departments, id: id])}
     };
 
     private notifyUser(String username){
@@ -942,5 +942,46 @@ class MainController {
             subject "CAS SENTIENCE"
             body 'SOON '
         }
+    }
+
+    def loadDepartmentCourses(String departmentName) {
+        if(checkExpiration(request.getHeader('Authorization'))){
+            render template: "expiredSession"
+        }
+        else {
+            expandExpiration(request.getHeader('Authorization'))
+            TestingDepartment testingDepartment = TestingDepartment.findByName(departmentName);
+            render(template: 'formPublishingCourses', model: [courses: testingDepartment.courses]);
+        }
+    }
+
+    def publishForm(String courseName, int id, String publishDate) {
+
+        JSON resultJson;
+
+        if(checkExpiration(request.getHeader('Authorization'))){
+            resultJson = [status: 5, message: "Expired"] as JSON
+        }
+        else {
+            expandExpiration(request.getHeader('Authorization'))
+
+            TestingForm testingForm = TestingForm.findById(id);
+
+            if (testingForm) {
+                testingForm.published = 1;
+                testingForm.course = TestingCourse.findByName(courseName);
+                testingForm.publishDate = publishDate;
+
+                if (testingForm.save(flush: true)) {
+                    resultJson = [status: 0, message: "Success"] as JSON
+                } else {
+                    resultJson = [status: 1, message: "Error"] as JSON
+                }
+            } else {
+                resultJson = [status: 1, message: "Error"] as JSON
+            }
+        }
+
+        render(resultJson);
     }
 }

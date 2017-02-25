@@ -1167,3 +1167,82 @@ function displayOptions(role, name){
         loadLogInPage();
     }
 }
+
+function loadFormPublishing(that){
+    $('#modal-body').empty();
+    $('#myModalLabel').html("Publishing Forms");
+
+    var id = $(that).parent().find('.hiddenId').html();
+
+    $.ajax({
+        url: "/knuth-sen-dev/main/loadFormPublishing",
+        type: "POST",
+        headers: {
+            'Authorization': Cookies.get('token')
+        },
+        data:{
+            id:id
+        },
+        success: function (data) {
+            $('#modal-body').append(data);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
+        }
+    });
+}
+
+function loadDepartmentCourses(){
+
+    var departmentName = document.getElementById('option_boxDepartments').value;
+
+    $('#courseList').empty();
+    $.ajax({
+        url: "/knuth-sen-dev/main/loadDepartmentCourses",
+        type: "POST",
+        headers: {
+            'Authorization': Cookies.get('token')
+        },
+        data:{
+            departmentName: departmentName
+        },
+        success: function (data) {
+            $('#courseList').append(data);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
+        }
+    });
+}
+
+function publishForm() {
+
+    var id = $('#modal-body').find('.hiddenId').html();
+    var courseName = document.getElementById('option_boxCourses').value;
+    var publishDate = new Date();
+
+    $.ajax({
+        url: "/knuth-sen-dev/main/publishForm",
+        type: "POST",
+        headers: {
+            'Authorization': Cookies.get('token')
+        },
+        data: {
+            courseName: courseName,
+            id: id,
+            publishDate: publishDate.getMonth() + 1 + ". " + publishDate.getDate() + ". " + publishDate.getFullYear() + "."
+        },
+        success: function (data) {
+            if(data.status===5){
+                loadExpiredSession();
+            }
+            else{
+                loadForms();
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
+            loadForms();
+        }
+    });
+}
