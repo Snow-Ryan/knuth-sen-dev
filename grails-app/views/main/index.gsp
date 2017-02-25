@@ -71,7 +71,7 @@
 
     $body.on('click', '.publishBtn', function () {
         $('.modal-body').empty();
-        $('.modal-body').append("BANANAZ");
+        loadFormPublishing(this);
     });
 
     $body.on('click', '.newFormButton', function () {
@@ -205,7 +205,6 @@
         disableFaculty(this);
     });
 
-
     $body.on('click', '.enableFacultyBtn', function () {
         enableFaculty(this);
     });
@@ -232,6 +231,14 @@
 
     $body.on('click', '.enableCourseBtn', function () {
         enableCourse(this);
+    });
+
+    $body.on('click', '.loadCourses', function () {
+        loadDepartmentCourses();
+    });
+
+    $body.on('click', '.publishForm', function () {
+        publishForm();
     });
 
 
