@@ -1169,7 +1169,7 @@ function displayOptions(role, name){
 }
 
 function loadFormPublishing(that){
-    $('#modal-body').empty();
+    $('.modal-body').empty();
     $('#myModalLabel').html("Publishing Forms");
 
     var id = $(that).parent().find('.hiddenId').html();
@@ -1184,7 +1184,7 @@ function loadFormPublishing(that){
             id:id
         },
         success: function (data) {
-            $('#modal-body').append(data);
+            $('.modal-body').append(data);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
@@ -1217,7 +1217,7 @@ function loadDepartmentCourses(){
 
 function publishForm() {
 
-    var id = $('#modal-body').find('.hiddenId').html();
+    var id = $('.modal-body').find('.hiddenId').html();
     var courseName = document.getElementById('option_boxCourses').value;
     var publishDate = new Date();
 
@@ -1237,6 +1237,7 @@ function publishForm() {
                 loadExpiredSession();
             }
             else{
+                $('#myModal').modal('toggle');
                 loadForms();
             }
         },
