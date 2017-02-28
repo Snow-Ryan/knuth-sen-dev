@@ -1247,3 +1247,8 @@ function publishForm() {
         }
     });
 }
+
+
+function hideLoadingSpinner(){
+    $(".loading").css("display", "none");
+}
