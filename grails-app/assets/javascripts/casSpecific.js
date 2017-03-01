@@ -8,6 +8,10 @@ function showLoginBtn(){
     $('.userLocation').html("USERNAME");
     $('.userLocation').css("display", "none");
     $('.hideMe').css("display", "");
+
+    //hides admin nav maintains height
+    $('.secondNav li a ').css("display", "none");
+    $('.secondNav').css("height", "36px");
 }
 
 function loadExpiredSession(){
@@ -1159,6 +1163,8 @@ function displayOptions(role, name){
         $('.userLocation').html(name);
         $('.userLocation').css("display", "");
         $('.hideMe').css("display", "none");
+        $('.secondNav li a ').css("display", "block");
+
         loadForms();
     }
     else{
@@ -1246,4 +1252,9 @@ function publishForm() {
             loadForms();
         }
     });
+}
+
+
+function hideLoadingSpinner(){
+    $(".loading").css("display", "none");
 }
