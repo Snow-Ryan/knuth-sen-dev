@@ -247,6 +247,10 @@
         ajaxStop: function() { $body.removeClass("loading"); }
     });
 
+    $body.on('click', '.copyFormButton', function () {
+        copyForm();
+    });
+
 </script>
 </body>
 </html>

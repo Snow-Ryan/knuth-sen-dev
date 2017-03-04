@@ -984,4 +984,14 @@ class MainController {
 
         render(resultJson);
     }
+
+    def copyFormEdit(int id){
+        if(checkExpiration(request.getHeader('Authorization'))){
+            render template: "expiredSession"
+        }
+        else {
+            expandExpiration(request.getHeader('Authorization'))
+            render(template: 'formCopy', model: [form: TestingForm.findById(id)]);
+        }
+    }
 }
