@@ -1258,3 +1258,31 @@ function publishForm() {
 function hideLoadingSpinner(){
     $(".loading").css("display", "none");
 }
+
+function copyForm(){
+
+    $('#mainContainer').empty();
+
+    var id = $(that).parent().find('.hiddenId').html();
+
+    $.ajax({
+        url: "/knuth-sen-dev/main/copyFormEdit",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
+        type: "POST",
+        data:{
+            id:id
+        },
+        success: function (data) {
+            $('#mainContainer').append(data);
+            if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
+                showLoginBtn();
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+            loadForms();
+        }
+    });
+}
