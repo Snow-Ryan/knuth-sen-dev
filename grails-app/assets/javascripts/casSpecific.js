@@ -78,34 +78,44 @@ function saveNewForm(){
     var question = $('.questionInput').val();
     var description = $('.descriptionTextArea').val();
 
-    $.ajax({
-        url: "/knuth-sen-dev/main/saveNewForm",
-        headers: {
-            'Authorization':Cookies.get('token')
-        },
-        type: "POST",
-        data:{
-            title:title,
-            question:question,
-            description:description,
-            creationDate:creationDate.getMonth() + 1 + ". " + creationDate.getDate() + ". " + creationDate.getFullYear()+ "."
-        },
-        success: function (data) {
-            if(data.status===2){
-                $.growl.warning({ message: "Assessment form with that title already exists" });
-            }
-            else if(data.status===5){
-                loadExpiredSession();
-            }
-            else{
+    title = cleanData(title);
+    question = cleanData(question);
+    description = cleanData(description);
+
+
+    if(title == "" || question == "" || description == ""){
+        $.growl.warning({ message: "Please input all data" });
+    }
+    else {
+        $.ajax({
+            url: "/knuth-sen-dev/main/saveNewForm",
+            headers: {
+                'Authorization': Cookies.get('token')
+            },
+            type: "POST",
+            data: {
+                title: title,
+                question: question,
+                description: description,
+                creationDate: creationDate.getMonth() + 1 + ". " + creationDate.getDate() + ". " + creationDate.getFullYear() + "."
+            },
+            success: function (data) {
+                if (data.status === 2) {
+                    $.growl.warning({message: "Assessment form with that title already exists"});
+                }
+                else if (data.status === 5) {
+                    loadExpiredSession();
+                }
+                else {
+                    loadForms();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
                 loadForms();
             }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-            loadForms();
-        }
-    });
+        });
+    }
 }
 
 function saveEditForm(){
@@ -113,35 +123,44 @@ function saveEditForm(){
     var question = $('.questionInput').val();
     var description = $('.descriptionTextArea').val();
 
-    var id = $('.card-block').find('.hiddenId').html();
-    $.ajax({
-        url: "/knuth-sen-dev/main/saveEditForm",
-        headers: {
-            'Authorization':Cookies.get('token')
-        },
-        type: "POST",
-        data:{
-            title:title,
-            question:question,
-            description:description,
-            id:id
-        },
-        success: function (data) {
-            if(data.status===2){
-                $.growl.warning({ message: "Assessment form with that title already exists" });
-            }
-            else if(data.status===5){
-                loadExpiredSession();
-            }
-            else{
+    title = cleanData(title);
+    question = cleanData(question);
+    description = cleanData(description);
+
+    if(title == "" || question == "" || description == ""){
+        $.growl.warning({ message: "Please input all data" });
+    }
+    else {
+        var id = $('.card-block').find('.hiddenId').html();
+        $.ajax({
+            url: "/knuth-sen-dev/main/saveEditForm",
+            headers: {
+                'Authorization': Cookies.get('token')
+            },
+            type: "POST",
+            data: {
+                title: title,
+                question: question,
+                description: description,
+                id: id
+            },
+            success: function (data) {
+                if (data.status === 2) {
+                    $.growl.warning({message: "Assessment form with that title already exists"});
+                }
+                else if (data.status === 5) {
+                    loadExpiredSession();
+                }
+                else {
+                    loadForms();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
                 loadForms();
             }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-            loadForms();
-        }
-    });
+        });
+    }
 }
 
 function saveEditCourse(){
@@ -155,37 +174,45 @@ function saveEditCourse(){
     name = $('.courseNameInput').val();
     description = $('.descriptionTextArea').val();
 
-    var id = $('.card-block').find('.hiddenId').html();
+    name = cleanData(name);
+    description = cleanData(description);
 
-    $.ajax({
-        url: "/knuth-sen-dev/main/saveEditCourse",
-        headers: {
-            'Authorization':Cookies.get('token')
-        },
-        type: "POST",
-        data:{
-            name:name,
-            faculty:faculty,
-            department:department,
-            description:description,
-            id:id
-        },
-        success: function (data) {
-            if(data.status===2){
-                $.growl.warning({ message: "Section with that title already exists" });
-            }
-            else if(data.status===5){
-                loadExpiredSession();
-            }
-            else{
+    if(faculty == "" || department == "" || name == "" || description == ""){
+        $.growl.warning({ message: "Please input all data" });
+    }
+    else {
+        var id = $('.card-block').find('.hiddenId').html();
+
+        $.ajax({
+            url: "/knuth-sen-dev/main/saveEditCourse",
+            headers: {
+                'Authorization': Cookies.get('token')
+            },
+            type: "POST",
+            data: {
+                name: name,
+                faculty: faculty,
+                department: department,
+                description: description,
+                id: id
+            },
+            success: function (data) {
+                if (data.status === 2) {
+                    $.growl.warning({message: "Section with that title already exists"});
+                }
+                else if (data.status === 5) {
+                    loadExpiredSession();
+                }
+                else {
+                    loadAdminCourses();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
                 loadAdminCourses();
             }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-            loadAdminCourses();
-        }
-    });
+        });
+    }
 }
 
 function saveEditDepartment(){
@@ -195,35 +222,42 @@ function saveEditDepartment(){
     faculty = document.getElementById('option_box').value;
     name = $('.departmentNameInput').val();
 
-    var id = $('.card-block').find('.hiddenId').html();
+    name = cleanData(name);
 
-    $.ajax({
-        url: "/knuth-sen-dev/main/saveEditDepartment",
-        headers: {
-            'Authorization':Cookies.get('token')
-        },
-        type: "POST",
-        data:{
-            name:name,
-            faculty:faculty,
-            id:id
-        },
-        success: function (data) {
-            if(data.status===2){
-                $.growl.warning({ message: "Section with that title already exists" });
-            }
-            else if(data.status===5){
-                loadExpiredSession();
-            }
-            else{
+    if(faculty == "" || name == ""){
+        $.growl.warning({ message: "Please input all data" });
+    }
+    else {
+        var id = $('.card-block').find('.hiddenId').html();
+
+        $.ajax({
+            url: "/knuth-sen-dev/main/saveEditDepartment",
+            headers: {
+                'Authorization': Cookies.get('token')
+            },
+            type: "POST",
+            data: {
+                name: name,
+                faculty: faculty,
+                id: id
+            },
+            success: function (data) {
+                if (data.status === 2) {
+                    $.growl.warning({message: "Section with that title already exists"});
+                }
+                else if (data.status === 5) {
+                    loadExpiredSession();
+                }
+                else {
+                    loadAdminDepartments();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
                 loadAdminDepartments();
             }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-            loadAdminDepartments();
-        }
-    });
+        });
+    }
 }
 
 function saveEditSection(){
@@ -235,36 +269,43 @@ function saveEditSection(){
     faculty = document.getElementById('option_box').value;
     title = $('.sectionTitleInput').val();
 
-    var id = $('.card-block').find('.hiddenId').html();
+    title = cleanData(title);
 
-    $.ajax({
-        url: "/knuth-sen-dev/main/saveEditSection",
-        headers: {
-            'Authorization':Cookies.get('token')
-        },
-        type: "POST",
-        data:{
-            title:title,
-            faculty:faculty,
-            course:course,
-            id:id
-        },
-        success: function (data) {
-            if(data.status===2){
-                $.growl.warning({ message: "Section with that title already exists" });
-            }
-            else if(data.status===5){
-                loadExpiredSession();
-            }
-            else{
+    if(faculty == "" || course == "" || title == ""){
+        $.growl.warning({ message: "Please input all data" });
+    }
+    else {
+        var id = $('.card-block').find('.hiddenId').html();
+
+        $.ajax({
+            url: "/knuth-sen-dev/main/saveEditSection",
+            headers: {
+                'Authorization': Cookies.get('token')
+            },
+            type: "POST",
+            data: {
+                title: title,
+                faculty: faculty,
+                course: course,
+                id: id
+            },
+            success: function (data) {
+                if (data.status === 2) {
+                    $.growl.warning({message: "Section with that title already exists"});
+                }
+                else if (data.status === 5) {
+                    loadExpiredSession();
+                }
+                else {
+                    loadAdminSections();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
                 loadAdminSections();
             }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-            loadAdminSections();
-        }
-    });
+        });
+    }
 }
 
 function saveEditFaculty(){
@@ -282,39 +323,51 @@ function saveEditFaculty(){
     lName = $('.lastNameInput').val();
     username = $('.usernameInput').val();
     email = $('.emailInput').val();
-    var id = $('.card-block').find('.hiddenId').html();
 
-    $.ajax({
-        url: "/knuth-sen-dev/main/saveEditFaculty",
-        headers: {
-            'Authorization':Cookies.get('token')
-        },
-        type: "POST",
-        data:{
-            fName:fName,
-            mName:mName,
-            lName:lName,
-            username:username,
-            email:email,
-            role:role,
-            id:id
-        },
-        success: function (data) {
-            if(data.status===2){
-                $.growl.warning({ message: "Faculty member with that username already exists" });
+    fName = cleanData(fName);
+    mName = cleanData(mName);
+    lName = cleanData(lName);
+    username = cleanData(username);
+    email = cleanData(email);
+
+    if(role == "" || fName == "" || mName == "" || lName == "" || username == "" || email == ""){
+        $.growl.warning({ message: "Please input all data" });
+    }
+    else {
+        var id = $('.card-block').find('.hiddenId').html();
+
+        $.ajax({
+            url: "/knuth-sen-dev/main/saveEditFaculty",
+            headers: {
+                'Authorization': Cookies.get('token')
+            },
+            type: "POST",
+            data: {
+                fName: fName,
+                mName: mName,
+                lName: lName,
+                username: username,
+                email: email,
+                role: role,
+                id: id
+            },
+            success: function (data) {
+                if (data.status === 2) {
+                    $.growl.warning({message: "Faculty member with that username already exists"});
+                }
+                else if (data.status === 5) {
+                    loadExpiredSession();
+                }
+                else {
+                    loadAdminFaculty();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+                loadForms();
             }
-            else if(data.status===5){
-                loadExpiredSession();
-            }
-            else{
-                loadAdminFaculty();
-            }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-            loadForms();
-        }
-    });
+        });
+    }
 }
 
 function loadFormEdit(that){
@@ -895,39 +948,46 @@ function saveNewCourse() {
     name = $('.courseNameInput').val();
     description = $('.descriptionTextArea').val();
 
-    $.ajax({
-        url: "/knuth-sen-dev/main/saveNewCourse",
-        headers: {
-            'Authorization':Cookies.get('token')
-        },
-        type: "POST",
-        data:{
-            faculty:faculty,
-            name:name,
-            department:department,
-            description:description
-        },
-        success: function (data) {
-            if(data.status===2){
-                $.growl.warning({ message: "Section with that title already exists" });
-            }
-            else if(data.status===5){
-                loadExpiredSession();
-            }
-            else{
+    name = cleanData(name);
+    description = cleanData(description);
+
+    if(name == "" || faculty == "" || department == "" || description == ""){
+        $.growl.warning({ message: "Please input all data" });
+    }
+    else {
+        $.ajax({
+            url: "/knuth-sen-dev/main/saveNewCourse",
+            headers: {
+                'Authorization': Cookies.get('token')
+            },
+            type: "POST",
+            data: {
+                faculty: faculty,
+                name: name,
+                department: department,
+                description: description
+            },
+            success: function (data) {
+                if (data.status === 2) {
+                    $.growl.warning({message: "Section with that title already exists"});
+                }
+                else if (data.status === 5) {
+                    loadExpiredSession();
+                }
+                else {
+                    loadAdminCourses();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
                 loadAdminCourses();
             }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-            loadAdminCourses();
-        }
-    });
+        });
+    }
 }
 
 function saveNewSection() {
     var title = null;
-
     var faculty = null;
     var course = null;
 
@@ -935,33 +995,40 @@ function saveNewSection() {
     course = document.getElementById('option_boxBelongsTo').value;
     title = $('.sectionTitleInput').val();
 
-    $.ajax({
-        url: "/knuth-sen-dev/main/saveNewSection",
-        headers: {
-            'Authorization':Cookies.get('token')
-        },
-        type: "POST",
-        data:{
-            faculty:faculty,
-            title:title,
-            course:course
-        },
-        success: function (data) {
-            if(data.status===2){
-                $.growl.warning({ message: "Section with that title already exists" });
-            }
-            else if(data.status===5){
-                loadExpiredSession();
-            }
-            else{
+    title = cleanData(title);
+
+    if(title == "" || faculty == "" || course == ""){
+        $.growl.warning({ message: "Please input all data" });
+    }
+    else {
+        $.ajax({
+            url: "/knuth-sen-dev/main/saveNewSection",
+            headers: {
+                'Authorization': Cookies.get('token')
+            },
+            type: "POST",
+            data: {
+                faculty: faculty,
+                title: title,
+                course: course
+            },
+            success: function (data) {
+                if (data.status === 2) {
+                    $.growl.warning({message: "Section with that title already exists"});
+                }
+                else if (data.status === 5) {
+                    loadExpiredSession();
+                }
+                else {
+                    loadAdminSections();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
                 loadAdminSections();
             }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-            loadAdminSections();
-        }
-    });
+        });
+    }
 }
 
 function saveNewDepartment() {
@@ -971,32 +1038,39 @@ function saveNewDepartment() {
     faculty = document.getElementById('option_box').value;
     name = $('.departmentNameInput').val();
 
-    $.ajax({
-        url: "/knuth-sen-dev/main/saveNewDepartment",
-        headers: {
-            'Authorization':Cookies.get('token')
-        },
-        type: "POST",
-        data:{
-            name:name,
-            faculty:faculty,
-        },
-        success: function (data) {
-            if(data.status===2){
-                $.growl.warning({ message: "Faculty with that username already exists" });
-            }
-            else if(data.status===5){
-                loadExpiredSession();
-            }
-            else{
+    name = cleanData(name);
+
+    if(name == "" || faculty == ""){
+        $.growl.warning({ message: "Please input all data" });
+    }
+    else {
+        $.ajax({
+            url: "/knuth-sen-dev/main/saveNewDepartment",
+            headers: {
+                'Authorization': Cookies.get('token')
+            },
+            type: "POST",
+            data: {
+                name: name,
+                faculty: faculty,
+            },
+            success: function (data) {
+                if (data.status === 2) {
+                    $.growl.warning({message: "Faculty with that username already exists"});
+                }
+                else if (data.status === 5) {
+                    loadExpiredSession();
+                }
+                else {
+                    loadAdminDepartments();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
                 loadAdminDepartments();
             }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-            loadAdminDepartments();
-        }
-    });
+        });
+    }
 }
 function saveNewFaculty() {
     var fName = null;
@@ -1014,36 +1088,47 @@ function saveNewFaculty() {
     username = $('.usernameInput').val();
     email = $('.emailInput').val();
 
-    $.ajax({
-        url: "/knuth-sen-dev/main/saveNewFaculty",
-        headers: {
-            'Authorization':Cookies.get('token')
-        },
-        type: "POST",
-        data:{
-            fName:fName,
-            mName:mName,
-            lName:lName,
-            username:username,
-            email:email,
-            role: role
-        },
-        success: function (data) {
-            if(data.status===2){
-                $.growl.warning({ message: "Faculty with that username already exists" });
-            }
-            else if(data.status===5){
-                loadExpiredSession();
-            }
-            else{
+    fName = cleanData(fName);
+    mName = cleanData(mName);
+    lName = cleanData(lName);
+    username = cleanData(username);
+    email = cleanData(email);
+
+    if(role == "" || fName == "" || mName == "" || lName == "" || username == ""  || email == ""){
+        $.growl.warning({ message: "Please input all data" });
+    }
+    else {
+        $.ajax({
+            url: "/knuth-sen-dev/main/saveNewFaculty",
+            headers: {
+                'Authorization': Cookies.get('token')
+            },
+            type: "POST",
+            data: {
+                fName: fName,
+                mName: mName,
+                lName: lName,
+                username: username,
+                email: email,
+                role: role
+            },
+            success: function (data) {
+                if (data.status === 2) {
+                    $.growl.warning({message: "Faculty with that username already exists"});
+                }
+                else if (data.status === 5) {
+                    loadExpiredSession();
+                }
+                else {
+                    loadAdminFaculty();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
                 loadAdminFaculty();
             }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-            loadAdminFaculty();
-        }
-    });
+        });
+    }
 }
 
 function attemptLogin(){
@@ -1285,4 +1370,11 @@ function copyForm(){
             loadForms();
         }
     });
+}
+
+function cleanData(data){
+    data = data.trim();
+    data = data.replace(/\\"/g, '"');
+
+    return data;
 }
