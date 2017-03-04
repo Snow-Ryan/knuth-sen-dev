@@ -7,29 +7,29 @@
       <Visible>1</Visible>
     </schema>
     <schema id="3" parent="1" name="book"/>
-    <schema id="4" parent="1" name="COLLEGE"/>
-    <schema id="5" parent="1" name="Company"/>
-    <schema id="6" parent="1" name="Conman"/>
-    <schema id="7" parent="1" name="earningsdw"/>
-    <schema id="8" parent="1" name="FINANCEDW"/>
-    <schema id="9" parent="1" name="FinanceDWStaging"/>
-    <schema id="10" parent="1" name="grocery"/>
-    <schema id="11" parent="1" name="information_schema"/>
-    <schema id="12" parent="1" name="jobs"/>
-    <schema id="13" parent="1" name="mysql"/>
-    <schema id="14" parent="1" name="pe3"/>
-    <schema id="15" parent="1" name="performance_schema"/>
-    <schema id="16" parent="1" name="practice"/>
-    <schema id="17" parent="1" name="recipes"/>
-    <schema id="18" parent="1" name="RIT"/>
-    <schema id="19" parent="1" name="sakilav1"/>
-    <schema id="20" parent="1" name="SalesOrders"/>
-    <schema id="21" parent="1" name="snowMPP"/>
-    <schema id="22" parent="1" name="SuperSub"/>
-    <schema id="23" parent="1" name="test"/>
-    <schema id="24" parent="1" name="travel"/>
-    <schema id="25" parent="1" name="tv_guide"/>
-    <schema id="26" parent="1" name="cas_database"/>
+    <schema id="4" parent="1" name="cas_database"/>
+    <schema id="5" parent="1" name="COLLEGE"/>
+    <schema id="6" parent="1" name="Company"/>
+    <schema id="7" parent="1" name="Conman"/>
+    <schema id="8" parent="1" name="earningsdw"/>
+    <schema id="9" parent="1" name="FINANCEDW"/>
+    <schema id="10" parent="1" name="FinanceDWStaging"/>
+    <schema id="11" parent="1" name="grocery"/>
+    <schema id="12" parent="1" name="information_schema"/>
+    <schema id="13" parent="1" name="jobs"/>
+    <schema id="14" parent="1" name="mysql"/>
+    <schema id="15" parent="1" name="pe3"/>
+    <schema id="16" parent="1" name="performance_schema"/>
+    <schema id="17" parent="1" name="practice"/>
+    <schema id="18" parent="1" name="recipes"/>
+    <schema id="19" parent="1" name="RIT"/>
+    <schema id="20" parent="1" name="sakilav1"/>
+    <schema id="21" parent="1" name="SalesOrders"/>
+    <schema id="22" parent="1" name="snowMPP"/>
+    <schema id="23" parent="1" name="SuperSub"/>
+    <schema id="24" parent="1" name="test"/>
+    <schema id="25" parent="1" name="travel"/>
+    <schema id="26" parent="1" name="tv_guide"/>
     <table id="27" parent="2" name="testing_course"/>
     <table id="28" parent="2" name="testing_course_testing_section"/>
     <table id="29" parent="2" name="testing_department"/>
@@ -167,40 +167,40 @@
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="63" parent="31" name="fname">
-      <Position>4</Position>
-      <DataType>varchar(45)|0</DataType>
-    </column>
-    <column id="64" parent="31" name="lname">
-      <Position>5</Position>
-      <DataType>varchar(45)|0</DataType>
-    </column>
-    <column id="65" parent="31" name="mname">
-      <Position>6</Position>
-      <DataType>varchar(45)|0</DataType>
-    </column>
-    <column id="66" parent="31" name="password">
-      <Position>7</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="67" parent="31" name="role_id">
-      <Position>8</Position>
-      <DataType>bigint(20)|0</DataType>
-    </column>
-    <column id="68" parent="31" name="username">
-      <Position>10</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="69" parent="31" name="expiration">
+    <column id="63" parent="31" name="expiration">
       <Position>3</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="70" parent="31" name="token">
+    <column id="64" parent="31" name="fname">
+      <Position>4</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="65" parent="31" name="lname">
+      <Position>5</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="66" parent="31" name="mname">
+      <Position>6</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="67" parent="31" name="password">
+      <Position>7</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="68" parent="31" name="role_id">
+      <Position>8</Position>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <column id="69" parent="31" name="token">
       <Position>9</Position>
       <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="70" parent="31" name="username">
+      <Position>10</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
     <index id="71" parent="31" name="FK_smnnq05f7cqjok0usue5mf4ee">
       <ColNames>role_id</ColNames>
@@ -226,32 +226,32 @@
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="76" parent="32" name="creation_date">
-      <Position>4</Position>
-      <DataType>varchar(100)|0</DataType>
-    </column>
-    <column id="77" parent="32" name="publish_date">
-      <Position>6</Position>
-      <DataType>varchar(100)|0</DataType>
-    </column>
-    <column id="78" parent="32" name="published">
-      <Position>7</Position>
-      <DataType>int(11)|0</DataType>
-    </column>
-    <column id="79" parent="32" name="title">
-      <Position>9</Position>
-      <DataType>varchar(255)|0</DataType>
-    </column>
-    <column id="80" parent="32" name="course_id">
+    <column id="76" parent="32" name="course_id">
       <Position>3</Position>
       <DataType>bigint(20)|0</DataType>
     </column>
-    <column id="81" parent="32" name="description">
+    <column id="77" parent="32" name="creation_date">
+      <Position>4</Position>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <column id="78" parent="32" name="description">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="82" parent="32" name="question">
+    <column id="79" parent="32" name="publish_date">
+      <Position>6</Position>
+      <DataType>varchar(100)|0</DataType>
+    </column>
+    <column id="80" parent="32" name="published">
+      <Position>7</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="81" parent="32" name="question">
       <Position>8</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="82" parent="32" name="title">
+      <Position>9</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
     <index id="83" parent="32" name="FK_myw4m1b82uigwgsvccqb3q5a3">

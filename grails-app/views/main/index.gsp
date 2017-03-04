@@ -13,12 +13,7 @@
 </head>
 
 <body >
-
-    <div id="mainContainer" class="container block-element-container">
-
-
-
-    </div>
+<div id="mainContainer" class="container block-element-container"></div>
 
 <script>
     var $body = $('body');
@@ -35,105 +30,7 @@
             loadLoadingScreen();
         }
     });
-
-    function checkLoginStatus(token){
-        $.ajax({
-            url: "${g.createLink(action: 'getRole')}",
-            type: "GET",
-            headers: {
-                'Authorization':token
-            },
-            success: function (data) {
-                if(data.status===0){
-                    Cookies.remove('token');
-                    loadExpiredSession();
-                }
-                else if (data.status===1) {
-                    displayOptions(data.role);
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-            }
-        });
-    }
-
-    function loadLoadingScreen(){
-        $('#mainContainer').empty();
-
-        $.ajax({
-            url: "${g.createLink(controller: 'main', action: 'loadingScreen')}",
-            success: function (data) {
-                $('#mainContainer').append(data);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
-            }
-        });
-    }
-
-    function loadExpiredSession(){
-        $('#mainContainer').empty();
-
-        $.ajax({
-            url: "${g.createLink(controller: 'main', action: 'loadExpiredSession')}",
-            success: function (data) {
-                $('#mainContainer').append(data);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
-            }
-        });
-    }
-
-    function loadLogInPage(){
-        $('#mainContainer').empty();
-
-        $('.secondNav').css("visibility", "hidden");
-        Cookies.remove('token');
-
-        $.ajax({
-            url: "${g.createLink(controller: 'main', action: 'loadLogIn')}",
-            success: function (data) {
-                $('#mainContainer').append(data);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
-            }
-        });
-    }
-
-    function loadForms(){
-        $('#mainContainer').empty();
-
-
-        $.ajax({
-            url: "${g.createLink(controller: 'main', action: 'loadForms')}",
-            headers: {
-                'Authorization':Cookies.get('token')
-            },
-            success: function (data) {
-                $('#mainContainer').append(data);
-
-                if($('#mainContainer').find('.formsDisplayTable')){
-                    $('.formsDisplayTable').DataTable();
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
-            }
-        });
-    }
-
-    function displayOptions(role){
-        if(role==="Wizard"){
-            $('.secondNav').css("visibility", "");
-        }
-        else{
-            alert("loginFailed")
-        }
-    }
-        //-----------------------------------------------EVENTS---------------------------------------------------------------
+    //-----------------------------------------------EVENTS---------------------------------------------------------------
 
     $body.on('click', '.forms', function (event) {
         event.preventDefault();
@@ -149,7 +46,7 @@
     });
 
     $body.on('click', '.loginBtn', function (event) {
-        event.preventDefault();;
+        event.preventDefault();
     });
 
     $body.on('click', '.loginBtn', function () {
@@ -168,175 +65,190 @@
         loadForms();
     });
 
+    $body.on('click', '.cancelNewDepartment', function () {
+        loadAdminDepartments();
+    });
+
+    $body.on('click', '.publishBtn', function () {
+        $('.modal-body').empty();
+        loadFormPublishing(this);
+    });
 
     $body.on('click', '.newFormButton', function () {
-        $('#mainContainer').empty();
-
-        $.ajax({
-            url: "${g.createLink(controller: 'main', action: 'loadFormCreation')}",
-            headers: {
-                'Authorization':Cookies.get('token')
-            },
-            success: function (data) {
-                $('#mainContainer').append(data);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
-            }
-        });
+        loadFormCreation();
     });
 
     $body.on('click', '.attemptLogin', function () {
-        var username = $('.usernameInput').val();
-        var password = $('.passwordInput').val();
-
-        $('#mainContainer').empty();
-
-        $.ajax({
-            url: "${g.createLink(action: 'login')}",
-            type: "POST",
-            data:{
-                username:username,
-                password:password
-            },
-            success: function (data) {
-                if(data.role) {
-                    Cookies.set('token', data.token, {expires: 1});
-                    displayOptions(data.role);
-                }
-                else{
-                    loadLogInPage()
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-            }
-        });
+        attemptLogin();
     });
 
     $body.on('click', '.editBtn', function () {
-        $('#mainContainer').empty();
+        loadFormEdit(this);
+    });
 
-        var id = $(this).parent().find('.hiddenId').html();
+    $body.on('click', '.editFacultyBtn', function () {
+        loadFacultyEdit(this);
+    });
 
-        $.ajax({
-            url: "${g.createLink(action: 'loadFormEdit')}",
-            headers: {
-                'Authorization':Cookies.get('token')
-            },
-            type: "POST",
-            data:{
-                id:id
-            },
-            success: function (data) {
-                $('#mainContainer').append(data);
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-                loadForms();
-            }
-        });
+    $body.on('click', '.editDepartmentBtn', function () {
+        loadDepartmentEdit(this);
+    });
+
+    $body.on('click', '.editSectionBtn', function () {
+        loadSectionEdit(this);
+    });
+
+    $body.on('click', '.editCourseBtn', function () {
+        loadCourseEdit(this);
     });
 
     $body.on('click', '.saveEditForm', function () {
-        var title = $('.titleInput').val();
-        var question = $('.questionInput').val();
-        var description = $('.descriptionTextArea').val();
+        saveEditForm();
+    });
 
-        var id = $('.card-block').find('.hiddenId').html();
-        $.ajax({
-            url: "${g.createLink(action: 'saveEditForm')}",
-            headers: {
-                'Authorization':Cookies.get('token')
-            },
-            type: "POST",
-            data:{
-                title:title,
-                question:question,
-                description:description,
-                id:id
-            },
-            success: function (data) {
-                if(data.status===2){
-                    alert("Assessment form with that title already exists")
-                }
-                else if(data.status===5){
-                    loadExpiredSession();
-                }
-                else{
-                    loadForms();
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-                loadForms();
-            }
-        });
+    $body.on('click', '.saveEditDepartment', function () {
+        saveEditDepartment();
+    });
+
+    $body.on('click', '.saveEditSection', function () {
+        saveEditSection();
+    });
+
+    $body.on('click', '.saveEditCourse', function () {
+        saveEditCourse();
+    });
+
+    $body.on('click', '.saveEditFaculty', function () {
+        saveEditFaculty();
     });
 
     $body.on('click', '.saveNewForm', function () {
-
-        var title = $('.titleInput').val();
-        var creationDate = new Date()
-        var question = $('.questionInput').val();
-        var description = $('.descriptionTextArea').val();
-
-        $.ajax({
-            url: "${g.createLink(action: 'saveNewForm')}",
-            headers: {
-                'Authorization':Cookies.get('token')
-            },
-            type: "POST",
-            data:{
-                title:title,
-                question:question,
-                description:description,
-                creationDate:creationDate.getMonth() + 1 + ". " + creationDate.getDate() + ". " + creationDate.getFullYear()+ "."
-            },
-            success: function (data) {
-                if(data.status===2){
-                    alert("Assessment form with that title already exists")
-                }
-                else if(data.status===5){
-                    loadExpiredSession();
-                }
-                else{
-                    loadForms();
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-                loadForms();
-            }
-        });
+        saveNewForm();
     });
 
     $body.on('click', '.deleteBtn', function () {
+        deleteForm(this);
+    });
 
-        var id = $(this).parent().find('.hiddenId').html();
+    $body.on('click', '.logoutBtn', function (event) {
+        event.preventDefault();
+        Cookies.remove('token');
+        showLoginBtn();
+        loadLoadingScreen();
+    });
 
-        $.ajax({
-            url: "${g.createLink(action: 'deleteForm')}",
-            headers: {
-                'Authorization':Cookies.get('token')
-            },
-            type: "POST",
-            data:{
-                id:id
-            },
-            success: function (data) {
-                if(data.status===5){
-                    loadExpiredSession();
-                }
-                else{
-                    loadForms();
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-                loadForms();
-            }
-        });
+    $body.on('click', '.facultyAdminBtn', function (event) {
+        event.preventDefault();
+        loadAdminFaculty();
+    });
+
+    $body.on('click', '.departmentsAdminBtn', function (event) {
+        event.preventDefault();
+        loadAdminDepartments();
+    });
+
+    $body.on('click', '.coursesAdminBtn', function (event) {
+        event.preventDefault();
+        loadAdminCourses();
+    });
+
+    $body.on('click', '.sectionsAdminBtn', function (event) {
+        event.preventDefault();
+        loadAdminSections();
+    });
+
+    $body.on('click', '.newFacultyButton', function () {
+        loadFacultyCreation();
+    });
+
+    $body.on('click', '.newDepartmentButton', function () {
+        loadDepartmentCreation();
+    });
+
+    $body.on('click', '.newCourseButton', function () {
+        loadCourseCreation();
+    });
+
+    $body.on('click', '.newSectionButton', function () {
+        loadSectionCreation();
+    });
+
+    $body.on('click', '.cancelNewCourse', function () {
+        loadAdminCourses();
+    });
+
+    $body.on('click', '.cancelNewFaculty', function () {
+        loadAdminFaculty();
+    });
+
+    $body.on('click', '.cancelNewSection', function () {
+        loadAdminSections();
+    });
+
+    $body.on('click', '.saveNewFaculty', function () {
+        saveNewFaculty();
+    });
+
+    $body.on('click', '.saveNewDepartment', function () {
+        saveNewDepartment();
+    });
+
+    $body.on('click', '.saveNewSection', function () {
+        saveNewSection();
+    });
+
+    $body.on('click', '.saveNewCourse', function () {
+        saveNewCourse(this);
+    });
+
+    $body.on('click', '.disableFacultyBtn', function () {
+        disableFaculty(this);
+    });
+
+    $body.on('click', '.enableFacultyBtn', function () {
+        enableFaculty(this);
+    });
+
+    $body.on('click', '.enableDepartmentBtn', function () {
+        enableDepartment(this);
+    });
+
+    $body.on('click', '.disableDepartmentBtn', function () {
+        disableDepartment(this);
+    });
+
+    $body.on('click', '.disableSectionBtn', function () {
+        disableSection(this);
+    });
+
+    $body.on('click', '.enableSectionBtn', function () {
+        enableSection(this);
+    });
+
+    $body.on('click', '.disableCourseBtn', function () {
+        disableCourse(this);
+    });
+
+    $body.on('click', '.enableCourseBtn', function () {
+        enableCourse(this);
+    });
+
+    $body.on('click', '.loadCourses', function () {
+        loadDepartmentCourses();
+    });
+
+    $body.on('click', '.publishForm', function () {
+        publishForm();
+    });
+
+
+    $(document).on({
+        ajaxStart: function() { $body.addClass("loading");    },
+        ajaxStop: function() { $body.removeClass("loading"); }
+    });
+
+    $body.on('click', '.copyFormButton', function () {
+        copyForm();
     });
 
 </script>
