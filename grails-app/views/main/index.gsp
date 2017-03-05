@@ -39,6 +39,7 @@
 
     $body.on('click', '.pView', function (event) {
         event.preventDefault();
+        loadProfView();
     });
 
     $body.on('click', '.admin', function (event) {
@@ -241,15 +242,16 @@
         publishForm();
     });
 
+    $body.on('click', '.copyFormButton', function () {
+        copyForm(this);
+    });
 
     $(document).on({
         ajaxStart: function() { $body.addClass("loading");    },
         ajaxStop: function() { $body.removeClass("loading"); }
     });
 
-    $body.on('click', '.copyFormButton', function () {
-        copyForm();
-    });
+
 
 </script>
 </body>

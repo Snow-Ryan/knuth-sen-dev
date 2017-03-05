@@ -1179,6 +1179,34 @@ function loadFormCreation(){
     });
 }
 
+function loadProfView(){
+    $('#mainContainer').empty();
+
+    $.ajax({
+        url: "/knuth-sen-dev/main/loadUserForms",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
+        success: function (data) {
+            $('#mainContainer').append(data);
+
+            if($('#mainContainer').find('.formsDisplayTable')){
+                if($('.formsDisplayTable').length){
+                    $('.formsDisplayTable').DataTable();
+                    $('[data-toggle="tooltip"]').tooltip();
+                }
+                else{
+                    showLoginBtn();
+                }
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
+        }
+    });
+}
+
+
 function loadForms(){
     $('#mainContainer').empty();
 
@@ -1284,7 +1312,7 @@ function loadFormPublishing(that){
 }
 
 function loadDepartmentCourses(){
-
+    hideLoadingSpinner();
     var departmentName = document.getElementById('option_boxDepartments').value;
 
     $('#courseList').empty();
@@ -1339,12 +1367,7 @@ function publishForm() {
     });
 }
 
-
-function hideLoadingSpinner(){
-    $(".loading").css("display", "none");
-}
-
-function copyForm(){
+function copyForm(that){
 
     $('#mainContainer').empty();
 
@@ -1371,6 +1394,12 @@ function copyForm(){
         }
     });
 }
+
+
+function hideLoadingSpinner(){
+    $(".loading").css("display", "none");
+}
+
 
 function cleanData(data){
     data = data.trim();

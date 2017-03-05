@@ -994,4 +994,27 @@ class MainController {
             render(template: 'formCopy', model: [form: TestingForm.findById(id)]);
         }
     }
+
+    def loadUserForms(){
+        if(checkExpiration(request.getHeader('Authorization'))){
+            render template: "expiredSession"
+        }
+        else{
+            expandExpiration(request.getHeader('Authorization'))
+
+            TestingFaculty currentUser = TestingFaculty.findByToken(request.getHeader('Authorization'));
+            def allForms = TestingForm.findAllByPublished(1)
+            def forms = []
+
+            for(TestingForm tf in allForms){
+                for(TestingSection ts in tf.course.sections){
+                    if(ts.professor == currentUser){
+                        forms.add(tf)
+                    }
+                }
+            }
+            render (template: "listAvailableForms", model: [forms: forms])
+        }
+    };
+
 }
