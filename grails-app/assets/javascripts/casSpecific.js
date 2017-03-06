@@ -1,7 +1,3 @@
-/**
- * Created by asuta on 22-Feb-17.
- */
-// /knuth-sen-dev/main/login
 function showLoginBtn(){
     Cookies.remove('token');
     $('.navbar-header').css("visibility", "");
@@ -15,6 +11,7 @@ function showLoginBtn(){
 }
 
 function loadExpiredSession(){
+    showLoadingSpinner();
     $('#mainContainer').empty();
     $.ajax({
         url: "/knuth-sen-dev/main/loadExpiredSession",
@@ -29,6 +26,7 @@ function loadExpiredSession(){
 }
 
 function loadLogInPage(){
+    showLoadingSpinner();
     $('#mainContainer').empty();
 
     $('.secondNav').css("visibility", "hidden");
@@ -47,7 +45,7 @@ function loadLogInPage(){
 
 function deleteForm(that){
     var id = $(that).parent().find('.hiddenId').html();
-
+    var table = $('.formsDisplayTable').DataTable();
     $.ajax({
         url: "/knuth-sen-dev/main/deleteForm",
         headers: {
@@ -62,7 +60,9 @@ function deleteForm(that){
                 loadExpiredSession();
             }
             else{
-                loadForms();
+                // loadForms();
+                table.row($(nthParent(that,1))).remove();
+                $(nthParent(that,1)).remove();
             }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -268,7 +268,6 @@ function saveEditSection(){
     course = document.getElementById('option_boxBelongsTo').value;
     faculty = document.getElementById('option_box').value;
     title = $('.sectionTitleInput').val();
-
     title = cleanData(title);
 
     if(faculty == "" || course == "" || title == ""){
@@ -290,6 +289,7 @@ function saveEditSection(){
                 id: id
             },
             success: function (data) {
+                console.log(data)
                 if (data.status === 2) {
                     $.growl.warning({message: "Section with that title already exists"});
                 }
@@ -506,8 +506,6 @@ function loadFacultyEdit(that){
 }
 
 function disableSection(that){
-    $('#mainContainer').empty();
-
     var id = $(that).parent().find('.hiddenId').html();
 
     $.ajax({
@@ -520,12 +518,14 @@ function disableSection(that){
             id:id
         },
         success: function (data) {
-            $('#mainContainer').append(data);
-            if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
-                showLoginBtn();
+            if(data.status===5){
+                loadExpiredSession();
             }
             else{
-                loadAdminSections();
+                $(that).removeClass("fa-toggle-on");
+                $(that).addClass("fa-toggle-off");
+                $(that).removeClass("disableSectionBtn");
+                $(that).addClass("enableSectionBtn ");
             }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -536,8 +536,6 @@ function disableSection(that){
 }
 
 function enableCourse(that){
-    $('#mainContainer').empty();
-
     var id = $(that).parent().find('.hiddenId').html();
 
     $.ajax({
@@ -550,12 +548,14 @@ function enableCourse(that){
             id:id
         },
         success: function (data) {
-            $('#mainContainer').append(data);
-            if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
-                showLoginBtn();
+            if(data.status===5){
+                loadExpiredSession();
             }
             else{
-                loadAdminCourses();
+                $(that).removeClass("fa-toggle-off");
+                $(that).addClass("fa-toggle-on");
+                $(that).removeClass("enableCourseBtn");
+                $(that).addClass("disableCourseBtn ");
             }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -566,8 +566,6 @@ function enableCourse(that){
 }
 
 function disableCourse(that){
-    $('#mainContainer').empty();
-
     var id = $(that).parent().find('.hiddenId').html();
 
     $.ajax({
@@ -580,12 +578,14 @@ function disableCourse(that){
             id:id
         },
         success: function (data) {
-            $('#mainContainer').append(data);
-            if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
-                showLoginBtn();
+            if(data.status===5){
+                loadExpiredSession();
             }
             else{
-                loadAdminCourses();
+                $(that).removeClass("fa-toggle-on");
+                $(that).addClass("fa-toggle-off");
+                $(that).removeClass("disableCourseBtn");
+                $(that).addClass("enableCourseBtn ");
             }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -596,8 +596,6 @@ function disableCourse(that){
 }
 
 function enableSection(that){
-    $('#mainContainer').empty();
-
     var id = $(that).parent().find('.hiddenId').html();
 
     $.ajax({
@@ -610,12 +608,14 @@ function enableSection(that){
             id:id
         },
         success: function (data) {
-            $('#mainContainer').append(data);
-            if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
-                showLoginBtn();
+            if(data.status===5){
+                loadExpiredSession();
             }
             else{
-                loadAdminSections();
+                $(that).removeClass("fa-toggle-off");
+                $(that).addClass("fa-toggle-on");
+                $(that).removeClass("enableSectionBtn");
+                $(that).addClass("disableSectionBtn ");
             }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -626,8 +626,6 @@ function enableSection(that){
 }
 
 function disableFaculty(that){
-    $('#mainContainer').empty();
-
     var id = $(that).parent().find('.hiddenId').html();
 
     $.ajax({
@@ -640,12 +638,14 @@ function disableFaculty(that){
             id:id
         },
         success: function (data) {
-            $('#mainContainer').append(data);
-            if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
-                showLoginBtn();
+            if(data.status===5){
+                loadExpiredSession();
             }
             else{
-                loadAdminFaculty();
+                $(that).removeClass("fa-toggle-on");
+                $(that).addClass("fa-toggle-off");
+                $(that).removeClass("disableFacultyBtn");
+                $(that).addClass("enableFacultyBtn");
             }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -656,8 +656,6 @@ function disableFaculty(that){
 }
 
 function enableDepartment(that){
-    $('#mainContainer').empty();
-
     var id = $(that).parent().find('.hiddenId').html();
 
     $.ajax({
@@ -670,12 +668,14 @@ function enableDepartment(that){
             id:id
         },
         success: function (data) {
-            $('#mainContainer').append(data);
-            if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
-                showLoginBtn();
+            if(data.status===5){
+                loadExpiredSession();
             }
             else{
-                loadAdminDepartments();
+                $(that).removeClass("fa-toggle-off");
+                $(that).addClass("fa-toggle-on");
+                $(that).removeClass("enableDepartmentBtn");
+                $(that).addClass("disableDepartmentBtn ");
             }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -686,8 +686,6 @@ function enableDepartment(that){
 }
 
 function disableDepartment(that){
-    $('#mainContainer').empty();
-
     var id = $(that).parent().find('.hiddenId').html();
 
     $.ajax({
@@ -700,12 +698,14 @@ function disableDepartment(that){
             id:id
         },
         success: function (data) {
-            $('#mainContainer').append(data);
-            if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
-                showLoginBtn();
+            if(data.status===5){
+                loadExpiredSession();
             }
             else{
-                loadAdminDepartments();
+                $(that).removeClass("fa-toggle-on");
+                $(that).addClass("fa-toggle-off");
+                $(that).removeClass("disableDepartmentBtn");
+                $(that).addClass("enableDepartmentBtn");
             }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -716,8 +716,6 @@ function disableDepartment(that){
 }
 
 function enableFaculty(that){
-    $('#mainContainer').empty();
-
     var id = $(that).parent().find('.hiddenId').html();
 
     $.ajax({
@@ -730,12 +728,14 @@ function enableFaculty(that){
             id:id
         },
         success: function (data) {
-            $('#mainContainer').append(data);
-            if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
-                showLoginBtn();
+            if(data.status===5){
+                loadExpiredSession();
             }
             else{
-                loadAdminFaculty();
+                $(that).removeClass("fa-toggle-off");
+                $(that).addClass("fa-toggle-on");
+                $(that).removeClass("enableFacultyBtn");
+                $(that).addClass("disableFacultyBtn ");
             }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -774,7 +774,7 @@ function loadAdminSections(){
 
 function loadAdminCourses(){
     $('#mainContainer').empty();
-
+    showLoadingSpinner();
     $.ajax({
         url: "/knuth-sen-dev/main/loadCourses",
         headers: {
@@ -801,7 +801,7 @@ function loadAdminCourses(){
 
 function loadAdminDepartments(){
     $('#mainContainer').empty();
-
+    showLoadingSpinner();
     $.ajax({
         url: "/knuth-sen-dev/main/loadDepartment",
         headers: {
@@ -828,7 +828,7 @@ function loadAdminDepartments(){
 
 function loadAdminFaculty(){
     $('#mainContainer').empty();
-
+    showLoadingSpinner();
     $.ajax({
         url: "/knuth-sen-dev/main/loadFaculty",
         headers: {
@@ -855,7 +855,7 @@ function loadAdminFaculty(){
 
 function loadSectionCreation(){
     $('#mainContainer').empty();
-
+    showLoadingSpinner();
     $.ajax({
         url: "/knuth-sen-dev/main/loadSectionCreation",
         headers: {
@@ -876,7 +876,7 @@ function loadSectionCreation(){
 
 function loadCourseCreation(){
     $('#mainContainer').empty();
-
+    showLoadingSpinner();
     $.ajax({
         url: "/knuth-sen-dev/main/loadCourseCreation",
         headers: {
@@ -897,7 +897,7 @@ function loadCourseCreation(){
 
 function loadFacultyCreation(){
     $('#mainContainer').empty();
-
+    showLoadingSpinner();
     $.ajax({
         url: "/knuth-sen-dev/main/loadFacultyCreation",
         headers: {
@@ -918,7 +918,7 @@ function loadFacultyCreation(){
 
 function loadDepartmentCreation(){
     $('#mainContainer').empty();
-
+    showLoadingSpinner();
     $.ajax({
         url: "/knuth-sen-dev/main/loadDepartmentCreation",
         headers: {
@@ -1132,6 +1132,7 @@ function saveNewFaculty() {
 }
 
 function attemptLogin(){
+    showLoadingSpinner();
     var username = $('.usernameInput').val();
     var password = $('.passwordInput').val();
 
@@ -1161,6 +1162,7 @@ function attemptLogin(){
 
 function loadFormCreation(){
     $('#mainContainer').empty();
+    showLoadingSpinner();
     $.ajax({
         url: "/knuth-sen-dev/main/loadFormCreation",
         headers: {
@@ -1181,7 +1183,7 @@ function loadFormCreation(){
 
 function loadProfView(){
     $('#mainContainer').empty();
-
+    showLoadingSpinner();
     $.ajax({
         url: "/knuth-sen-dev/main/loadUserForms",
         headers: {
@@ -1208,6 +1210,7 @@ function loadProfView(){
 
 
 function loadForms(){
+    showLoadingSpinner();
     $('#mainContainer').empty();
 
     $.ajax({
@@ -1236,7 +1239,7 @@ function loadForms(){
 
 function loadLoadingScreen(){
     $('#mainContainer').empty();
-
+    showLoadingSpinner();
     $.ajax({
         url: "/knuth-sen-dev/main/loadingScreen",
         success: function (data) {
@@ -1290,7 +1293,7 @@ function displayOptions(role, name){
 function loadFormPublishing(that){
     $('.modal-body').empty();
     $('#myModalLabel').html("Publishing Forms");
-
+    showLoadingSpinner();
     var id = $(that).parent().find('.hiddenId').html();
 
     $.ajax({
@@ -1312,7 +1315,6 @@ function loadFormPublishing(that){
 }
 
 function loadDepartmentCourses(){
-    hideLoadingSpinner();
     var departmentName = document.getElementById('option_boxDepartments').value;
 
     $('#courseList').empty();
@@ -1370,7 +1372,7 @@ function publishForm() {
 function copyForm(that){
 
     $('#mainContainer').empty();
-
+    showLoadingSpinner();
     var id = $(that).parent().find('.hiddenId').html();
 
     $.ajax({
@@ -1395,9 +1397,14 @@ function copyForm(that){
     });
 }
 
-
+var $body = $('body');
 function hideLoadingSpinner(){
-    $(".loading").css("display", "none");
+    // $(".loading").css("display", "none");
+    $body.removeClass("loading");;
+}
+
+function showLoadingSpinner(){
+    $body.addClass("loading");;
 }
 
 
@@ -1406,4 +1413,11 @@ function cleanData(data){
     data = data.replace(/\\"/g, '"');
 
     return data;
+}
+
+function nthParent(element,n){
+    for (var i = 0; i <= n; i++) {
+        element = element.parentNode;
+    }
+    return element;
 }

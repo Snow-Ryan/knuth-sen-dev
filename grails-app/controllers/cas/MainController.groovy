@@ -850,8 +850,8 @@ class MainController {
 
             TestingCourse testingCourse = new TestingCourse(name: "TestCourse1", courseCoordinator: testingUser2, sections: [testingSection, testingSection2]);
             TestingCourse testingCourse2 = new TestingCourse(name: "TestCourse2", courseCoordinator: testingUser2, sections: [testingSection3]);
-            TestingCourse testingCourse3 = new TestingCourse(name: "TestCourse3");
-            TestingCourse testingCourse4 = new TestingCourse(name: "TestCourse4");
+            TestingCourse testingCourse3 = new TestingCourse(name: "TestCourse3", sections: [testingSection3]);
+            TestingCourse testingCourse4 = new TestingCourse(name: "TestCourse4", sections: [testingSection3]);
 
             testingCourse.save(flush: true)
             testingCourse2.save(flush: true)
