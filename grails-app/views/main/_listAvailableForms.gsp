@@ -39,6 +39,18 @@
                             <td>
                                 <label class="hiddenId" style="display: none">${it.id}</label>
                                 <i class="fa fa-keyboard-o inputData fa-2x" aria-hidden="true"></i>
+
+                                <a href="#" idc="tglr" class="popover-toggle" title="Information">
+                                    <i  class="glyphicon glyphicon-info-sign" style="color:black; font-size: 20px;"> </i>
+                                </a>
+
+                            <div id="popover-content"  style="display: none;">
+                                <g:each var="ass" in="${assessmentCoordinators}">
+                                    <div  style="width: 200px; text-align: center" >${ass.fname}  ${ass.lname} | <a style="color:black" href="mailto:${ass.email}?Subject=Hello%20again" target="_top">Send Mail</a></div>
+                                    <br />
+                                </g:each>
+                            </div>
+
                             </td>
                         </tr>
                     </g:each>

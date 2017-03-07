@@ -1013,7 +1013,16 @@ class MainController {
                     }
                 }
             }
-            render (template: "listAvailableForms", model: [forms: forms])
+            def users = []
+            def assessmentCoordinators = TestingFaculty.findAllByRole(TestingRole.findById(1))
+
+            assessmentCoordinators.each{
+                users.add(it)
+            }
+
+
+
+            render (template: "listAvailableForms", model: [forms: forms, assessmentCoordinators:assessmentCoordinators])
         }
     };
 

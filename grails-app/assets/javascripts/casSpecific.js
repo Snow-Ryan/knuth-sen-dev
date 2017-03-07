@@ -62,6 +62,7 @@ function deleteForm(that){
             else{
                 // loadForms();
                 table.row($(nthParent(that,1))).remove();
+                $(nthParent(that,1)).tooltip('destroy');
                 $(nthParent(that,1)).remove();
             }
         },
@@ -522,6 +523,7 @@ function disableSection(that){
                 loadExpiredSession();
             }
             else{
+                thata()
                 $(that).removeClass("fa-toggle-on");
                 $(that).addClass("fa-toggle-off");
                 $(that).removeClass("disableSectionBtn");
@@ -642,8 +644,15 @@ function disableFaculty(that){
                 loadExpiredSession();
             }
             else{
+                toggleStatus(that);
+                $(that).removeClass("fa-times");
+
+                //console.log($("tr td:nth-child(7) i").removeClass("fa-times"));
+                console.log();
+
                 $(that).removeClass("fa-toggle-on");
                 $(that).addClass("fa-toggle-off");
+
                 $(that).removeClass("disableFacultyBtn");
                 $(that).addClass("enableFacultyBtn");
             }
@@ -1196,6 +1205,12 @@ function loadProfView(){
                 if($('.formsDisplayTable').length){
                     $('.formsDisplayTable').DataTable();
                     $('[data-toggle="tooltip"]').tooltip();
+                    $('.popover-toggle').popover({
+                        html: true,
+                        content: function() {
+                            return $('#popover-content').html();
+                        }
+                    });
                 }
                 else{
                     showLoginBtn();
@@ -1420,4 +1435,11 @@ function nthParent(element,n){
         element = element.parentNode;
     }
     return element;
+}
+
+function toggleStatus(ele){
+    //console.log("hey" , ele)
+    $(ele).removeClass("fa-times");
+    //$(that).addClass("fa-toggle-on");
+
 }
