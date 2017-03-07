@@ -48,7 +48,7 @@
     </div>
 </nav>
 
-<div class="navbar-fixed-top second-level-nav">
+<div class="navbar-fixed-top second-level-nav" style="color:#666">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target="#secondNavbar" aria-expanded="false" aria-controls="navbar">
