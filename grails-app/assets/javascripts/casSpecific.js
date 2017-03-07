@@ -656,10 +656,8 @@ function disableFaculty(that){
             }
             else{
                 disableStatus(that);
-
                 $(that).removeClass("fa-toggle-on");
                 $(that).addClass("fa-toggle-off");
-
                 $(that).removeClass("disableFacultyBtn");
                 $(that).addClass("enableFacultyBtn");
             }
@@ -1462,5 +1460,4 @@ function enableStatus(ele){
     $(nthParent(ele,1)).children().eq(6).children().removeClass("fa-times");
     $(nthParent(ele,1)).children().eq(6).children().addClass("fa-check");
     $(nthParent(ele,1)).children().eq(6).children().css("color", "green");
-
 }

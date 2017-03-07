@@ -29,22 +29,22 @@
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="17" parent="7" name="course_coordinator_id">
-      <Position>4</Position>
-      <DataType>int(11)|0</DataType>
-    </column>
-    <column id="18" parent="7" name="name">
-      <Position>6</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="19" parent="7" name="active">
+    <column id="17" parent="7" name="active">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="20" parent="7" name="description">
+    <column id="18" parent="7" name="course_coordinator_id">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="19" parent="7" name="description">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="20" parent="7" name="name">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
     <index id="21" parent="7" name="FK_2o18wp1m2ec8h49x732fl6g25">
       <ColNames>course_coordinator_id</ColNames>
@@ -57,7 +57,6 @@
       <ColNames>course_coordinator_id</ColNames>
       <RefSchemaName>casdb</RefSchemaName>
       <RefTableName>testing_faculty</RefTableName>
-      <RefKeyName>PRIMARY</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <column id="24" parent="8" name="testing_course_sections_id">
@@ -78,14 +77,12 @@
       <ColNames>testing_course_sections_id</ColNames>
       <RefSchemaName>casdb</RefSchemaName>
       <RefTableName>testing_course</RefTableName>
-      <RefKeyName>PRIMARY</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <foreign-key id="29" parent="8" name="FK_io89a5nes9yo0nj3rmovnd59g">
       <ColNames>testing_section_id</ColNames>
       <RefSchemaName>casdb</RefSchemaName>
       <RefTableName>testing_section</RefTableName>
-      <RefKeyName>PRIMARY</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <column id="30" parent="9" name="id">
@@ -99,18 +96,18 @@
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="32" parent="9" name="department_coordinator_id">
+    <column id="32" parent="9" name="active">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="33" parent="9" name="department_coordinator_id">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="33" parent="9" name="name">
+    <column id="34" parent="9" name="name">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
-    </column>
-    <column id="34" parent="9" name="active">
-      <Position>3</Position>
-      <DataType>int(11)|0</DataType>
     </column>
     <index id="35" parent="9" name="FK_8hbj0xwcfl6birs1myaof4p02">
       <ColNames>department_coordinator_id</ColNames>
@@ -123,7 +120,6 @@
       <ColNames>department_coordinator_id</ColNames>
       <RefSchemaName>casdb</RefSchemaName>
       <RefTableName>testing_faculty</RefTableName>
-      <RefKeyName>PRIMARY</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <column id="38" parent="10" name="testing_department_courses_id">
@@ -144,14 +140,12 @@
       <ColNames>testing_department_courses_id</ColNames>
       <RefSchemaName>casdb</RefSchemaName>
       <RefTableName>testing_department</RefTableName>
-      <RefKeyName>PRIMARY</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <foreign-key id="43" parent="10" name="FK_r4c9fgjeb8qn3p0ckal1y7vmd">
       <ColNames>testing_course_id</ColNames>
       <RefSchemaName>casdb</RefSchemaName>
       <RefTableName>testing_course</RefTableName>
-      <RefKeyName>PRIMARY</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <column id="44" parent="11" name="id">
@@ -165,48 +159,48 @@
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="46" parent="11" name="fname">
-      <Position>6</Position>
-      <DataType>varchar(45)|0</DataType>
-    </column>
-    <column id="47" parent="11" name="lname">
-      <Position>7</Position>
-      <DataType>varchar(45)|0</DataType>
-    </column>
-    <column id="48" parent="11" name="mname">
-      <Position>8</Position>
-      <DataType>varchar(45)|0</DataType>
-    </column>
-    <column id="49" parent="11" name="password">
-      <Position>9</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="50" parent="11" name="role_id">
-      <Position>10</Position>
-      <DataType>bigint(20)|0</DataType>
-    </column>
-    <column id="51" parent="11" name="username">
-      <Position>12</Position>
-      <DataType>varchar(255)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="52" parent="11" name="active">
+    <column id="46" parent="11" name="active">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="53" parent="11" name="email">
+    <column id="47" parent="11" name="email">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="54" parent="11" name="expiration">
+    <column id="48" parent="11" name="expiration">
       <Position>5</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="55" parent="11" name="token">
+    <column id="49" parent="11" name="fname">
+      <Position>6</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="50" parent="11" name="lname">
+      <Position>7</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="51" parent="11" name="mname">
+      <Position>8</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <column id="52" parent="11" name="password">
+      <Position>9</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="53" parent="11" name="role_id">
+      <Position>10</Position>
+      <DataType>bigint(20)|0</DataType>
+    </column>
+    <column id="54" parent="11" name="token">
       <Position>11</Position>
       <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="55" parent="11" name="username">
+      <Position>12</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
     <index id="56" parent="11" name="FK_smnnq05f7cqjok0usue5mf4ee">
       <ColNames>role_id</ColNames>
@@ -219,7 +213,6 @@
       <ColNames>role_id</ColNames>
       <RefSchemaName>casdb</RefSchemaName>
       <RefTableName>testing_role</RefTableName>
-      <RefKeyName>PRIMARY</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <column id="59" parent="12" name="id">
@@ -272,7 +265,6 @@
       <ColNames>course_id</ColNames>
       <RefSchemaName>casdb</RefSchemaName>
       <RefTableName>testing_course</RefTableName>
-      <RefKeyName>PRIMARY</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <column id="71" parent="13" name="id">
@@ -306,18 +298,18 @@
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="77" parent="14" name="professor_id">
+    <column id="77" parent="14" name="active">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="78" parent="14" name="professor_id">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="78" parent="14" name="title">
+    <column id="79" parent="14" name="title">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
-    </column>
-    <column id="79" parent="14" name="active">
-      <Position>3</Position>
-      <DataType>int(11)|0</DataType>
     </column>
     <index id="80" parent="14" name="FK_2o40yqo8iwnkkjosb0v0q2n3i">
       <ColNames>professor_id</ColNames>
@@ -330,7 +322,6 @@
       <ColNames>professor_id</ColNames>
       <RefSchemaName>casdb</RefSchemaName>
       <RefTableName>testing_faculty</RefTableName>
-      <RefKeyName>PRIMARY</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
   </database-model>

@@ -8,8 +8,6 @@
       </database-info>
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <user-name>root</user-name>
-      <user-password>dfd8dfc5dfc5dfde</user-password>
-      <resolve-scope>casdb:</resolve-scope>
     </data-source>
   </component>
 </project>
