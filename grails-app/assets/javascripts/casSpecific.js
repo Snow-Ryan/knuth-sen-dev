@@ -523,7 +523,9 @@ function disableSection(that){
                 loadExpiredSession();
             }
             else{
-                thata()
+                $(nthParent(that,1)).children().eq(1).children().removeClass("fa-check");
+                $(nthParent(that,1)).children().eq(1).children().addClass("fa-times");
+                $(nthParent(that,1)).children().eq(1).children().css("color", "red");
                 $(that).removeClass("fa-toggle-on");
                 $(that).addClass("fa-toggle-off");
                 $(that).removeClass("disableSectionBtn");
@@ -554,6 +556,9 @@ function enableCourse(that){
                 loadExpiredSession();
             }
             else{
+                $(nthParent(that,1)).children().eq(1).children().removeClass("fa-times");
+                $(nthParent(that,1)).children().eq(1).children().addClass("fa-check");
+                $(nthParent(that,1)).children().eq(1).children().css("color", "green");
                 $(that).removeClass("fa-toggle-off");
                 $(that).addClass("fa-toggle-on");
                 $(that).removeClass("enableCourseBtn");
@@ -584,6 +589,9 @@ function disableCourse(that){
                 loadExpiredSession();
             }
             else{
+                $(nthParent(that,1)).children().eq(1).children().removeClass("fa-check");
+                $(nthParent(that,1)).children().eq(1).children().addClass("fa-times");
+                $(nthParent(that,1)).children().eq(1).children().css("color", "red");
                 $(that).removeClass("fa-toggle-on");
                 $(that).addClass("fa-toggle-off");
                 $(that).removeClass("disableCourseBtn");
@@ -614,6 +622,9 @@ function enableSection(that){
                 loadExpiredSession();
             }
             else{
+                $(nthParent(that,1)).children().eq(1).children().removeClass("fa-times");
+                $(nthParent(that,1)).children().eq(1).children().addClass("fa-check");
+                $(nthParent(that,1)).children().eq(1).children().css("color", "green");
                 $(that).removeClass("fa-toggle-off");
                 $(that).addClass("fa-toggle-on");
                 $(that).removeClass("enableSectionBtn");
@@ -644,11 +655,7 @@ function disableFaculty(that){
                 loadExpiredSession();
             }
             else{
-                toggleStatus(that);
-                $(that).removeClass("fa-times");
-
-                //console.log($("tr td:nth-child(7) i").removeClass("fa-times"));
-                console.log();
+                disableStatus(that);
 
                 $(that).removeClass("fa-toggle-on");
                 $(that).addClass("fa-toggle-off");
@@ -681,6 +688,9 @@ function enableDepartment(that){
                 loadExpiredSession();
             }
             else{
+                $(nthParent(that,1)).children().eq(1).children().removeClass("fa-times");
+                $(nthParent(that,1)).children().eq(1).children().addClass("fa-check");
+                $(nthParent(that,1)).children().eq(1).children().css("color", "green");
                 $(that).removeClass("fa-toggle-off");
                 $(that).addClass("fa-toggle-on");
                 $(that).removeClass("enableDepartmentBtn");
@@ -711,6 +721,9 @@ function disableDepartment(that){
                 loadExpiredSession();
             }
             else{
+                $(nthParent(that,1)).children().eq(1).children().removeClass("fa-check");
+                $(nthParent(that,1)).children().eq(1).children().addClass("fa-times");
+                $(nthParent(that,1)).children().eq(1).children().css("color", "red");
                 $(that).removeClass("fa-toggle-on");
                 $(that).addClass("fa-toggle-off");
                 $(that).removeClass("disableDepartmentBtn");
@@ -741,6 +754,7 @@ function enableFaculty(that){
                 loadExpiredSession();
             }
             else{
+                enableStatus(that);
                 $(that).removeClass("fa-toggle-off");
                 $(that).addClass("fa-toggle-on");
                 $(that).removeClass("enableFacultyBtn");
@@ -1437,9 +1451,16 @@ function nthParent(element,n){
     return element;
 }
 
-function toggleStatus(ele){
-    //console.log("hey" , ele)
-    $(ele).removeClass("fa-times");
-    //$(that).addClass("fa-toggle-on");
+function disableStatus(ele){
+    $(nthParent(ele,1)).children().eq(6).children().removeClass("fa-check");
+    $(nthParent(ele,1)).children().eq(6).children().addClass("fa-times");
+    $(nthParent(ele,1)).children().eq(6).children().css("color", "red");
+
+}
+
+function enableStatus(ele){
+    $(nthParent(ele,1)).children().eq(6).children().removeClass("fa-times");
+    $(nthParent(ele,1)).children().eq(6).children().addClass("fa-check");
+    $(nthParent(ele,1)).children().eq(6).children().css("color", "green");
 
 }
