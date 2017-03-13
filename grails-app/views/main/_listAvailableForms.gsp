@@ -9,6 +9,8 @@
                     <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Course</th>
+                        <th>Section</th>
                         <th>Creation Date</th>
                         <th>Publish Date</th>
                         <th>Actions</th>
@@ -25,19 +27,24 @@
                     <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Course</th>
+                        <th>Section</th>
                         <th>Creation Date</th>
                         <th>Publish Date</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <g:each in="${forms}">
+                    <g:each in="${forms}" var="aForm" status="i">
                         <tr>
-                            <td>${it.title}</td>
-                            <td>${it.creationDate}</td>
-                            <td>${it.publishDate}</td>
+                            <td>${aForm.title}</td>
+                            <td>${aForm.course.name}</td>
+                            <td>${sections[i].title}</td>
+                            <td>${aForm.creationDate}</td>
+                            <td>${aForm.publishDate}</td>
                             <td>
-                                <label class="hiddenId" style="display: none">${it.id}</label>
+                                <label class="hiddenId" style="display: none">${aForm.id}</label>
+                                <label class="hiddenSectionId" style="display: none">${sections[i].id}</label>
                                 <i class="fa fa-keyboard-o inputData fa-2x" aria-hidden="true"></i>
 
                                 <a href="#" idc="tglr" class="popover-toggle" title="Information">

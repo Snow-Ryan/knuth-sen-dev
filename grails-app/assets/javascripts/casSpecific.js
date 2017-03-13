@@ -625,6 +625,7 @@ function enableSection(that){
                 $(nthParent(that,1)).children().eq(1).children().removeClass("fa-times");
                 $(nthParent(that,1)).children().eq(1).children().addClass("fa-check");
                 $(nthParent(that,1)).children().eq(1).children().css("color", "green");
+
                 $(that).removeClass("fa-toggle-off");
                 $(that).addClass("fa-toggle-on");
                 $(that).removeClass("enableSectionBtn");
@@ -1422,6 +1423,93 @@ function copyForm(that){
             loadForms();
         }
     });
+}
+
+function loadDataInput(that, singleGradeItem){
+
+    $('#mainContainer').empty();
+
+    var id = $(that).parent().find('.hiddenId').html();
+    var sectionId = $(that).parent().find('.hiddenSectionId').html();
+    $.ajax({
+        url: "/knuth-sen-dev/main/loadDataInput",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
+        type: "POST",
+        data:{
+            id:id,
+            sectionId:sectionId
+        },
+        success: function (data) {
+            $('#mainContainer').append(data);
+
+            if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
+                showLoginBtn();
+            }
+            else{
+                dust.renderSource(singleGradeItem, {}, function (err, out) {
+                    $('#singleGradeItems').append(out);
+                });
+                $(".removeGradeItem").css("display", "none");
+                $('.gradeItemLabel').last().html("Grade " + $('.gradeItem').length);
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+            loadProfView();
+        }
+    });
+}
+
+function parseGrades(singleGradeItem){
+    var grades = $('.multipleGradeItems').val();
+    grades = grades.split(/,|\t|\n|\r|;| /);
+    
+    addMultipleGradeItems(singleGradeItem, grades);
+}
+
+function addMultipleGradeItems(singleGradeItem, grades){
+    removeAllGradeItems(singleGradeItem);
+    $('.gradeItem').first().val(grades[0]);
+    for (var i = 1; i < grades.length; i++) {
+        addSingleGradeItem(singleGradeItem);
+        $('.gradeItem').last().val(grades[i]);
+    }
+}
+
+function removeAllGradeItems(singleGradeItem){
+    $("#singleGradeItems").empty();
+    addSingleGradeItem(singleGradeItem);
+    $(".removeGradeItem").css("display", "none");
+}
+
+function addSingleGradeItem(singleGradeItem){
+    $(".addGradeItem").css("display", "none");
+    // $(".removeGradeItem").css("display", "none");
+
+    dust.renderSource(singleGradeItem, {}, function (err, out) {
+        $('#singleGradeItems').append(out);
+    });
+    $('.gradeItemLabel').last().html("Grade " + $('.gradeItem').length);
+}
+
+function removeGradeItem(that){
+    $(that).parent().remove();
+
+    if($(".addGradeItem").length>1){
+        $(".addGradeItem").last().css("display", "");
+        $(".removeGradeItem").last().css("display", "");
+    }
+    else {
+        $(".addGradeItem").last().css("display", "");
+    }
+}
+
+function commentToHtml(f) { // Multiline javascript string hack for templates
+    return f.toString().
+    replace(/^[^\/]+\/\*!?/, '').
+    replace(/\*\/[^\/]+$/, '');
 }
 
 var $body = $('body');

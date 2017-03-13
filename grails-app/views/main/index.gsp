@@ -16,6 +16,7 @@
 <div id="mainContainer" class="container block-element-container"></div>
 
 <script>
+    var singleGradeItem = commentToHtml(function () {<g:render template="singleGradeItem"/>});
     var $body = $('body');
     $('.secondNav').css("visibility", "hidden");
 
@@ -52,6 +53,10 @@
 
     $body.on('click', '.loginBtn', function () {
         loadLogInPage();
+    });
+
+    $body.on('click', '.cancelGradeInput', function () {
+        loadProfView();
     });
 
     $body.on('click', '.cancelAttemptLogin', function () {
@@ -246,13 +251,26 @@
         copyForm(this);
     });
 
+    $body.on('click', '.inputData', function () {
+        loadDataInput(this, singleGradeItem);
+    });
+
+    $body.on('click', '.addGradeItem ', function () {
+        addSingleGradeItem(singleGradeItem);
+    });
+
+    $body.on('click', '.removeGradeItem ', function () {
+        removeGradeItem(this);
+    });
+
+    $body.on('click', '.parseGrades ', function () {
+        parseGrades(singleGradeItem);
+    });
+
     $(document).on({
 //        ajaxStart: function() { $body.addClass("loading");    },
         ajaxStop: function() { $body.removeClass("loading"); }
     });
-
-
-
 </script>
 </body>
 </html>
