@@ -2,6 +2,7 @@ package cas
 
 import grails.converters.JSON
 import org.codehaus.groovy.grails.web.json.JSONArray
+import org.codehaus.groovy.grails.web.json.JSONObject
 
 class MainController {
     Md5passService md5passService
@@ -995,6 +996,7 @@ class MainController {
         }
     }
 
+    //TODO check if form already has data entered by everyone
     def loadUserForms(){
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
@@ -1003,16 +1005,20 @@ class MainController {
             expandExpiration(request.getHeader('Authorization'))
 
             TestingFaculty currentUser = TestingFaculty.findByToken(request.getHeader('Authorization'));
+
             def allForms = TestingForm.findAllByPublished(1)
             def forms = []
+            def sections = []
 
             for(TestingForm tf in allForms){
                 for(TestingSection ts in tf.course.sections){
                     if(ts.professor == currentUser){
                         forms.add(tf)
+                        sections.add(ts)
                     }
                 }
             }
+
             def users = []
             def assessmentCoordinators = TestingFaculty.findAllByRole(TestingRole.findById(1))
 
@@ -1020,10 +1026,18 @@ class MainController {
                 users.add(it)
             }
 
-
-
-            render (template: "listAvailableForms", model: [forms: forms, assessmentCoordinators:assessmentCoordinators])
+            render (template: "listAvailableForms", model: [forms: forms, sections: sections, assessmentCoordinators:assessmentCoordinators])
         }
     };
 
+    def loadDataInput(int id, int sectionId){
+        if(checkExpiration(request.getHeader('Authorization'))){
+            render template: "expiredSession"
+        }
+        else {
+
+            expandExpiration(request.getHeader('Authorization'))
+            render(template: 'dataInput', model: [id: id, sectionId: sectionId, cName:TestingForm.findById(id).course.name, sTitle:TestingSection.findById(sectionId).title]);
+        }
+    }
 }
