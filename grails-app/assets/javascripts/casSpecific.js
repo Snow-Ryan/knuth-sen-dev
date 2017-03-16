@@ -1451,8 +1451,8 @@ function loadDataInput(that, singleGradeItem){
                 dust.renderSource(singleGradeItem, {}, function (err, out) {
                     $('#singleGradeItems').append(out);
                 });
-                $(".removeGradeItem").css("display", "none");
-                $('.gradeItemLabel').last().html("Grade " + $('.gradeItem').length);
+                $(".removeGradeItem").css("visibility", "hidden");
+                $('.gradeItemLabel').last().html( $('.gradeItem').length);
             }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -1481,28 +1481,28 @@ function addMultipleGradeItems(singleGradeItem, grades){
 function removeAllGradeItems(singleGradeItem){
     $("#singleGradeItems").empty();
     addSingleGradeItem(singleGradeItem);
-    $(".removeGradeItem").css("display", "none");
+    $(".removeGradeItem").css("visibility", "hidden");
 }
 
 function addSingleGradeItem(singleGradeItem){
-    $(".addGradeItem").css("display", "none");
+    $(".addGradeItem").css("visibility", "hidden");
     // $(".removeGradeItem").css("display", "none");
 
     dust.renderSource(singleGradeItem, {}, function (err, out) {
         $('#singleGradeItems').append(out);
     });
-    $('.gradeItemLabel').last().html("Grade " + $('.gradeItem').length);
+    $('.gradeItemLabel').last().html($('.gradeItem').length);
 }
 
 function removeGradeItem(that){
-    $(that).parent().remove();
+    $(nthParent(that, 1)).remove();
 
     if($(".addGradeItem").length>1){
-        $(".addGradeItem").last().css("display", "");
-        $(".removeGradeItem").last().css("display", "");
+        $(".addGradeItem").last().css("visibility", "");
+        $(".removeGradeItem").last().css("visibility", "");
     }
     else {
-        $(".addGradeItem").last().css("display", "");
+        $(".addGradeItem").last().css("visibility", "");
     }
 }
 
