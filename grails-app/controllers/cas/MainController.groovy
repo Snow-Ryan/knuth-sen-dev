@@ -2,6 +2,7 @@ package cas
 
 import grails.converters.JSON
 import org.codehaus.groovy.grails.web.json.JSONArray
+import org.codehaus.groovy.grails.web.json.JSONObject
 
 class MainController {
     Md5passService md5passService
@@ -850,8 +851,8 @@ class MainController {
 
             TestingCourse testingCourse = new TestingCourse(name: "TestCourse1", courseCoordinator: testingUser2, sections: [testingSection, testingSection2]);
             TestingCourse testingCourse2 = new TestingCourse(name: "TestCourse2", courseCoordinator: testingUser2, sections: [testingSection3]);
-            TestingCourse testingCourse3 = new TestingCourse(name: "TestCourse3");
-            TestingCourse testingCourse4 = new TestingCourse(name: "TestCourse4");
+            TestingCourse testingCourse3 = new TestingCourse(name: "TestCourse3", sections: [testingSection3]);
+            TestingCourse testingCourse4 = new TestingCourse(name: "TestCourse4", sections: [testingSection3]);
 
             testingCourse.save(flush: true)
             testingCourse2.save(flush: true)
@@ -992,6 +993,51 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
             render(template: 'formCopy', model: [form: TestingForm.findById(id)]);
+        }
+    }
+
+    //TODO check if form already has data entered by everyone
+    def loadUserForms(){
+        if(checkExpiration(request.getHeader('Authorization'))){
+            render template: "expiredSession"
+        }
+        else{
+            expandExpiration(request.getHeader('Authorization'))
+
+            TestingFaculty currentUser = TestingFaculty.findByToken(request.getHeader('Authorization'));
+
+            def allForms = TestingForm.findAllByPublished(1)
+            def forms = []
+            def sections = []
+
+            for(TestingForm tf in allForms){
+                for(TestingSection ts in tf.course.sections){
+                    if(ts.professor == currentUser){
+                        forms.add(tf)
+                        sections.add(ts)
+                    }
+                }
+            }
+
+            def users = []
+            def assessmentCoordinators = TestingFaculty.findAllByRole(TestingRole.findById(1))
+
+            assessmentCoordinators.each{
+                users.add(it)
+            }
+
+            render (template: "listAvailableForms", model: [forms: forms, sections: sections, assessmentCoordinators:assessmentCoordinators])
+        }
+    };
+
+    def loadDataInput(int id, int sectionId){
+        if(checkExpiration(request.getHeader('Authorization'))){
+            render template: "expiredSession"
+        }
+        else {
+
+            expandExpiration(request.getHeader('Authorization'))
+            render(template: 'dataInput', model: [id: id, sectionId: sectionId, cName:TestingForm.findById(id).course.name, sTitle:TestingSection.findById(sectionId).title]);
         }
     }
 }
