@@ -164,6 +164,10 @@ function saveEditForm(){
     }
 }
 
+function saveGradeData(){
+    
+}
+
 function saveEditCourse(){
     var name = null;
     var faculty = null;
