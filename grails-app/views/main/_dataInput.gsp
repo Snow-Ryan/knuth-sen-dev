@@ -6,6 +6,10 @@
         <h2>Enter Grades</h2>
     </div>
     <h3>${cName} - ${sTitle}</h3>
+    <div class="input-group" style="width:220px; top:-50px; padding:15px;">
+        <span class="input-group-addon">Grade Threshold</span>
+        <input id="gradeThreshold" type="text" class="form-control" name="gradeThreshold" value="100">
+    </div>
     <div class="card-block">
 
         <div class="panel-group" id="accordion">
@@ -13,7 +17,7 @@
 
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" style="color:black;">Multiple grades</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" style="color:black; float:none">Multiple grades</a>
                     </h4>
                 </div>
 
