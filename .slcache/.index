@@ -5626,3 +5626,11 @@ y:16560:groovyx/net/http/HTTPBuilder
 y:18139:org/codehaus/groovy/grails/web/json/JSONObject
 y:6802:org/springframework/core/Constants
 y:3001:org/apache/tools/ant/taskdefs/optional/native2ascii/SunNative2Ascii
+y:13909:org/grails/datastore/mapping/reflect/ClassPropertyFetcher
+n:2186:org/codehaus/groovy/grails/commons/GrailsApplication$addArtefact
+y:7471:org/codehaus/groovy/grails/commons/GrailsMetaClassUtils
+y:9306:org/springframework/core/MethodParameter
+y:2775:org/springframework/core/SerializableTypeWrapper$MethodParameterTypeProvider
+y:45932:org/springframework/beans/factory/support/AbstractAutowireCapableBeanFactory
+y:7118:org/springframework/beans/factory/support/SimpleInstantiationStrategy
+y:6199:org/springframework/util/MethodInvoker

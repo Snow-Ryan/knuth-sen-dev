@@ -164,10 +164,6 @@ function saveEditForm(){
     }
 }
 
-function saveGradeData(){
-    
-}
-
 function saveEditCourse(){
     var name = null;
     var faculty = null;
@@ -1464,6 +1460,54 @@ function loadDataInput(that, singleGradeItem){
             loadProfView();
         }
     });
+}
+
+
+function saveGrades(){
+    var grades = [];
+    var x = 0;
+    $('.gradeItem').each(function() {
+        grades[x] = $(this).val();
+        x = x + 1;
+    });
+
+    var json = {array:grades};
+
+    var stringGrades = JSON.stringify(json);
+
+    if(stringGrades == ""){
+        $.growl.warning({ message: "Please input data" });
+    }
+    else {
+        var id = $('.hiddenId').html();
+
+        $.ajax({
+            url: "/knuth-sen-dev/main/saveGradeData",
+            headers: {
+                'Authorization': Cookies.get('token')
+            },
+            type: "POST",
+            data: {
+                id: id,
+                grades: stringGrades
+            },
+            success: function (data) {
+                if (data.status === 2) {
+                    $.growl.warning({message: "Generic Error please change"});
+                }
+                else if (data.status === 5) {
+                    loadExpiredSession();
+                }
+                else {
+                    loadProfView();
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+                loadProfView();
+            }
+        });
+    }
 }
 
 function parseGrades(singleGradeItem){
