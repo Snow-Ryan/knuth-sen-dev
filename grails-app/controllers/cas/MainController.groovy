@@ -841,7 +841,7 @@ class MainController {
             testingUser6.save(flush: true)
             testingUser7.save(flush: true)
 
-            TestingSection testingSection = new TestingSection(professor: testingUser3, title: "testSec1");
+            TestingSection testingSection = new TestingSection(professor: testingUser, title: "testSec1");
             TestingSection testingSection2 = new TestingSection(professor: testingUser4, title: "testSec2");
             TestingSection testingSection3 = new TestingSection(professor: testingUser5, title: "testSec1");
 
@@ -1040,4 +1040,41 @@ class MainController {
             render(template: 'dataInput', model: [id: id, sectionId: sectionId, cName:TestingForm.findById(id).course.name, sTitle:TestingSection.findById(sectionId).title]);
         }
     }
+
+    def saveGradeData(Integer id, String grades){
+        JSON resultJson
+        TestingForm testingForm;
+        testingForm = TestingForm.findById(id);
+
+        if(checkExpiration(request.getHeader('Authorization'))){
+            resultJson = [status: 5, message: "Expired"] as JSON
+        }
+        else {
+            expandExpiration(request.getHeader('Authorization'))
+            if (testingForm) {
+                if (testingForm.id == id) {
+                    testingForm.grades = grades;
+
+                    if (testingForm.save(flush: true)) {
+                        resultJson = [status: 0, message: "Success"] as JSON
+                    } else {
+                        resultJson = [status: 1, message: "Error"] as JSON
+                    }
+                } else {
+                    resultJson = [status: 2, message: "Error"] as JSON
+                }
+            } else {
+                testingForm = testingForm.findById(id);
+
+                testingForm.grades = grades;
+                if (testingForm.save(flush: true)) {
+                    resultJson = [status: 0, message: "Success"] as JSON
+                } else {
+                    resultJson = [status: 1, message: "Error"] as JSON
+                }
+            }
+        }
+        render(resultJson)
+    }
 }
+

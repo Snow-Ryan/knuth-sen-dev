@@ -267,6 +267,10 @@
         parseGrades(singleGradeItem);
     });
 
+    $body.on('click', '.saveGrades ', function () {
+        saveGrades();
+    });
+
     $(document).on({
 //        ajaxStart: function() { $body.addClass("loading");    },
         ajaxStop: function() { $body.removeClass("loading"); }
