@@ -1,8 +1,6 @@
 package cas
 
 import grails.converters.JSON
-import org.codehaus.groovy.grails.web.json.JSONArray
-import org.codehaus.groovy.grails.web.json.JSONObject
 
 class MainController {
     Md5passService md5passService
@@ -983,7 +981,7 @@ class MainController {
                 resultJson = [status: 1, message: "Error"] as JSON
             }
         }
-
+        //todo notify professors that they have forms waiting
         render(resultJson);
     }
 
@@ -1082,16 +1080,32 @@ class MainController {
         render(resultJson)
     }
 
-    protected static testAutomation(){
-        testStuff();
+    protected static findFormsToRepublish(){
+
+        def allPublishedForms = TestingForm.findAllByPublished(1)
+        def toRepublish = []
+
+        allPublishedForms.each {
+
+            Date d = new Date(it.publishDate)
+            Date currentD = new Date()
+
+            if((currentD.getYear()>d.getYear())&&(currentD.getMonth()+1>=it.automationDate)){
+                toRepublish.push(it)
+            }
+        }
+
+        republishForms(toRepublish)
     }
 
-    protected static testStuff(){
-        println 5;
+    protected static republishForms(toRepublish){
+        toRepublish.each{
+            it.publishDate = new Date().getDateString();
+            println new Date().getDateString();
+            it.save(flush: true)
+        }
+        //todo notify professors that they have forms waiting
     }
 
-    static republishForms(){
-
-    }
 }
 
