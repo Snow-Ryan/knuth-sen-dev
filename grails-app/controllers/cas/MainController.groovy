@@ -811,7 +811,6 @@ class MainController {
     }
 
     def loadLogIn(){
-
         TestingFaculty testingUser
 
         testingUser = TestingFaculty.findByUsername("admin@admin.com")
@@ -1075,6 +1074,18 @@ class MainController {
             }
         }
         render(resultJson)
+    }
+
+    protected static testAutomation(){
+        testStuff();
+    }
+
+    protected static testStuff(){
+        println 5;
+    }
+
+    static republishForms(){
+
     }
 }
 

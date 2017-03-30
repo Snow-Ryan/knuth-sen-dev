@@ -65,6 +65,7 @@ grails.project.dependency.resolution = {
         compile ":asset-pipeline:1.9.9"
         compile ':font-awesome-resources:4.3.0.1'
         compile ":twitter-bootstrap:3.3.4"
+        compile ':quartz:1.0.1'
 
 
         // plugins needed at runtime but not for compilation
