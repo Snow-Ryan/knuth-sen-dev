@@ -77,6 +77,7 @@ function saveNewForm(){
     var title = $('.titleInput').val();
     var question = $('.questionInput').val();
     var description = $('.descriptionTextArea').val();
+    var automationDate = $('#automationDate').val();
 
     title = cleanData(title);
     question = cleanData(question);
@@ -95,7 +96,8 @@ function saveNewForm(){
             data: {
                 title: title,
                 question: question,
-                description: description
+                description: description,
+                automationDate:automationDate
             },
             success: function (data) {
                 if (data.status === 2) {
@@ -120,6 +122,7 @@ function saveEditForm(){
     var title = $('.titleInput').val();
     var question = $('.questionInput').val();
     var description = $('.descriptionTextArea').val();
+    var automationDate = $('#automationDate').val();
 
     title = cleanData(title);
     question = cleanData(question);
@@ -140,7 +143,8 @@ function saveEditForm(){
                 title: title,
                 question: question,
                 description: description,
-                id: id
+                id: id,
+                automationDate:automationDate
             },
             success: function (data) {
                 if (data.status === 2) {
@@ -1478,7 +1482,7 @@ function saveGrades(){
         var sectionId = $('.hiddenSectionId').html();
 
         var gradeRange = $('#gradeThreshold').val();
-        
+
         $.ajax({
             url: "/knuth-sen-dev/main/saveGradeData",
             headers: {

@@ -116,7 +116,7 @@ class MainController {
         }
     }
 
-    def saveNewForm(String title, String question, String description){
+    def saveNewForm(String title, String question, String description, Integer automationDate){
         JSON resultJson
         TestingForm testingForm;
         testingForm = TestingForm.findByTitle(title);
@@ -127,7 +127,7 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
             if (!testingForm) {
-                testingForm = new TestingForm(title: title, question: question, description: description, creationDate: new Date().getDateString(), published: 0);
+                testingForm = new TestingForm(title: title, question: question, description: description, creationDate: new Date().getDateString(), published: 0, automationDate: automationDate);
                 if (testingForm.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
                 } else {
@@ -498,7 +498,7 @@ class MainController {
         render(resultJson)
     }
 
-    def saveEditForm(String title, String question, String description, int id){
+    def saveEditForm(String title, String question, String description, int id, Integer automationDate){
         JSON resultJson
         TestingForm testingForm;
         testingForm = TestingForm.findByTitle(title);
@@ -512,6 +512,7 @@ class MainController {
                 if (testingForm.id == id) {
                     testingForm.question = question;
                     testingForm.description = description;
+                    testingForm.automationDate = automationDate;
 
                     if (testingForm.save(flush: true)) {
                         resultJson = [status: 0, message: "Success"] as JSON
@@ -527,6 +528,7 @@ class MainController {
                 testingForm.title = title;
                 testingForm.question = question;
                 testingForm.description = description;
+                testingForm.automationDate = automationDate;
                 if (testingForm.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
                 } else {

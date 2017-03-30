@@ -8,10 +8,12 @@ class TestingForm {
     Integer published
     String publishDate
     String creationDate
+    Integer automationDate
     TestingCourse course
 
 
     static constraints = {
+        automationDate nullable: true
         publishDate nullable: true, maxSize: 100
         creationDate nullable: true, maxSize: 100
         title nullable: true
