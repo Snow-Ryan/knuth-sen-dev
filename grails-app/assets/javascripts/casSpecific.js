@@ -1302,6 +1302,10 @@ function checkLoginStatus(token){
     });
 }
 
+function checkLogin( that){
+
+}
+
 function displayOptions(role, name){
     if(role==="Wizard"){
         $('.secondNav').css("visibility", "");
@@ -1642,3 +1646,4 @@ function enableStatus(ele){
     $(nthParent(ele,1)).children().eq(6).children().addClass("fa-check");
     $(nthParent(ele,1)).children().eq(6).children().css("color", "green");
 }
+

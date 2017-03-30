@@ -275,10 +275,42 @@
         saveGrades();
     });
 
+    $body.on('click', '.downloadBtn ', function () {
+        downloadAllData(this);
+    });
+
     $(document).on({
 //        ajaxStart: function() { $body.addClass("loading");    },
         ajaxStop: function() { $body.removeClass("loading"); }
     });
+
+
+    function downloadAllData(that){
+
+        var id = $(that).parent().find('.hiddenId').html();
+
+        $.ajax({
+            url: "/knuth-sen-dev/main/getRole",
+            type: "GET",
+            headers: {
+                'Authorization':Cookies.get('token')
+            },
+            success: function (data) {
+                if(data.status===0){
+                    Cookies.remove('token');
+                }
+                else if (data.status===1) {
+                    var link = "${g.createLink(controller: 'dataDownload', action: 'downloadAllData')}"+"?id=" + id;
+                    window.location.replace(link);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+                return false;
+            }
+        });
+    }
+
 </script>
 </body>
 </html>
