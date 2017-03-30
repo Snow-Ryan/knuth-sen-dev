@@ -62,6 +62,7 @@
                                     <label class="hiddenId" style="display: none">${it.id}</label>
                                     <i class="fa fa-download downloadBtn fa-2x" aria-hidden="true"></i>
                                     <i class="fa fa-files-o copyFormButton fa-2x" aria-hidden="true"></i>
+                                    <i class="fa fa-ban unpublishButton fa-2x" aria-hidden="true"></i>
                                 </td>
                             </g:else>
                         </tr>

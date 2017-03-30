@@ -80,6 +80,10 @@
         loadFormPublishing(this);
     });
 
+    $body.on('click', '.unpublishButton', function () {
+        unpublishForm(this);
+    });
+
     $body.on('click', '.newFormButton', function () {
         loadFormCreation();
     });

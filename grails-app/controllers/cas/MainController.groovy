@@ -985,6 +985,29 @@ class MainController {
         render(resultJson);
     }
 
+    def unpublishForm(Integer id){
+        JSON resultJson = [status: 1, message: "Error"] as JSON
+        TestingForm testingForm;
+        testingForm = TestingForm.findById(id);
+
+        if(checkExpiration(request.getHeader('Authorization'))){
+            resultJson = [status: 5, message: "Expired"] as JSON
+        }
+        else {
+            expandExpiration(request.getHeader('Authorization'))
+            if (testingForm) {
+                testingForm.published = 0;
+                testingForm.course = null;
+                if (testingForm.save(flush: true)) {
+                    resultJson = [status: 0, message: "Success"] as JSON
+                } else {
+                    resultJson = [status: 1, message: "Error"] as JSON
+                }
+            }
+        }
+        render(resultJson)
+    }
+
     def copyFormEdit(int id){
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"

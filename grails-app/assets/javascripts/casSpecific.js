@@ -1396,6 +1396,47 @@ function publishForm() {
     });
 }
 
+function unpublishForm(that) {
+    var id = $(that).parent().find('.hiddenId').html();
+
+    $.ajax({
+        url: "/knuth-sen-dev/main/unpublishForm",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
+        type: "POST",
+        data:{
+            id:id
+        },
+        success: function (data) {
+            if(data.status===5){
+                loadExpiredSession();
+            }
+            else{
+                $(nthParent(that,1)).children().eq(2).children().removeClass("fa-check");
+                $(nthParent(that,1)).children().eq(2).children().addClass("fa-times");
+                $(nthParent(that,1)).children().eq(2).children().css("color", "red");
+
+                $(nthParent(that,0)).find('.fa-download').remove();
+                $(nthParent(that,0)).find('.fa-files-o').remove();
+
+                $(nthParent(that,0)).append("<i style='padding-left: 15px' class='fa fa-paper-plane publishBtn fa-2x' aria-hidden='true' data-toggle='modal' data-target='#myModal'></i>")
+                $(nthParent(that,0)).append("<i class='fa fa-pencil editBtn fa-2x' aria-hidden='true'></i>");
+                $(nthParent(that,0)).append("<i class='fa fa-files-o copyFormButton fa-2x' aria-hidden='true'></i>");
+                $(nthParent(that,0)).append("<i class='fa fa-trash-o deleteBtn fa-2x' aria-hidden='true'></i>");
+
+                $(nthParent(that,1)).children().eq(3).html("N/A");
+                $(nthParent(that,0)).find('.fa-ban').remove();
+
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+            loadForms();
+        }
+    });
+}
+
 function copyForm(that){
 
     $('#mainContainer').empty();
