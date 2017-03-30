@@ -75,14 +75,12 @@ function deleteForm(that){
 
 function saveNewForm(){
     var title = $('.titleInput').val();
-    var creationDate = new Date()
     var question = $('.questionInput').val();
     var description = $('.descriptionTextArea').val();
 
     title = cleanData(title);
     question = cleanData(question);
     description = cleanData(description);
-
 
     if(title == "" || question == "" || description == ""){
         $.growl.warning({ message: "Please input all data" });
@@ -97,8 +95,7 @@ function saveNewForm(){
             data: {
                 title: title,
                 question: question,
-                description: description,
-                creationDate: creationDate.getMonth() + 1 + ". " + creationDate.getDate() + ". " + creationDate.getFullYear() + "."
+                description: description
             },
             success: function (data) {
                 if (data.status === 2) {
@@ -1368,7 +1365,6 @@ function publishForm() {
 
     var id = $('.modal-body').find('.hiddenId').html();
     var courseName = document.getElementById('option_boxCourses').value;
-    var publishDate = new Date();
 
     $.ajax({
         url: "/knuth-sen-dev/main/publishForm",
@@ -1378,8 +1374,7 @@ function publishForm() {
         },
         data: {
             courseName: courseName,
-            id: id,
-            publishDate: publishDate.getMonth() + 1 + ". " + publishDate.getDate() + ". " + publishDate.getFullYear() + "."
+            id: id
         },
         success: function (data) {
             if(data.status===5){
@@ -1480,7 +1475,10 @@ function saveGrades(){
     }
     else {
         var id = $('.hiddenId').html();
+        var sectionId = $('.hiddenSectionId').html();
 
+        var gradeRange = $('#gradeThreshold').val();
+        
         $.ajax({
             url: "/knuth-sen-dev/main/saveGradeData",
             headers: {
@@ -1489,7 +1487,9 @@ function saveGrades(){
             type: "POST",
             data: {
                 id: id,
-                grades: stringGrades
+                grades: stringGrades,
+                sectionId:sectionId,
+                gradeRange:gradeRange
             },
             success: function (data) {
                 if (data.status === 2) {
