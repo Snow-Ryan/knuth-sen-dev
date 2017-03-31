@@ -1122,12 +1122,31 @@ class MainController {
     }
 
     protected static republishForms(toRepublish){
-        toRepublish.each{
+        def arrProf = [];
+        def arrCouSec = [];
+        toRepublish.each {
+            TestingForm form = it;
             it.publishDate = new Date().getDateString();
-            println new Date().getDateString();
-            it.save(flush: true)
+            it.save(flush: true);
+
+            for(TestingSection ts in form.course.sections) {
+                arrCouSec.add(form.course.name + " - " + ts.title);
+                arrProf.add(ts.professor);
+            }
         }
         //todo notify professors that they have forms waiting
+
+        //publishEmail(arrProf, arrCouSec);
+    }
+
+    protected static publishEmail(professors, courseSections){
+            professors.eachWithIndex { professor, index ->
+            sendMail {
+                to professor.email
+                subject "Published Template For " + courseSections[index]
+                body ''
+            }
+        }
     }
 
 }

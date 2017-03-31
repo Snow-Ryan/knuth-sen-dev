@@ -5766,3 +5766,14 @@ n:777:jxl/biff/IndexMapping
 n:1131:jxl/write/Number
 n:201:jxl/NumberCell
 n:2467:jxl/write/biff/NumberRecord
+y:10403:com/sun/tools/javac/util/BaseFileManager
+y:28472:com/sun/tools/javac/processing/JavacProcessingEnvironment
+y:20709:com/sun/tools/javac/model/JavacElements
+y:3379:com/sun/tools/javac/processing/JavacProcessingEnvironment$ServiceIterator
+n:3064:com/sun/tools/javac/comp/MemberEnter$1
+n:3723:com/sun/tools/javac/comp/MemberEnter$2
+n:3879:com/sun/tools/javac/comp/MemberEnter$3
+n:5809:com/sun/tools/javac/comp/MemberEnter$4
+y:2602:org/springframework/scheduling/quartz/AdaptableJobFactory
+y:13350:org/springframework/scheduling/quartz/SchedulerAccessor
+y:2249:jxl/common/Logger
