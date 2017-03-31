@@ -960,6 +960,10 @@ function loadDepartmentCreation(){
     });
 }
 
+function saveNewAnalysis() {
+    console.log("how yes no")
+}
+
 function saveNewCourse() {
     var name = null;
     var faculty = null;
@@ -1204,6 +1208,27 @@ function loadFormCreation(){
     });
 }
 
+function loadAnalysisCreation(){
+    $('#mainContainer').empty();
+    showLoadingSpinner();
+    $.ajax({
+        url: "/knuth-sen-dev/main/loadAnalysisCreation",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
+        success: function (data) {
+            $('#mainContainer').append(data);
+
+            if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
+                showLoginBtn();
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
+        }
+    });
+}
+
 function loadProfView(){
     $('#mainContainer').empty();
     showLoadingSpinner();
@@ -1237,6 +1262,32 @@ function loadProfView(){
     });
 }
 
+function loadAnalysis(){
+    showLoadingSpinner();
+    $('#mainContainer').empty();
+
+    $.ajax({
+        url: "/knuth-sen-dev/main/loadAnalysis",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
+        success: function (data) {
+            $('#mainContainer').append(data);
+
+            if($('#mainContainer').find('.formsDisplayTable')){
+                if($('.analysisDisplayTable').length){
+                    $('.analysisDisplayTable').DataTable();
+                }
+                else{
+                    showLoginBtn();
+                }
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
+        }
+    });
+}
 
 function loadForms(){
     showLoadingSpinner();
@@ -1369,6 +1420,31 @@ function loadDepartmentCourses(){
     });
 }
 
+function loadStoredGrades(){
+    var id = $('#formSelect').val();
+
+    $('#gradesList').empty();
+    $.ajax({
+        url: "/knuth-sen-dev/main/loadStoredGrades",
+        type: "POST",
+        headers: {
+            'Authorization': Cookies.get('token')
+        },
+        data:{
+            id: id
+        },
+        success: function (data) {
+            $('#gradesList').append(data);
+            if($('.storedGradeItemTable').length){
+                $('.storedGradeItemTable').DataTable();
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
+        }
+    });
+}
+
 function publishForm() {
 
     var id = $('.modal-body').find('.hiddenId').html();
@@ -1424,7 +1500,8 @@ function unpublishForm(that) {
                 $(nthParent(that,0)).find('.fa-download').remove();
                 $(nthParent(that,0)).find('.fa-files-o').remove();
 
-                $(nthParent(that,0)).append("<i style='padding-left: 15px' class='fa fa-paper-plane publishBtn fa-2x' aria-hidden='true' data-toggle='modal' data-target='#myModal'></i>")
+                $(nthParent(that,0)).append("<i style='padding-left: 15px' class='fa fa-paper-plane publishBtn fa-2x' aria-hidden='true' data-toggle='modal' data-target='#myModal'></i>");
+                $(nthParent(that,0)).append("<i class='fa fa-download downloadBtn fa-2x' aria-hidden='true'></i>");
                 $(nthParent(that,0)).append("<i class='fa fa-pencil editBtn fa-2x' aria-hidden='true'></i>");
                 $(nthParent(that,0)).append("<i class='fa fa-files-o copyFormButton fa-2x' aria-hidden='true'></i>");
                 $(nthParent(that,0)).append("<i class='fa fa-trash-o deleteBtn fa-2x' aria-hidden='true'></i>");
