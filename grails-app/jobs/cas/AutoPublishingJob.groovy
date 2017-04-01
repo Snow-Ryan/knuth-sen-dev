@@ -5,7 +5,7 @@ import grails.transaction.Transactional
 @Transactional
 class AutoPublishingJob {
     static triggers = {
-        simple repeatInterval: 86400000 // execute job once in 5 seconds
+        simple repeatInterval: 86400000 // execute job once in 24 hours
     }
 
     def execute() {

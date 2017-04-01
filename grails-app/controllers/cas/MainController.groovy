@@ -21,6 +21,17 @@ class MainController {
         }
     };
 
+    def loadAnalysis(){
+        if(checkExpiration(request.getHeader('Authorization'))){
+            render template: "expiredSession"
+        }
+        else{
+            expandExpiration(request.getHeader('Authorization'))
+            def analysis = TestingAnalysis.findAll()
+            render (template: "analysisPage", model: [analysis: analysis])
+        }
+    };
+
     def loadFaculty(){
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
@@ -111,6 +122,17 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
             render(template: "formCreation")
+        }
+    }
+
+    def loadAnalysisCreation(){
+        if(checkExpiration(request.getHeader('Authorization'))){
+            render template: "expiredSession"
+        }
+        else {
+            expandExpiration(request.getHeader('Authorization'))
+
+            render(template: "analysisCreation", model: [forms: TestingForm.findAll()])
         }
     }
 
@@ -955,6 +977,16 @@ class MainController {
         }
     }
 
+    def loadStoredGrades(Integer id) {
+        if(checkExpiration(request.getHeader('Authorization'))){
+            render template: "expiredSession"
+        }
+        else {
+            expandExpiration(request.getHeader('Authorization'))
+            render(template: 'analysisCreationStoredGrades', model: [storedGradeItem: TestingGradeStore.findAllByForForm(TestingForm.findById(id))]);
+        }
+    }
+
     def publishForm(String courseName, int id) {
 
         JSON resultJson;
@@ -997,7 +1029,6 @@ class MainController {
             expandExpiration(request.getHeader('Authorization'))
             if (testingForm) {
                 testingForm.published = 0;
-                testingForm.course = null;
                 if (testingForm.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
                 } else {
@@ -1144,7 +1175,7 @@ class MainController {
             sendMail {
                 to professor.email
                 subject "Published Template For " + courseSections[index]
-                body ''
+                html g.render(template:'/main/formPublishMail', model:[lname: professor.lName])
             }
         }
     }

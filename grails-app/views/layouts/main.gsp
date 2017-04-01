@@ -72,17 +72,14 @@
                 </li>
 
                 <li class="formsLi"><a class="forms" href="#">Forms</a></li>
+                <li class="analysisLi"><a class="analysis" href="#">Analysis</a></li>
                 <li class="pViewLiv"><a class="pView" href="#">Professor View</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </div>
 
-
-
 <div style="margin-bottom: 130px"></div>
-
-
 
 <g:layoutBody/>
 

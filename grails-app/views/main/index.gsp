@@ -38,6 +38,11 @@
         loadForms();
     });
 
+    $body.on('click', '.analysis', function (event) {
+        event.preventDefault();
+        loadAnalysis();
+    });
+
     $body.on('click', '.pView', function (event) {
         event.preventDefault();
         loadProfView();
@@ -86,6 +91,10 @@
 
     $body.on('click', '.newFormButton', function () {
         loadFormCreation();
+    });
+
+    $body.on('click', '.newAnalysisButton', function () {
+        loadAnalysisCreation();
     });
 
     $body.on('click', '.attemptLogin', function () {
@@ -187,6 +196,10 @@
         loadAdminCourses();
     });
 
+    $body.on('click', '.cancelNewAnalysis', function () {
+        loadAnalysis();
+    });
+
     $body.on('click', '.cancelNewFaculty', function () {
         loadAdminFaculty();
     });
@@ -209,6 +222,10 @@
 
     $body.on('click', '.saveNewCourse', function () {
         saveNewCourse(this);
+    });
+
+    $body.on('click', '.saveNewAnalysis', function () {
+        saveNewAnalysis();
     });
 
     $body.on('click', '.disableFacultyBtn', function () {
@@ -245,6 +262,10 @@
 
     $body.on('click', '.loadCourses', function () {
         loadDepartmentCourses();
+    });
+
+    $body.on('click', '.loadStoredGrades', function () {
+        loadStoredGrades();
     });
 
     $body.on('click', '.publishForm', function () {

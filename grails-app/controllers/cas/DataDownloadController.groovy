@@ -19,8 +19,13 @@ class DataDownloadController {
 
         String formQuestion = testingForm.question
         String formTitle = testingForm.title
-        String courseName = testingForm.course.name
-
+        String courseName
+        if(testingForm.course){
+            courseName = testingForm.course.name
+        }
+        else{
+            courseName = "Form never published"
+        }
         String fileName = "All grade data for " + testingForm.title + ".xls"
 
         WritableFont cellFont = new WritableFont(WritableFont.ARIAL, 10);
