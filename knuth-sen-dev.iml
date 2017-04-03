@@ -34,11 +34,12 @@
       <sourceFolder url="file://$MODULE_DIR$/grails-app/domain" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test/unit" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/grails-app/services" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/grails-app/jobs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test/integration" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/grails-app/utils" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/groovy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/grails-app/taglib" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/test/integration" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target/classes" />
       <excludeFolder url="file://$MODULE_DIR$/target/work/plugin-build-classes" />
       <excludeFolder url="file://$MODULE_DIR$/target/work/plugin-classes" />
@@ -98,6 +99,7 @@
           <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-el/7.0.55/tomcat-embed-el-7.0.55.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.55/tomcat-embed-jasper-7.0.55.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-catalina-ant/7.0.55/tomcat-catalina-ant-7.0.55.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/net/sourceforge/jexcelapi/jxl/2.6.12/jxl-2.6.12.jar!/" />
           <root url="file://$MODULE_DIR$/lib" />
           <root url="jar://$USER_HOME$/.sdkman/candidates/grails/2.4.4/lib/org.grails/grails-datastore-simple/jars/grails-datastore-simple-3.1.3.RELEASE.jar!/" />
           <root url="jar://$USER_HOME$/.sdkman/candidates/grails/2.4.4/lib/org.grails/grails-datastore-gorm/jars/grails-datastore-gorm-3.1.3.RELEASE.jar!/" />
@@ -294,9 +296,58 @@
           <root url="jar://C:/grails-2.4.4/dist/grails-plugin-testing-2.4.4-sources.jar!/" />
           <root url="jar://C:/grails-2.4.4/dist/grails-docs-2.4.4-sources.jar!/" />
           <root url="jar://C:/grails-2.4.4/dist/grails-scripts-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/src/grails-datastore-simple-3.1.3.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/src/grails-datastore-gorm-3.1.3.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/src/grails-datastore-core-3.1.3.RELEASE-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-plugin-mimetypes-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-plugin-domain-class-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-plugin-converters-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-async-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-plugin-async-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-validation-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-plugin-url-mappings-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-plugin-servlets-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-plugin-services-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-plugin-log4j-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-web-gsp-taglib-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-logging-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-encoder-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-plugin-codecs-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-plugin-gsp-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-plugin-filters-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-plugin-i18n-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-bootstrap-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-spring-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-core-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-plugin-databinding-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-web-databinding-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-web-sitemesh-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-web-url-mappings-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-web-mvc-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-databinding-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-web-common-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-web-fileupload-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-web-jsp-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-web-gsp-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-web-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-plugin-validation-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-plugin-controllers-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-plugin-datasource-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-plugin-rest-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-resources-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-project-api-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-test-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-plugin-testing-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-docs-2.4.4-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/SeniorProject/grails-2.4.4/dist/grails-scripts-2.4.4-sources.jar!/" />
         </SOURCES>
         <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
       </library>
     </orderEntry>
+<<<<<<< HEAD
+=======
+    <orderEntry type="library" name="grails-2.4.4" level="application" />
+    <orderEntry type="library" name="grails-2.4.4" level="application" />
+>>>>>>> 244e6b668359641e1b082667fa7dd45be44fed89
   </component>
 </module>

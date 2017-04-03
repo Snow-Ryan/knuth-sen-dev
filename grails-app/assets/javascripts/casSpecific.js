@@ -75,14 +75,13 @@ function deleteForm(that){
 
 function saveNewForm(){
     var title = $('.titleInput').val();
-    var creationDate = new Date()
     var question = $('.questionInput').val();
     var description = $('.descriptionTextArea').val();
+    var automationDate = $('#automationDate').val();
 
     title = cleanData(title);
     question = cleanData(question);
     description = cleanData(description);
-
 
     if(title == "" || question == "" || description == ""){
         $.growl.warning({ message: "Please input all data" });
@@ -98,7 +97,7 @@ function saveNewForm(){
                 title: title,
                 question: question,
                 description: description,
-                creationDate: creationDate.getMonth() + 1 + ". " + creationDate.getDate() + ". " + creationDate.getFullYear() + "."
+                automationDate:automationDate
             },
             success: function (data) {
                 if (data.status === 2) {
@@ -123,6 +122,7 @@ function saveEditForm(){
     var title = $('.titleInput').val();
     var question = $('.questionInput').val();
     var description = $('.descriptionTextArea').val();
+    var automationDate = $('#automationDate').val();
 
     title = cleanData(title);
     question = cleanData(question);
@@ -143,7 +143,8 @@ function saveEditForm(){
                 title: title,
                 question: question,
                 description: description,
-                id: id
+                id: id,
+                automationDate:automationDate
             },
             success: function (data) {
                 if (data.status === 2) {
@@ -959,6 +960,10 @@ function loadDepartmentCreation(){
     });
 }
 
+function saveNewAnalysis() {
+    console.log("how yes no")
+}
+
 function saveNewCourse() {
     var name = null;
     var faculty = null;
@@ -1203,6 +1208,27 @@ function loadFormCreation(){
     });
 }
 
+function loadAnalysisCreation(){
+    $('#mainContainer').empty();
+    showLoadingSpinner();
+    $.ajax({
+        url: "/knuth-sen-dev/main/loadAnalysisCreation",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
+        success: function (data) {
+            $('#mainContainer').append(data);
+
+            if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
+                showLoginBtn();
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
+        }
+    });
+}
+
 function loadProfView(){
     $('#mainContainer').empty();
     showLoadingSpinner();
@@ -1236,6 +1262,32 @@ function loadProfView(){
     });
 }
 
+function loadAnalysis(){
+    showLoadingSpinner();
+    $('#mainContainer').empty();
+
+    $.ajax({
+        url: "/knuth-sen-dev/main/loadAnalysis",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
+        success: function (data) {
+            $('#mainContainer').append(data);
+
+            if($('#mainContainer').find('.formsDisplayTable')){
+                if($('.analysisDisplayTable').length){
+                    $('.analysisDisplayTable').DataTable();
+                }
+                else{
+                    showLoginBtn();
+                }
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
+        }
+    });
+}
 
 function loadForms(){
     showLoadingSpinner();
@@ -1301,6 +1353,10 @@ function checkLoginStatus(token){
     });
 }
 
+function checkLogin( that){
+
+}
+
 function displayOptions(role, name){
     if(role==="Wizard"){
         $('.secondNav').css("visibility", "");
@@ -1364,11 +1420,35 @@ function loadDepartmentCourses(){
     });
 }
 
+function loadStoredGrades(){
+    var id = $('#formSelect').val();
+
+    $('#gradesList').empty();
+    $.ajax({
+        url: "/knuth-sen-dev/main/loadStoredGrades",
+        type: "POST",
+        headers: {
+            'Authorization': Cookies.get('token')
+        },
+        data:{
+            id: id
+        },
+        success: function (data) {
+            $('#gradesList').append(data);
+            if($('.storedGradeItemTable').length){
+                $('.storedGradeItemTable').DataTable();
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
+        }
+    });
+}
+
 function publishForm() {
 
     var id = $('.modal-body').find('.hiddenId').html();
     var courseName = document.getElementById('option_boxCourses').value;
-    var publishDate = new Date();
 
     $.ajax({
         url: "/knuth-sen-dev/main/publishForm",
@@ -1378,8 +1458,7 @@ function publishForm() {
         },
         data: {
             courseName: courseName,
-            id: id,
-            publishDate: publishDate.getMonth() + 1 + ". " + publishDate.getDate() + ". " + publishDate.getFullYear() + "."
+            id: id
         },
         success: function (data) {
             if(data.status===5){
@@ -1392,6 +1471,48 @@ function publishForm() {
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
+            loadForms();
+        }
+    });
+}
+
+function unpublishForm(that) {
+    var id = $(that).parent().find('.hiddenId').html();
+
+    $.ajax({
+        url: "/knuth-sen-dev/main/unpublishForm",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
+        type: "POST",
+        data:{
+            id:id
+        },
+        success: function (data) {
+            if(data.status===5){
+                loadExpiredSession();
+            }
+            else{
+                $(nthParent(that,1)).children().eq(2).children().removeClass("fa-check");
+                $(nthParent(that,1)).children().eq(2).children().addClass("fa-times");
+                $(nthParent(that,1)).children().eq(2).children().css("color", "red");
+
+                $(nthParent(that,0)).find('.fa-download').remove();
+                $(nthParent(that,0)).find('.fa-files-o').remove();
+
+                $(nthParent(that,0)).append("<i style='padding-left: 15px' class='fa fa-paper-plane publishBtn fa-2x' aria-hidden='true' data-toggle='modal' data-target='#myModal'></i>");
+                $(nthParent(that,0)).append("<i class='fa fa-download downloadBtn fa-2x' aria-hidden='true'></i>");
+                $(nthParent(that,0)).append("<i class='fa fa-pencil editBtn fa-2x' aria-hidden='true'></i>");
+                $(nthParent(that,0)).append("<i class='fa fa-files-o copyFormButton fa-2x' aria-hidden='true'></i>");
+                $(nthParent(that,0)).append("<i class='fa fa-trash-o deleteBtn fa-2x' aria-hidden='true'></i>");
+
+                $(nthParent(that,1)).children().eq(3).html("N/A");
+                $(nthParent(that,0)).find('.fa-ban').remove();
+
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
             loadForms();
         }
     });
@@ -1480,6 +1601,9 @@ function saveGrades(){
     }
     else {
         var id = $('.hiddenId').html();
+        var sectionId = $('.hiddenSectionId').html();
+
+        var gradeRange = $('#gradeThreshold').val();
 
         $.ajax({
             url: "/knuth-sen-dev/main/saveGradeData",
@@ -1489,7 +1613,9 @@ function saveGrades(){
             type: "POST",
             data: {
                 id: id,
-                grades: stringGrades
+                grades: stringGrades,
+                sectionId:sectionId,
+                gradeRange:gradeRange
             },
             success: function (data) {
                 if (data.status === 2) {
@@ -1597,3 +1723,4 @@ function enableStatus(ele){
     $(nthParent(ele,1)).children().eq(6).children().addClass("fa-check");
     $(nthParent(ele,1)).children().eq(6).children().css("color", "green");
 }
+
