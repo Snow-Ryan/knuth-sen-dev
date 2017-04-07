@@ -3,6 +3,14 @@
         <h2>Forms</h2>
     </div>
     <div class="card-block">
+
+        %{--Tabbed table filter--}%
+        <ul class="nav nav-pills">
+            <li class="active"><a class="tab-filter-all" href="#">All</a></li>
+            <li><a class="tab-filter-uncompleted" href="#">Uncompleted</a></li>
+            <li><a class="tab-filter-completed"  href="#">Completed</a></li>
+        </ul>
+
         <g:if test="${!forms}">
             <div>
                 <table class="formsDisplayTable" class="display" cellspacing="0" width="100%">

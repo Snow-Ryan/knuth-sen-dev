@@ -306,6 +306,26 @@
     });
 
 
+
+    $body.on('click', '.nav-pills>li>a', function (event) {
+        event.preventDefault();
+        console.log("hey nav-pill clicked");
+        $('.nav-pills>li.active').removeClass('active');
+        //adds the active class to the selected tab
+        $(this).parent("li").addClass( "active" );
+
+        if(($(this).attr("class")) == "tab-filter-completed"){
+            $('.fa-check').parent().parent().show();
+            $('.fa-times').parent().parent().hide();
+        }else if(($(this).attr("class")) == "tab-filter-uncompleted"){
+            $('.fa-check').parent().parent().hide();
+            $('.fa-times').parent().parent().show();
+        }else{
+            $('.fa-times').parent().parent().show();
+            $('.fa-check').parent().parent().show();
+        }
+    });
+
     function downloadAllData(that){
 
         var id = $(that).parent().find('.hiddenId').html();
