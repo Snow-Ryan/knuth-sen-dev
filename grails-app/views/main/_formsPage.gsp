@@ -5,9 +5,9 @@
     <div class="card-block">
 
         %{--Tabbed table filter--}%
-        <ul class="nav nav-pills">
+        <ul class="nav nav-pills" style="float:right">
             <li class="active"><a class="tab-filter-all" href="#">All</a></li>
-            <li><a class="tab-filter-uncompleted" href="#">Uncompleted</a></li>
+            <li><a class="tab-filter-uncompleted" href="#" >Uncompleted</a></li>
             <li><a class="tab-filter-completed"  href="#">Completed</a></li>
         </ul>
 
