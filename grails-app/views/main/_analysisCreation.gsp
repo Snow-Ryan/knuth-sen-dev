@@ -12,7 +12,7 @@
 
             <div class="form-group">
                 <label>Target Benchmark </label>
-                <input type="text" class="form-control BenchmarkInput" id="formGroupExampleBenchmark" placeholder="Benchmark">
+                <input type="text" class="form-control benchmarkInput" id="formGroupExampleBenchmark" placeholder="Benchmark">
             </div>
             <div class="form-group">
                 <label for="formSelect">Select Assessment Form</label>

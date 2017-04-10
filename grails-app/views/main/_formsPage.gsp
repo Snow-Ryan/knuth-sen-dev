@@ -19,6 +19,7 @@
                         <th>Name</th>
                         <th>Creation Date</th>
                         <th>Published</th>
+                        <th>For Course</th>
                         <th>Publish Date</th>
                         <th>Actions</th>
                     </tr>
@@ -38,6 +39,7 @@
                         <th>Name</th>
                         <th>Creation Date</th>
                         <th>Published</th>
+                        <th>For Course</th>
                         <th>Publish Date</th>
                         <th>Actions</th>
                     </tr>
@@ -53,6 +55,7 @@
                                     <i class="fa fa-times" aria-hidden="true" style="color: red"></i>
                                 </td>
                                 <td>N/A</td>
+                                <td>N/A</td>
                                 <td>
                                     <label class="hiddenId" style="display: none">${it.id}</label>
                                     <i style="padding-left: 15px" class="fa fa-paper-plane publishBtn fa-2x" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i>
@@ -66,6 +69,7 @@
                                 <td>
                                     <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
                                 </td>
+                                <td>${it.course.name}</td>
                                 <td>${it.publishDate}</td>
                                 <td>
                                     <label class="hiddenId" style="display: none">${it.id}</label>
