@@ -300,14 +300,62 @@
         downloadAllData(this);
     });
 
+    $body.on('click', '.downloadAnalysisBtn ', function () {
+        downloadAnalysis(this);
+    });
+
     $(document).on({
 //        ajaxStart: function() { $body.addClass("loading");    },
         ajaxStop: function() { $body.removeClass("loading"); }
     });
 
 
-    function downloadAllData(that){
 
+    $body.on('click', '.nav-pills>li>a', function (event) {
+        event.preventDefault();
+        console.log("hey nav-pill clicked");
+        $('.nav-pills>li.active').removeClass('active');
+        //adds the active class to the selected tab
+        $(this).parent("li").addClass( "active" );
+
+        if(($(this).attr("class")) == "tab-filter-completed"){
+            $('.fa-check').parent().parent().show();
+            $('.fa-times').parent().parent().hide();
+        }else if(($(this).attr("class")) == "tab-filter-uncompleted"){
+            $('.fa-check').parent().parent().hide();
+            $('.fa-times').parent().parent().show();
+        }else{
+            $('.fa-times').parent().parent().show();
+            $('.fa-check').parent().parent().show();
+        }
+    });
+
+    function downloadAnalysis(that){
+        var id = $(that).parent().find('.hiddenId').html();
+
+        $.ajax({
+            url: "/knuth-sen-dev/main/getRole",
+            type: "GET",
+            headers: {
+                'Authorization':Cookies.get('token')
+            },
+            success: function (data) {
+                if(data.status===0){
+                    Cookies.remove('token');
+                }
+                else if (data.status===1) {
+                    var link = "${g.createLink(controller: 'dataDownload', action: 'downloadAnalysisData')}"+"?id=" + id;
+                    window.location.replace(link);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+                return false;
+            }
+        });
+    }
+
+    function downloadAllData(that){
         var id = $(that).parent().find('.hiddenId').html();
 
         $.ajax({

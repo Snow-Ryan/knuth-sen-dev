@@ -291,7 +291,6 @@ function saveEditSection(){
                 id: id
             },
             success: function (data) {
-                console.log(data)
                 if (data.status === 2) {
                     $.growl.warning({message: "Section with that title already exists"});
                 }
@@ -961,7 +960,61 @@ function loadDepartmentCreation(){
 }
 
 function saveNewAnalysis() {
-    console.log("how yes no")
+    var name = $('.titleInput').val();
+    var benchmark =  $('.benchmarkInput').val();
+
+    if(!(Math.floor(benchmark) == benchmark && $.isNumeric(benchmark))){
+        $.growl.warning({ message: "The benchmark has to be a round number" });
+        return
+    }
+
+    var formId = $( "select#formSelect option:checked" ).val();
+    var checked = $("input[name='grades']:checked");
+
+    if(checked.length>1){
+        $.growl.warning({ message: "Select only one grade list for analysis" });
+        return
+    }
+
+    var grades = null;
+    $.each(checked, function(){
+        grades = $(this).val();
+    });
+
+    if(grades==null){
+        $.growl.warning({ message: "Please enter/select all data" });
+        return
+    }
+
+    $.ajax({
+        url: "/knuth-sen-dev/main/saveNewAnalysis",
+        headers: {
+            'Authorization': Cookies.get('token')
+        },
+        type: "POST",
+        data: {
+            name: name,
+            benchmark: benchmark,
+            formId: formId,
+            grades: grades
+        },
+        success: function (data) {
+            console.log(data)
+            if (data.status === 2) {
+                $.growl.warning({message: "Analysis with that title already exists"});
+            }
+            else if (data.status === 5) {
+                loadExpiredSession();
+            }
+            else {
+                loadAnalysis();
+            }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+            loadAnalysis();
+        }
+    });
 }
 
 function saveNewCourse() {
