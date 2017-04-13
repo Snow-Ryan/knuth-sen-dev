@@ -3,6 +3,14 @@
         <h2>Forms</h2>
     </div>
     <div class="card-block">
+
+        %{--Tabbed table filter--}%
+        <ul class="nav nav-pills" style="float:right">
+            <li class="active"><a class="tab-filter-all" href="#">All</a></li>
+            <li><a class="tab-filter-uncompleted" href="#" >Uncompleted</a></li>
+            <li><a class="tab-filter-completed"  href="#">Completed</a></li>
+        </ul>
+
         <g:if test="${!forms}">
             <div>
                 <table class="formsDisplayTable" class="display" cellspacing="0" width="100%">
@@ -11,6 +19,7 @@
                         <th>Name</th>
                         <th>Creation Date</th>
                         <th>Published</th>
+                        <th>For Course</th>
                         <th>Publish Date</th>
                         <th>Actions</th>
                     </tr>
@@ -30,6 +39,7 @@
                         <th>Name</th>
                         <th>Creation Date</th>
                         <th>Published</th>
+                        <th>For Course</th>
                         <th>Publish Date</th>
                         <th>Actions</th>
                     </tr>
@@ -45,6 +55,7 @@
                                     <i class="fa fa-times" aria-hidden="true" style="color: red"></i>
                                 </td>
                                 <td>N/A</td>
+                                <td>N/A</td>
                                 <td>
                                     <label class="hiddenId" style="display: none">${it.id}</label>
                                     <i style="padding-left: 15px" class="fa fa-paper-plane publishBtn fa-2x" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i>
@@ -58,6 +69,7 @@
                                 <td>
                                     <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
                                 </td>
+                                <td>${it.course.name}</td>
                                 <td>${it.publishDate}</td>
                                 <td>
                                     <label class="hiddenId" style="display: none">${it.id}</label>

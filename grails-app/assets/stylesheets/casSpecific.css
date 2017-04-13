@@ -275,3 +275,26 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+.nav-pills>li.active>a:hover{
+    background-color: #eee;
+    border-style: solid;
+    border-width: 1px 1px 0 1px;
+    color: #999999
+}
+.nav-pills>li>a {
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 1px;
+    color: #999999;
+    padding: 2px 7px;
+}
+.nav-pills>li.active>a{
+     background-color: #666666;
+ }
+.nav-pills>li.active>a:focus{
+    background-color: #666666;
+    color:white;
+
+}

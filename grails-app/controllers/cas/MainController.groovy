@@ -1,6 +1,7 @@
 package cas
 
 import grails.converters.JSON
+import org.grails.datastore.mapping.query.Query
 
 class MainController {
     Md5passService md5passService
@@ -132,7 +133,14 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
 
-            render(template: "analysisCreation", model: [forms: TestingForm.findAll()])
+            def forms = []
+            def grades = TestingGradeStore.findAll()
+
+            grades.each {
+                forms.add(it.forForm)
+            }
+//            forms: TestingForm.findAll()
+            render(template: "analysisCreation", model: [forms: forms])
         }
     }
 
@@ -185,6 +193,43 @@ class MainController {
                     } else {
                         resultJson = [status: 1, message: "Error"] as JSON
                     }
+                } else {
+                    resultJson = [status: 1, message: "Error"] as JSON
+                }
+            } else {
+                resultJson = [status: 2, message: "Error"] as JSON
+            }
+        }
+        render(resultJson)
+    }
+
+    def saveNewAnalysis(String name, Integer benchmark, Integer formId, Integer grades){
+        JSON resultJson
+        TestingAnalysis testingAnalysis;
+        testingAnalysis = TestingAnalysis.findByName(name);
+
+        if(checkExpiration(request.getHeader('Authorization'))){
+            resultJson = [status: 5, message: "Expired"] as JSON
+        }
+        else {
+            expandExpiration(request.getHeader('Authorization'))
+            if (!testingAnalysis) {
+                TestingForm form = TestingForm.findById(formId)
+                def gradesList = []
+
+                if (grades == 0){
+                    TestingGradeStore.findAllByForForm(form).each {
+                        gradesList.add(it)
+                    }
+                }
+                else {
+                    gradesList.add(TestingGradeStore.findById(grades))
+                }
+
+                testingAnalysis = new TestingAnalysis(benchmark: benchmark, name: name, madeBy: TestingFaculty.findByToken(request.getHeader('Authorization')), gradeItem: form.question, forForm: form, grades: gradesList, createdOn: new Date().getDateString());
+
+                if (testingAnalysis.save(flush: true)) {
+                    resultJson = [status: 0, message: "Success"] as JSON
                 } else {
                     resultJson = [status: 1, message: "Error"] as JSON
                 }
@@ -1098,7 +1143,7 @@ class MainController {
         TestingForm testingForm;
         testingForm = TestingForm.findById(id);
         TestingFaculty testingFaculty = TestingFaculty.findByToken(request.getHeader('Authorization'));
-        TestingGradeStore testingGradeStore = TestingGradeStore.findByForFormAndStoredBy(testingForm, testingFaculty);
+        TestingGradeStore testingGradeStore = TestingGradeStore.findByForFormAndStoredByAndForSection(testingForm, testingFaculty, TestingSection.findById(sectionId))
         Date now = new Date();
 
         if(checkExpiration(request.getHeader('Authorization'))){

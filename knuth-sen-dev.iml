@@ -193,6 +193,7 @@
           <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-el/7.0.55/tomcat-embed-el-7.0.55.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.55/tomcat-embed-jasper-7.0.55.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-catalina-ant/7.0.55/tomcat-catalina-ant-7.0.55.jar!/" />
+<<<<<<< HEAD
           <root url="jar://$USER_HOME$/.sdkman/candidates/grails/2.4.4/lib/bouncycastle/bcprov-jdk14/jars/bcprov-jdk14-138.jar!/" />
           <root url="jar://$USER_HOME$/.sdkman/candidates/grails/2.4.4/lib/bouncycastle/bcmail-jdk14/jars/bcmail-jdk14-138.jar!/" />
           <root url="jar://$USER_HOME$/.sdkman/candidates/grails/2.4.4/lib/com.lowagie/itext/jars/itext-2.0.8.jar!/" />
@@ -206,6 +207,11 @@
           <root url="jar://$USER_HOME$/.sdkman/candidates/grails/2.4.4/lib/net.java.dev.jna/jna/jars/jna-4.0.0.jar!/" />
           <root url="jar://$USER_HOME$/.sdkman/candidates/grails/2.4.4/lib/org.apache.ant/ant-junit/jars/ant-junit-1.8.4.jar!/" />
           <root url="jar://$USER_HOME$/.sdkman/candidates/grails/2.4.4/lib/org.apache.ant/ant-trax/jars/ant-trax-1.7.1.jar!/" />
+=======
+          <root url="jar://$MAVEN_REPOSITORY$/c3p0/c3p0/0.9.1.1/c3p0-0.9.1.1.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/net/sourceforge/jexcelapi/jxl/2.6.12/jxl-2.6.12.jar!/" />
+>>>>>>> bb4df659fb89e84d1ebafe34b8dbedd17627f437
           <root url="file://$MODULE_DIR$/lib" />
         </CLASSES>
         <JAVADOC />

@@ -13,13 +13,13 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><input type="checkbox" name="all" value="all"></td>
+                    <td><input type="checkbox" name="grades" value="0"></td>
                     <td>All Stored Grades</td>
                     <td>N/A</td>
                 </tr>
                 <g:each in="${storedGradeItem}">
                     <tr>
-                        <td><input type="checkbox" name="${it.id}" value="${it.id}"></td>
+                        <td><input type="checkbox" name="grades" value="${it.id}"></td>
                         <td>${it.forSection.title}</td>
                         <td>${it.storeDate}</td>
                     </tr>

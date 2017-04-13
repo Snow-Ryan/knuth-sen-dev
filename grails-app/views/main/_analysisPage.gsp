@@ -11,7 +11,6 @@
                         <th>Name</th>
                         <th>Created By</th>
                         <th>Creation Date</th>
-                        <th>Has Comment</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -30,7 +29,6 @@
                         <th>Name</th>
                         <th>Created By</th>
                         <th>Creation Date</th>
-                        <th>Has Comment</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -38,23 +36,12 @@
                     <g:each in="${analysis}">
                         <tr>
                             <td>${it.name}</td>
-                            <td>${it.madeBy.fname} + " " + ${it.madeBy.lname}</td>
+                            <td>${it.madeBy.fname} ${it.madeBy.lname}</td>
                             <td>${it.createdOn}</td>
-                            <g:if test="${it.comment}">
+                            <td>
                                 <label class="hiddenId" style="display: none">${it.id}</label>
-                                <td><i class="fa fa-check" aria-hidden="true" style="color: green"></i></td>
-                                <td>
-                                    <i class="fa fa-download downloadAnalysisBtn fa-2x" aria-hidden="true"></i>
-                                </td>
-                            </g:if>
-                            <g:else>
-                                <label class="hiddenId" style="display: none">${it.id}</label>
-                                <td><i class="fa fa-times" aria-hidden="true" style="color: red"></i></td>
-                                <td>
-                                    <i class="fa fa-download downloadAnalysisBtn fa-2x" aria-hidden="true"></i>
-                                    <i class="fa fa-commenting-o commentBtn" aria-hidden="true"></i>
-                                </td>
-                            </g:else>
+                                <i class="fa fa-download downloadAnalysisBtn fa-2x" aria-hidden="true"></i>
+                            </td>
                         </tr>
                 </g:each>
                 </tbody>
