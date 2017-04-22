@@ -11,6 +11,9 @@
 //= require jquery.dataTables.min.js
 //= require bootstrap.min.js
 //= require jquery.growl.js
+//= require tether
+//= require shepherd
+//= require casShepherd
 //= require_tree .
 //= require_self
 

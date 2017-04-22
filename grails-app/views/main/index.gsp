@@ -15,6 +15,8 @@
 <body >
 <div id="mainContainer" class="container block-element-container"></div>
 
+
+
 <script>
     var singleGradeItem = commentToHtml(function () {<g:render template="singleGradeItem"/>});
     var $body = $('body');
@@ -310,6 +312,10 @@
 
     $body.on('click', '.downloadAnalysisBtn ', function () {
         downloadAnalysis(this);
+    });
+
+    $body.on('click', '#professor-help ', function () {
+        professorHelp();
     });
 
     $(document).on({

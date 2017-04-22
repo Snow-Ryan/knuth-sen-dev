@@ -1,8 +1,11 @@
 <div class="card text-center flex-item ">
     <div class="card-header">
-        <h2>Available Forms</h2>
+        <h2 class="prof-all-forms">Available Forms</h2>
+        <i class="fa fa-question-circle" aria-hidden="true" style="float: right; margin-top: -20px" id="professor-help"></i>
+
     </div>
     <div class="card-block">
+
         <g:if test="${!forms}">
             <div>
                 <table class="formsDisplayTable" class="display" cellspacing="0" width="100%">

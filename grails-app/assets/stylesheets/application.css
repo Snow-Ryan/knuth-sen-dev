@@ -12,9 +12,11 @@
 *= require bootstrap.min
 *= require bootstrap-theme.min
 *= require dataTables.min
+*= require shepherd
 *= require font-awesome
 *= require jquery.growl
 *= require casSpecific
 *= require mobile
+*= require shepherd
 *= require_self
 */
