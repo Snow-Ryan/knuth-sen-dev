@@ -4,8 +4,22 @@
             <h2>Create Course</h2>
         </div>
         <div class="card-block">
-            <p class="card-text">You cannot create new course if there are is no Faculty to assign as a coordinator.</p>
+            <p class="card-text">You cannot create new course if there is no Faculty to assign as a coordinator.</p>
             <button type="button" class="newFacultyButton  btn btn-default">New Faculty <span class="glyphicon glyphicon-plus "></span></button>
+        </div>
+        <div class="card-footer text-muted">
+            .
+        </div>
+    </div>
+</g:if>
+<g:if test="${!departments}">
+    <div class="card text-center flex-item">
+        <div class="card-header">
+            <h2>Create Course</h2>
+        </div>
+        <div class="card-block">
+            <p class="card-text">You cannot create new course if there are no Departments to assign the course to.</p>
+            <button type="button" class="newDepartmentButton  btn btn-default">New Department <span class="glyphicon glyphicon-plus "></span></button>
         </div>
         <div class="card-footer text-muted">
             .

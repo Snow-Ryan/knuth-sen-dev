@@ -1476,14 +1476,47 @@ function checkLogin( that){
 }
 
 function displayOptions(role, name){
+    console.log(role)
+    console.log(name)
+    $('.adminLi').css("display", "none");
+    $('.formsLi').css("display", "none");
+    $('.analysisLi').css("display", "none");
+    $('.pViewLiv').css("display", "none");
+
     if(role==="Wizard"){
+         $('.secondNav').css("visibility", "");
+        $('.userLocation').html(name);
+        $('.userLocation').css("display", "");
+        $('.hideMe').css("display", "none");
+        $('.secondNav li a ').css("display", "block");
+
+        $('.formsLi').css("display", "");
+        $('.analysisLi').css("display", "");
+        $('.pViewLiv').css("display", "");
+
+        loadForms();
+    }
+    else if(role==="Professor"){
         $('.secondNav').css("visibility", "");
         $('.userLocation').html(name);
         $('.userLocation').css("display", "");
         $('.hideMe').css("display", "none");
         $('.secondNav li a ').css("display", "block");
 
-        loadForms();
+        $('.pViewLiv').css("display", "");
+
+        loadProfView();
+    }
+    else if(role==="Admin"){
+        $('.secondNav').css("visibility", "");
+        $('.userLocation').html(name);
+        $('.userLocation').css("display", "");
+        $('.hideMe').css("display", "none");
+        $('.secondNav li a ').css("display", "block");
+
+        $('.adminLi').css("display", "");
+
+        loadAdminFaculty();
     }
     else{
         $.growl.warning({ message: "Unrecognized user" });
