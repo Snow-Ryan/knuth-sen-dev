@@ -48,6 +48,9 @@ function loadresetPasswordScreen(){
     showLoadingSpinner();
     $.ajax({
         url: "/knuth-sen-dev/main/resetPasswordScreen",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
         success: function (data) {
             $('#mainContainer').append(data);
         },
@@ -58,7 +61,6 @@ function loadresetPasswordScreen(){
 }
 
 function confirmPassword(){
-    showLoadingSpinner();
     var oldpassword = $('.oldpasswordInput').val();
     var newpassword = $('.newpasswordInput').val();
     var confirmpassword = $('.confirmnewpasswordInput').val();
@@ -67,6 +69,7 @@ function confirmPassword(){
         $.growl.warning({ message: "Please input all data" });
     }
     else {
+        showLoadingSpinner();
         $.ajax({
             url: "/knuth-sen-dev/main/resetPassword",
             headers: {
@@ -79,18 +82,30 @@ function confirmPassword(){
                 confirmpassword: confirmpassword
             },
             success: function (data) {
-                if (data.status === 0) {
-
+                console.log(data)
+                if(data.status===5){
+                    loadExpiredSession();
+                }
+                else if(data.status===2){
+                    $.growl.warning({ message: "Wrong old password" });
+                }
+                else if(data.status===3){
+                    $.growl.warning({ message: "New password missmatch" });
+                }
+                else if(data.status===4){
+                    $.growl.warning({ message: "Password reset failed" });
+                }
+                else if(data.status===1){
+                    $.growl.notice({ message: "Password changed" });
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-                $.growl.warning({ message: "Reset Password failed" });
+                $.growl.warning({ message: "Password reset failed" });
                 loadresetPasswordScreen()
             }
         });
     }
-
 }
 
 function deleteForm(that){
