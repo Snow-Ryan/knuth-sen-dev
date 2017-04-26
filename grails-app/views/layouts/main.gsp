@@ -63,7 +63,7 @@
         <div id="secondNavbar" class="navbar-collapse collapse navbar-left">
 
             <ul class="nav navbar-nav secondNav">
-                <li class="dropdown rolesLi"><a class="dropdown-toggle admin" data-toggle="dropdown" href="#">Admin</a>
+                <li class="dropdown rolesLi adminLi"><a class="dropdown-toggle admin" data-toggle="dropdown" href="#">Admin</a>
                     <ul class="dropdown-menu" >
                         <li><a class="facultyAdminBtn" href="#">Faculty</a></li>
                         <li><a class="sectionsAdminBtn" href="#">Sections</a></li>
@@ -74,7 +74,7 @@
 
                 <li class="formsLi"><a class="forms" href="#">Forms</a></li>
                 <li class="analysisLi"><a class="analysis" href="#">Analysis</a></li>
-                <li class="pViewLiv"><a class="pView" href="#">Professor View</a></li>
+                <li class="pViewLiv"><a class="pView" href="#">Grade Data Entry</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
