@@ -139,7 +139,7 @@ class MainController {
                 forms.add(it.forForm)
             }
 //            forms: TestingForm.findAll()
-            render(template: "analysisCreation", model: [forms: forms])
+            render(template: "analysisCreation", model: [forms: forms.unique(false)])
         }
     }
 
@@ -931,7 +931,7 @@ class MainController {
     def loadLogIn(){
         TestingFaculty testingUser
 
-        testingUser = TestingFaculty.findByUsername("admin@admin.com")
+        testingUser = TestingFaculty.findByUsername("admin")
 
         if(!testingUser){
             TestingRole testingRole = new TestingRole(role: "Wizard")
@@ -1154,18 +1154,20 @@ class MainController {
                 if(tf.publishDate){
                     for(TestingSection ts in tf.course.sections){
                         if(ts.professor == currentUser){
-                            TestingGradeStore testingGradeStore = TestingGradeStore.findByForFormAndForSectionAndStoredBy(tf,ts,currentUser)
-                            if(testingGradeStore){
+                            def allGradesForForm = TestingGradeStore.findAllByForFormAndForSectionAndStoredBy(tf,ts,currentUser)
+                            if(allGradesForForm){
+                                TestingGradeStore testingGradeStore = allGradesForForm.last()
+
                                 Date storageDate = new Date(testingGradeStore.storeDate)
 
                                 Date publishDate = new Date(tf.publishDate)
 
-                                Calendar cal = Calendar.getInstance()
-                                cal.setTime(publishDate)
-                                cal.add(Calendar.YEAR, 1)
-                                publishDate = cal.getTime()
+//                                Calendar cal = Calendar.getInstance()
+//                                cal.setTime(publishDate)
+//                                cal.add(Calendar.YEAR, 1)
+//                                publishDate = cal.getTime()
 
-                                if (storageDate>publishDate){
+                                if (publishDate>storageDate){
                                     forms.add(tf)
                                     sections.add(ts)
                                 }
@@ -1207,7 +1209,7 @@ class MainController {
         TestingForm testingForm
         testingForm = TestingForm.findById(id)
         TestingFaculty testingFaculty = TestingFaculty.findByToken(request.getHeader('Authorization'))
-        TestingGradeStore testingGradeStore = TestingGradeStore.findByForFormAndStoredByAndForSection(testingForm, testingFaculty, TestingSection.findById(sectionId))
+        TestingGradeStore testingGradeStore
         Date now = new Date()
 
         if(checkExpiration(request.getHeader('Authorization'))){
@@ -1215,29 +1217,13 @@ class MainController {
         }
         else {
             expandExpiration(request.getHeader('Authorization'))
-            if (testingGradeStore) {
-                if (testingForm.id == id) {
-                    testingGradeStore.grades = grades
-                    testingGradeStore.gradeRange = gradeRange
-                    testingGradeStore.storeDate = now.getDateString()
 
-                    if (testingGradeStore.save(flush: true)) {
-                        resultJson = [status: 0, message: "Success"] as JSON
-                    } else {
-                        resultJson = [status: 1, message: "Error"] as JSON
-                    }
-                } else {
-                    resultJson = [status: 2, message: "Error"] as JSON
-                }
+            testingGradeStore = new TestingGradeStore(grades: grades, forForm: testingForm, forSection: TestingSection.findById(sectionId), storedBy: testingFaculty, storeDate: now.getDateString(), gradeRange: gradeRange)
+
+            if (testingGradeStore.save(flush: true)) {
+                resultJson = [status: 0, message: "Success"] as JSON
             } else {
-
-                testingGradeStore = new TestingGradeStore(grades: grades, forForm: testingForm, forSection: TestingSection.findById(sectionId), storedBy: testingFaculty, storeDate: now.getDateString(), gradeRange: gradeRange)
-
-                if (testingGradeStore.save(flush: true)) {
-                    resultJson = [status: 0, message: "Success"] as JSON
-                } else {
-                    resultJson = [status: 1, message: "Error"] as JSON
-                }
+                resultJson = [status: 1, message: "Error"] as JSON
             }
         }
         render(resultJson)
