@@ -15,6 +15,8 @@
 <body >
 <div id="mainContainer" class="container block-element-container"></div>
 
+
+
 <script>
     var singleGradeItem = commentToHtml(function () {<g:render template="singleGradeItem"/>});
     var $body = $('body');
@@ -58,6 +60,14 @@
 
     $body.on('click', '.loginBtn', function () {
         loadLogInPage();
+    });
+
+    $body.on('click', '.resetpassBtn', function () {
+        loadresetPasswordScreen();
+    });
+
+    $body.on('click', '.confirmPassword', function () {
+        confirmPassword();
     });
 
     $body.on('click', '.cancelGradeInput', function () {
@@ -302,6 +312,10 @@
 
     $body.on('click', '.downloadAnalysisBtn ', function () {
         downloadAnalysis(this);
+    });
+
+    $body.on('click', '#professor-help ', function () {
+        professorHelp();
     });
 
     $(document).on({

@@ -43,6 +43,71 @@ function loadLogInPage(){
     });
 }
 
+function loadresetPasswordScreen(){
+    $('#mainContainer').empty();
+    showLoadingSpinner();
+    $.ajax({
+        url: "/knuth-sen-dev/main/resetPasswordScreen",
+        headers: {
+            'Authorization':Cookies.get('token')
+        },
+        success: function (data) {
+            $('#mainContainer').append(data);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
+        }
+    });
+}
+
+function confirmPassword(){
+    var oldpassword = $('.oldpasswordInput').val();
+    var newpassword = $('.newpasswordInput').val();
+    var confirmpassword = $('.confirmnewpasswordInput').val();
+
+    if( oldpassword == "" || newpassword == "" || confirmpassword == ""){
+        $.growl.warning({ message: "Please input all data" });
+    }
+    else {
+        showLoadingSpinner();
+        $.ajax({
+            url: "/knuth-sen-dev/main/resetPassword",
+            headers: {
+                'Authorization': Cookies.get('token')
+            },
+            type: "POST",
+            data: {
+                oldpassword: oldpassword,
+                newpassword: newpassword,
+                confirmpassword: confirmpassword
+            },
+            success: function (data) {
+                console.log(data)
+                if(data.status===5){
+                    loadExpiredSession();
+                }
+                else if(data.status===2){
+                    $.growl.warning({ message: "Wrong old password" });
+                }
+                else if(data.status===3){
+                    $.growl.warning({ message: "New password missmatch" });
+                }
+                else if(data.status===4){
+                    $.growl.warning({ message: "Password reset failed" });
+                }
+                else if(data.status===1){
+                    $.growl.notice({ message: "Password changed" });
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
+                $.growl.warning({ message: "Password reset failed" });
+                loadresetPasswordScreen()
+            }
+        });
+    }
+}
+
 function deleteForm(that){
     var id = $(that).parent().find('.hiddenId').html();
     var table = $('.formsDisplayTable').DataTable();
@@ -1411,14 +1476,47 @@ function checkLogin( that){
 }
 
 function displayOptions(role, name){
+    console.log(role)
+    console.log(name)
+    $('.adminLi').css("display", "none");
+    $('.formsLi').css("display", "none");
+    $('.analysisLi').css("display", "none");
+    $('.pViewLiv').css("display", "none");
+
     if(role==="Wizard"){
+         $('.secondNav').css("visibility", "");
+        $('.userLocation').html(name);
+        $('.userLocation').css("display", "");
+        $('.hideMe').css("display", "none");
+        $('.secondNav li a ').css("display", "block");
+
+        $('.formsLi').css("display", "");
+        $('.analysisLi').css("display", "");
+        $('.pViewLiv').css("display", "");
+
+        loadForms();
+    }
+    else if(role==="Professor"){
         $('.secondNav').css("visibility", "");
         $('.userLocation').html(name);
         $('.userLocation').css("display", "");
         $('.hideMe').css("display", "none");
         $('.secondNav li a ').css("display", "block");
 
-        loadForms();
+        $('.pViewLiv').css("display", "");
+
+        loadProfView();
+    }
+    else if(role==="Admin"){
+        $('.secondNav').css("visibility", "");
+        $('.userLocation').html(name);
+        $('.userLocation').css("display", "");
+        $('.hideMe').css("display", "none");
+        $('.secondNav li a ').css("display", "block");
+
+        $('.adminLi').css("display", "");
+
+        loadAdminFaculty();
     }
     else{
         $.growl.warning({ message: "Unrecognized user" });

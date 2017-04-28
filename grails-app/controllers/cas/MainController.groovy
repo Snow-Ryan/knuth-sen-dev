@@ -1,7 +1,6 @@
 package cas
 
 import grails.converters.JSON
-import org.grails.datastore.mapping.query.Query
 
 class MainController {
     Md5passService md5passService
@@ -277,8 +276,8 @@ class MainController {
 
     def saveNewFaculty(String fName, String mName, String lName, String username, String email, String role){
         JSON resultJson
-        TestingFaculty testingFaculty;
-        testingFaculty = TestingFaculty.findByUsername(username);
+        TestingFaculty testingFaculty
+        testingFaculty = TestingFaculty.findByUsername(username)
 
         String password = passwordRandomizerService.getRandomPass()
 
@@ -288,9 +287,12 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
             if (!testingFaculty) {
-                testingFaculty = new TestingFaculty(fname: fName, mname: mName, lname: lName, username: username, email: email, role: TestingRole.findByRole(role), password: md5passService.getEncryptedPass(password));
+                testingFaculty = new TestingFaculty(fname: fName, mname: mName, lname: lName, username: username, email: email, role: TestingRole.findByRole(role), password: md5passService.getEncryptedPass(password))
 
                 if (testingFaculty.save(flush: true)) {
+
+                    notifyUser(testingFaculty, password)
+
                     resultJson = [status: 0, message: "Success"] as JSON
                 } else {
                     resultJson = [status: 1, message: "Error"] as JSON
@@ -877,59 +879,66 @@ class MainController {
         render template: "loadingScreen"
     }
 
+    def resetPasswordScreen(){
+        if(checkExpiration(request.getHeader('Authorization'))){
+            render template: "expiredSession"
+        }
+        else{
+            expandExpiration(request.getHeader('Authorization'))
+            render (template: "resetPassword")
+        }
+    }
+
+    def resetPassword(String oldpassword, String newpassword, String confirmpassword){
+        JSON resultJson
+
+        if(checkExpiration(request.getHeader('Authorization'))){
+            resultJson = [status: 5, message:"Expired"] as JSON
+        }
+        else{
+            expandExpiration(request.getHeader('Authorization'))
+            TestingFaculty testingFaculty = TestingFaculty.findByUsernameAndPassword(TestingFaculty.findByToken(request.getHeader('Authorization')).username, md5passService.getEncryptedPass(oldpassword))
+
+            if(testingFaculty){
+                if(newpassword==confirmpassword){
+                    testingFaculty.password = md5passService.getEncryptedPass(newpassword)
+
+                    if(testingFaculty.save(flush: true)){
+                        resultJson = [status: 1, message: "confirmed"] as JSON
+                    }
+                    else{
+                        resultJson = [status: 4, message: "failed"] as JSON
+                    }
+
+                }
+                else{
+                    resultJson = [status: 3, message: "missmatch"] as JSON
+                }
+            }
+            else{
+                resultJson = [status: 2, message: "old"] as JSON
+            }
+        }
+
+        render resultJson
+    }
+
     def loadLogIn(){
         TestingFaculty testingUser
 
         testingUser = TestingFaculty.findByUsername("admin@admin.com")
 
         if(!testingUser){
-            TestingRole testingRole = new TestingRole(role: "Wizard");
-            TestingRole testingRole2 = new TestingRole(role: "Coordinator");
-            TestingRole testingRole3 = new TestingRole(role: "Professor");
+            TestingRole testingRole = new TestingRole(role: "Wizard")
+            TestingRole testingRole2 = new TestingRole(role: "Admin")
+            TestingRole testingRole3 = new TestingRole(role: "Professor")
 
             testingRole.save(flush: true)
             testingRole2.save(flush: true)
             testingRole3.save(flush: true)
 
-            testingUser = new TestingFaculty(fname: "Admin", lname: "Admin", username: "admin@admin.com", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(1))
-            TestingFaculty testingUser2 = new TestingFaculty(fname: "CourseCoord", lname: "CourseCoord", username: "coursecoord@coordinator.com", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(2))
-            TestingFaculty testingUser3 = new TestingFaculty(fname: "Professor", lname: "Professor", username: "professor@professor.com", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(3))
-            TestingFaculty testingUser4 = new TestingFaculty(fname: "Professor2", lname: "Professor2", username: "professor2@professor.com", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(3))
-            TestingFaculty testingUser5 = new TestingFaculty(fname: "Professor3", lname: "Professor3", username: "professor3@professor.com", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(3))
-            TestingFaculty testingUser6 = new TestingFaculty(fname: "DeptCoord", lname: "DeptCoord", username: "deptcoord@coordinator.com", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(2))
-            TestingFaculty testingUser7 = new TestingFaculty(fname: "DeptCoord2", lname: "DeptCoord2", username: "deptcoord2@coordinator.com", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(2))
-
+            testingUser = new TestingFaculty(fname: "Admin", lname: "Admin", username: "admin", password: md5passService.getEncryptedPass("testing"), role: TestingRole.findById(2))
             testingUser.save(flush: true)
-            testingUser2.save(flush: true)
-            testingUser3.save(flush: true)
-            testingUser4.save(flush: true)
-            testingUser5.save(flush: true)
-            testingUser6.save(flush: true)
-            testingUser7.save(flush: true)
-
-            TestingSection testingSection = new TestingSection(professor: testingUser, title: "testSec1");
-            TestingSection testingSection2 = new TestingSection(professor: testingUser4, title: "testSec2");
-            TestingSection testingSection3 = new TestingSection(professor: testingUser5, title: "testSec1");
-
-            testingSection.save(flush: true)
-            testingSection2.save(flush: true)
-            testingSection3.save(flush: true)
-
-            TestingCourse testingCourse = new TestingCourse(name: "TestCourse1", courseCoordinator: testingUser2, sections: [testingSection, testingSection2]);
-            TestingCourse testingCourse2 = new TestingCourse(name: "TestCourse2", courseCoordinator: testingUser2, sections: [testingSection3]);
-            TestingCourse testingCourse3 = new TestingCourse(name: "TestCourse3", sections: [testingSection3]);
-            TestingCourse testingCourse4 = new TestingCourse(name: "TestCourse4", sections: [testingSection3]);
-
-            testingCourse.save(flush: true)
-            testingCourse2.save(flush: true)
-            testingCourse3.save(flush: true)
-            testingCourse4.save(flush: true)
-
-            TestingDepartment testingDepartment = new TestingDepartment(name: "TestDept1", courses: [testingCourse, testingCourse2], departmentCoordinator: testingUser6);
-            TestingDepartment testingDepartment2 = new TestingDepartment(name: "TestDept2", courses: [testingCourse3, testingCourse4], departmentCoordinator: testingUser7);
-
-            testingDepartment.save(flush: true)
-            testingDepartment2.save(flush: true)
         }
         render template: 'loginPage'
     }
@@ -1000,14 +1009,15 @@ class MainController {
         else{
             expandExpiration(request.getHeader('Authorization'))
             def departments = TestingDepartment.findAll();
-            render (template: "formPublish", model: [departments: departments, id: id])}
-    };
+            render (template: "formPublish", model: [departments: departments, id: id])
+        }
+    }
 
-    private notifyUser(String username){
+    private notifyUser(TestingFaculty user, pass){
         sendMail {
-            to username
-            subject "CAS SENTIENCE"
-            body 'SOON '
+            to user.email
+            subject "Account Created for CAS"
+            html g.render(template:'/mail/newFacultyMail', model:[user:user, pass:pass])
         }
     }
 
