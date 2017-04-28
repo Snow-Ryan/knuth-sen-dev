@@ -70,7 +70,12 @@
                                     <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
                                 </td>
                                 <td>${it.course.name}</td>
-                                <td>${it.publishDate}</td>
+                                <g:if test="${!it.publishDate}">
+                                    <td>N/A</td>
+                                </g:if>
+                                <g:else>
+                                    <td>${it.publishDate}</td>
+                                </g:else>
                                 <td>
                                     <label class="hiddenId" style="display: none">${it.id}</label>
                                     <i class="fa fa-download downloadBtn fa-2x" aria-hidden="true"></i>

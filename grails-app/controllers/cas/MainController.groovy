@@ -19,7 +19,7 @@ class MainController {
             def forms = TestingForm.findAll()
             render (template: "formsPage", model: [forms: forms])
         }
-    };
+    }
 
     def loadAnalysis(){
         if(checkExpiration(request.getHeader('Authorization'))){
@@ -30,7 +30,7 @@ class MainController {
             def analysis = TestingAnalysis.findAll()
             render (template: "analysisPage", model: [analysis: analysis])
         }
-    };
+    }
 
     def loadFaculty(){
         if(checkExpiration(request.getHeader('Authorization'))){
@@ -41,7 +41,7 @@ class MainController {
             def faculty = TestingFaculty.findAll()
             render (template: "adminFaculty", model: [faculty: faculty])
         }
-    };
+    }
 
     def loadDepartment(){
         if(checkExpiration(request.getHeader('Authorization'))){
@@ -52,7 +52,7 @@ class MainController {
             def department = TestingDepartment.findAll()
             render (template: "adminDepartment", model: [department: department])
         }
-    };
+    }
 
     def loadCourses(){
         if(checkExpiration(request.getHeader('Authorization'))){
@@ -63,7 +63,7 @@ class MainController {
             def courses = TestingCourse.findAll()
             render (template: "adminCourses", model: [courses: courses])
         }
-    };
+    }
 
     def loadSections(){
         if(checkExpiration(request.getHeader('Authorization'))){
@@ -73,7 +73,7 @@ class MainController {
             expandExpiration(request.getHeader('Authorization'))
             render (template: "adminSections", model: [sections: TestingSection.findAll()])
         }
-    };
+    }
 
     def loadFacultyCreation(){
         if(checkExpiration(request.getHeader('Authorization'))){
@@ -145,8 +145,8 @@ class MainController {
 
     def saveNewForm(String title, String question, String description, Integer automationDate){
         JSON resultJson
-        TestingForm testingForm;
-        testingForm = TestingForm.findByTitle(title);
+        TestingForm testingForm
+        testingForm = TestingForm.findByTitle(title)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -154,7 +154,7 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
             if (!testingForm) {
-                testingForm = new TestingForm(title: title, question: question, description: description, creationDate: new Date().getDateString(), published: 0, automationDate: automationDate);
+                testingForm = new TestingForm(title: title, question: question, description: description, creationDate: new Date().getDateString(), published: 0, automationDate: automationDate)
                 if (testingForm.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
                 } else {
@@ -169,8 +169,8 @@ class MainController {
 
     def saveNewSection(String title, String faculty, String course){
         JSON resultJson
-        TestingSection testingSection;
-        testingSection = TestingSection.findByTitle(title);
+        TestingSection testingSection
+        testingSection = TestingSection.findByTitle(title)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -178,13 +178,13 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
             if (!testingSection) {
-                testingSection = new TestingSection(title: title, professor:TestingFaculty.findByUsername(faculty));
+                testingSection = new TestingSection(title: title, professor:TestingFaculty.findByUsername(faculty))
 
                 if (testingSection.save(flush: true)) {
                     TestingCourse testingCourse = TestingCourse.findByName(course)
 
                     def sections = testingCourse.sections
-                    sections.add(testingSection);
+                    sections.add(testingSection)
 
                     testingCourse.sections = sections
                     if (testingCourse.save(flush: true)) {
@@ -204,8 +204,8 @@ class MainController {
 
     def saveNewAnalysis(String name, Integer benchmark, Integer formId, Integer grades){
         JSON resultJson
-        TestingAnalysis testingAnalysis;
-        testingAnalysis = TestingAnalysis.findByName(name);
+        TestingAnalysis testingAnalysis
+        testingAnalysis = TestingAnalysis.findByName(name)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -225,7 +225,7 @@ class MainController {
                     gradesList.add(TestingGradeStore.findById(grades))
                 }
 
-                testingAnalysis = new TestingAnalysis(benchmark: benchmark, name: name, madeBy: TestingFaculty.findByToken(request.getHeader('Authorization')), gradeItem: form.question, forForm: form, grades: gradesList, createdOn: new Date().getDateString());
+                testingAnalysis = new TestingAnalysis(benchmark: benchmark, name: name, madeBy: TestingFaculty.findByToken(request.getHeader('Authorization')), gradeItem: form.question, forForm: form, grades: gradesList, createdOn: new Date().getDateString())
 
                 if (testingAnalysis.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
@@ -241,8 +241,8 @@ class MainController {
 
     def saveNewCourse(String faculty, String name, String department, String description){
         JSON resultJson
-        TestingCourse testingCourse;
-        testingCourse = TestingCourse.findByName(name);
+        TestingCourse testingCourse
+        testingCourse = TestingCourse.findByName(name)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -250,13 +250,13 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
             if (!testingCourse) {
-                testingCourse = new TestingCourse(name: name, courseCoordinator: TestingFaculty.findByUsername(faculty), description: description);
+                testingCourse = new TestingCourse(name: name, courseCoordinator: TestingFaculty.findByUsername(faculty), description: description)
 
                 if (testingCourse.save(flush: true)) {
                     TestingDepartment testingDepartment = TestingDepartment.findByName(department)
 
                     def courses = testingDepartment.courses
-                    courses.add(testingCourse);
+                    courses.add(testingCourse)
 
                     testingDepartment.courses = courses
                     if (testingDepartment.save(flush: true)) {
@@ -306,8 +306,8 @@ class MainController {
 
     def saveNewDepartment(String name, String faculty){
         JSON resultJson
-        TestingDepartment testingDepartment;
-        testingDepartment = TestingDepartment.findByName(name);
+        TestingDepartment testingDepartment
+        testingDepartment = TestingDepartment.findByName(name)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -315,7 +315,7 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
             if (!testingDepartment) {
-                testingDepartment = new TestingDepartment(name: name, departmentCoordinator: TestingFaculty.findByUsername(faculty));
+                testingDepartment = new TestingDepartment(name: name, departmentCoordinator: TestingFaculty.findByUsername(faculty))
 
                 if (testingDepartment.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
@@ -335,7 +335,7 @@ class MainController {
         }
         else {
             expandExpiration(request.getHeader('Authorization'))
-            render(template: 'formEdit', model: [form: TestingForm.findById(id)]);
+            render(template: 'formEdit', model: [form: TestingForm.findById(id)])
         }
     }
 
@@ -345,7 +345,7 @@ class MainController {
         }
         else {
             expandExpiration(request.getHeader('Authorization'))
-            render(template: 'adminEditFaculty', model: [faculty: TestingFaculty.findById(id), roles: TestingRole.findAll()]);
+            render(template: 'adminEditFaculty', model: [faculty: TestingFaculty.findById(id), roles: TestingRole.findAll()])
         }
     }
 
@@ -355,7 +355,7 @@ class MainController {
         }
         else {
             expandExpiration(request.getHeader('Authorization'))
-            render(template: 'adminEditDepartment', model: [department: TestingDepartment.findById(id), faculty: TestingFaculty.findAll()]);
+            render(template: 'adminEditDepartment', model: [department: TestingDepartment.findById(id), faculty: TestingFaculty.findAll()])
         }
     }
 
@@ -367,8 +367,8 @@ class MainController {
             expandExpiration(request.getHeader('Authorization'))
             TestingSection testingSection = TestingSection.findById(id)
 
-            def courses = TestingCourse.executeQuery("FROM TestingCourse as tc WHERE :section in elements(tc.sections)", [section : testingSection]);
-            render(template: 'adminEditSection', model: [section: testingSection, faculty: TestingFaculty.findAll(), course:courses[0], courses: TestingCourse.findAll()]);
+            def courses = TestingCourse.executeQuery("FROM TestingCourse as tc WHERE :section in elements(tc.sections)", [section : testingSection])
+            render(template: 'adminEditSection', model: [section: testingSection, faculty: TestingFaculty.findAll(), course:courses[0], courses: TestingCourse.findAll()])
         }
     }
 
@@ -380,8 +380,8 @@ class MainController {
             expandExpiration(request.getHeader('Authorization'))
             TestingCourse testingCourse = TestingCourse.findById(id)
 
-            def departments = TestingDepartment.executeQuery("FROM TestingDepartment as td WHERE :course in elements(td.courses)", [course : testingCourse]);
-            render(template: 'adminEditCourse', model: [course: testingCourse, faculty: TestingFaculty.findAll(), department:departments[0], departments: TestingDepartment.findAll()]);
+            def departments = TestingDepartment.executeQuery("FROM TestingDepartment as td WHERE :course in elements(td.courses)", [course : testingCourse])
+            render(template: 'adminEditCourse', model: [course: testingCourse, faculty: TestingFaculty.findAll(), department:departments[0], departments: TestingDepartment.findAll()])
         }
     }
 
@@ -391,8 +391,8 @@ class MainController {
 
     def disableFaculty(int id){
         JSON resultJson = [status: 1, message: "Error"] as JSON
-        TestingFaculty testingFaculty;
-        testingFaculty = TestingFaculty.findById(id);
+        TestingFaculty testingFaculty
+        testingFaculty = TestingFaculty.findById(id)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -400,7 +400,7 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
             if (testingFaculty) {
-                testingFaculty.active = 0;
+                testingFaculty.active = 0
                 if (testingFaculty.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
                 } else {
@@ -413,8 +413,8 @@ class MainController {
 
     def enableDepartment(int id){
         JSON resultJson = [status: 1, message: "Error"] as JSON
-        TestingDepartment testingDepartment;
-        testingDepartment = TestingDepartment.findById(id);
+        TestingDepartment testingDepartment
+        testingDepartment = TestingDepartment.findById(id)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -422,7 +422,7 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
             if (testingDepartment) {
-                testingDepartment.active = 1;
+                testingDepartment.active = 1
                 if (testingDepartment.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
                 } else {
@@ -435,8 +435,8 @@ class MainController {
 
     def disableDepartment(int id){
         JSON resultJson = [status: 1, message: "Error"] as JSON
-        TestingDepartment testingDepartment;
-        testingDepartment = TestingDepartment.findById(id);
+        TestingDepartment testingDepartment
+        testingDepartment = TestingDepartment.findById(id)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -444,7 +444,7 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
             if (testingDepartment) {
-                testingDepartment.active = 0;
+                testingDepartment.active = 0
                 if (testingDepartment.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
                 } else {
@@ -457,8 +457,8 @@ class MainController {
 
     def enableCourse(int id){
         JSON resultJson = [status: 1, message: "Error"] as JSON
-        TestingCourse testingCourse;
-        testingCourse = TestingCourse.findById(id);
+        TestingCourse testingCourse
+        testingCourse = TestingCourse.findById(id)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -466,7 +466,7 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
             if (testingCourse) {
-                testingCourse.active = 1;
+                testingCourse.active = 1
                 if (testingCourse.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
                 } else {
@@ -479,8 +479,8 @@ class MainController {
 
     def disableCourse(int id){
         JSON resultJson = [status: 1, message: "Error"] as JSON
-        TestingCourse testingCourse;
-        testingCourse = TestingCourse.findById(id);
+        TestingCourse testingCourse
+        testingCourse = TestingCourse.findById(id)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -488,7 +488,7 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
             if (testingCourse) {
-                testingCourse.active = 0;
+                testingCourse.active = 0
                 if (testingCourse.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
                 } else {
@@ -501,8 +501,8 @@ class MainController {
 
     def enableFaculty(int id){
         JSON resultJson = [status: 1, message: "Error"] as JSON
-        TestingFaculty testingFaculty;
-        testingFaculty = TestingFaculty.findById(id);
+        TestingFaculty testingFaculty
+        testingFaculty = TestingFaculty.findById(id)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -510,7 +510,7 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
             if (testingFaculty) {
-                testingFaculty.active = 1;
+                testingFaculty.active = 1
                 if (testingFaculty.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
                 } else {
@@ -523,8 +523,8 @@ class MainController {
 
     def disableSection(int id){
         JSON resultJson = [status: 1, message: "Error"] as JSON
-        TestingSection testingSection;
-        testingSection = TestingSection.findById(id);
+        TestingSection testingSection
+        testingSection = TestingSection.findById(id)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -532,7 +532,7 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
             if (testingSection) {
-                testingSection.active = 0;
+                testingSection.active = 0
                 if (testingSection.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
                 } else {
@@ -545,8 +545,8 @@ class MainController {
 
     def enableSection(int id){
         JSON resultJson = [status: 1, message: "Error"] as JSON
-        TestingSection testingSection;
-        testingSection = TestingSection.findById(id);
+        TestingSection testingSection
+        testingSection = TestingSection.findById(id)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -554,7 +554,7 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
             if (testingSection) {
-                testingSection.active = 1;
+                testingSection.active = 1
                 if (testingSection.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
                 } else {
@@ -567,8 +567,8 @@ class MainController {
 
     def saveEditForm(String title, String question, String description, int id, Integer automationDate){
         JSON resultJson
-        TestingForm testingForm;
-        testingForm = TestingForm.findByTitle(title);
+        TestingForm testingForm
+        testingForm = TestingForm.findByTitle(title)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -577,9 +577,9 @@ class MainController {
             expandExpiration(request.getHeader('Authorization'))
             if (testingForm) {
                 if (testingForm.id == id) {
-                    testingForm.question = question;
-                    testingForm.description = description;
-                    testingForm.automationDate = automationDate;
+                    testingForm.question = question
+                    testingForm.description = description
+                    testingForm.automationDate = automationDate
 
                     if (testingForm.save(flush: true)) {
                         resultJson = [status: 0, message: "Success"] as JSON
@@ -590,12 +590,12 @@ class MainController {
                     resultJson = [status: 2, message: "Error"] as JSON
                 }
             } else {
-                testingForm = TestingForm.findById(id);
+                testingForm = TestingForm.findById(id)
 
-                testingForm.title = title;
-                testingForm.question = question;
-                testingForm.description = description;
-                testingForm.automationDate = automationDate;
+                testingForm.title = title
+                testingForm.question = question
+                testingForm.description = description
+                testingForm.automationDate = automationDate
                 if (testingForm.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
                 } else {
@@ -608,8 +608,8 @@ class MainController {
 
     def saveEditCourse(String name, String faculty, String department, String description, int id){
         JSON resultJson
-        TestingCourse testingCourse;
-        testingCourse = TestingCourse.findByName(name);
+        TestingCourse testingCourse
+        testingCourse = TestingCourse.findByName(name)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -618,12 +618,12 @@ class MainController {
             expandExpiration(request.getHeader('Authorization'))
             if (testingCourse) {
                 if (testingCourse.id == id) {
-                    testingCourse.name = name;
-                    testingCourse.courseCoordinator = TestingFaculty.findByUsername(faculty);
+                    testingCourse.name = name
+                    testingCourse.courseCoordinator = TestingFaculty.findByUsername(faculty)
                     testingCourse.description = description
 
                     if (testingCourse.save(flush: true)) {
-                        def departments = TestingDepartment.executeQuery("FROM TestingDepartment as td WHERE :course in elements(td.courses)", [course : testingCourse]);
+                        def departments = TestingDepartment.executeQuery("FROM TestingDepartment as td WHERE :course in elements(td.courses)", [course : testingCourse])
                         def departmentCourses = departments[0].courses
 
                         departmentCourses.remove(testingCourse)
@@ -634,7 +634,7 @@ class MainController {
                             TestingDepartment testingDepartment = TestingDepartment.findByName(department)
 
                             def courses = testingDepartment.courses
-                            courses.add(testingCourse);
+                            courses.add(testingCourse)
 
                             testingDepartment.courses = courses
 
@@ -653,13 +653,13 @@ class MainController {
                     resultJson = [status: 2, message: "Error"] as JSON
                 }
             } else {
-                testingCourse = TestingCourse.findById(id);
+                testingCourse = TestingCourse.findById(id)
 
-                testingCourse.name = name;
-                testingCourse.courseCoordinator = TestingFaculty.findByUsername(faculty);
+                testingCourse.name = name
+                testingCourse.courseCoordinator = TestingFaculty.findByUsername(faculty)
                 testingCourse.description = description
                 if (testingCourse.save(flush: true)) {
-                    def departments = TestingDepartment.executeQuery("FROM TestingDepartment as td WHERE :course in elements(td.courses)", [course : testingCourse]);
+                    def departments = TestingDepartment.executeQuery("FROM TestingDepartment as td WHERE :course in elements(td.courses)", [course : testingCourse])
                     def departmentCourses = departments[0].courses
 
                     departmentCourses.remove(testingCourse)
@@ -670,7 +670,7 @@ class MainController {
                         TestingDepartment testingDepartment = TestingDepartment.findByName(department)
 
                         def courses = testingDepartment.courses
-                        courses.add(testingCourse);
+                        courses.add(testingCourse)
 
                         testingDepartment.courses = courses
 
@@ -692,8 +692,8 @@ class MainController {
 
     def saveEditSection(String title, String faculty, String course, int id){
         JSON resultJson
-        TestingSection testingSection;
-        testingSection = TestingSection.findByTitle(title);
+        TestingSection testingSection
+        testingSection = TestingSection.findByTitle(title)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -702,11 +702,11 @@ class MainController {
             expandExpiration(request.getHeader('Authorization'))
             if (testingSection) {
                 if (testingSection.id == id) {
-                    testingSection.title = title;
-                    testingSection.professor = TestingFaculty.findByUsername(faculty);
+                    testingSection.title = title
+                    testingSection.professor = TestingFaculty.findByUsername(faculty)
 
                     if (testingSection.save(flush: true)) {
-                        def courses = TestingCourse.executeQuery("FROM TestingCourse as tc WHERE :section in elements(tc.sections)", [section : testingSection]);
+                        def courses = TestingCourse.executeQuery("FROM TestingCourse as tc WHERE :section in elements(tc.sections)", [section : testingSection])
                         def courseSections = courses[0].sections
 
                         courseSections.remove(testingSection)
@@ -717,7 +717,7 @@ class MainController {
                             TestingCourse testingCourse = TestingCourse.findByName(course)
 
                             def sections = testingCourse.sections
-                            sections.add(testingSection);
+                            sections.add(testingSection)
 
                             testingCourse.sections = sections
 
@@ -736,12 +736,12 @@ class MainController {
                     resultJson = [status: 2, message: "Error"] as JSON
                 }
             } else {
-                testingSection = TestingSection.findById(id);
+                testingSection = TestingSection.findById(id)
 
-                testingSection.title = title;
-                testingSection.professor = TestingFaculty.findByUsername(faculty);
+                testingSection.title = title
+                testingSection.professor = TestingFaculty.findByUsername(faculty)
                 if (testingSection.save(flush: true)) {
-                    def courses = TestingCourse.executeQuery("FROM TestingCourse as tc WHERE :section in elements(tc.sections)", [section : testingSection]);
+                    def courses = TestingCourse.executeQuery("FROM TestingCourse as tc WHERE :section in elements(tc.sections)", [section : testingSection])
                     def courseSections = courses[0].sections
 
                     courseSections.remove(testingSection)
@@ -752,7 +752,7 @@ class MainController {
                         TestingCourse testingCourse = TestingCourse.findByName(course)
 
                         def sections = testingCourse.sections
-                        sections.add(testingSection);
+                        sections.add(testingSection)
 
                         testingCourse.sections = sections
 
@@ -774,8 +774,8 @@ class MainController {
 
     def saveEditDepartment(String name, String faculty, int id){
         JSON resultJson
-        TestingDepartment testingDepartment;
-        testingDepartment = TestingDepartment.findByName(name);
+        TestingDepartment testingDepartment
+        testingDepartment = TestingDepartment.findByName(name)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -784,8 +784,8 @@ class MainController {
             expandExpiration(request.getHeader('Authorization'))
             if (testingDepartment) {
                 if (testingDepartment.id == id) {
-                    testingDepartment.name = name;
-                    testingDepartment.departmentCoordinator = TestingFaculty.findByUsername(faculty);
+                    testingDepartment.name = name
+                    testingDepartment.departmentCoordinator = TestingFaculty.findByUsername(faculty)
 
                     if (testingDepartment.save(flush: true)) {
                         resultJson = [status: 0, message: "Success"] as JSON
@@ -796,10 +796,10 @@ class MainController {
                     resultJson = [status: 2, message: "Error"] as JSON
                 }
             } else {
-                testingDepartment = TestingDepartment.findById(id);
+                testingDepartment = TestingDepartment.findById(id)
 
-                testingDepartment.name = name;
-                testingDepartment.departmentCoordinator = TestingFaculty.findByUsername(faculty);
+                testingDepartment.name = name
+                testingDepartment.departmentCoordinator = TestingFaculty.findByUsername(faculty)
                 if (testingDepartment.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
                 } else {
@@ -812,8 +812,8 @@ class MainController {
 
     def saveEditFaculty(String fName, String mName, String lName, String username, String email, String role, int id){
         JSON resultJson
-        TestingFaculty testingFaculty;
-        testingFaculty = TestingFaculty.findByUsername(username);
+        TestingFaculty testingFaculty
+        testingFaculty = TestingFaculty.findByUsername(username)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -822,12 +822,12 @@ class MainController {
             expandExpiration(request.getHeader('Authorization'))
             if (testingFaculty) {
                 if (testingFaculty.id == id) {
-                    testingFaculty.fname = fName;
-                    testingFaculty.mname = mName;
-                    testingFaculty.lname = lName;
-                    testingFaculty.username = username;
-                    testingFaculty.email = email;
-                    testingFaculty.role = TestingRole.findByRole(role);
+                    testingFaculty.fname = fName
+                    testingFaculty.mname = mName
+                    testingFaculty.lname = lName
+                    testingFaculty.username = username
+                    testingFaculty.email = email
+                    testingFaculty.role = TestingRole.findByRole(role)
 
                     if (testingFaculty.save(flush: true)) {
                         resultJson = [status: 0, message: "Success"] as JSON
@@ -838,13 +838,13 @@ class MainController {
                     resultJson = [status: 2, message: "Error"] as JSON
                 }
             } else {
-                testingFaculty = TestingFaculty.findById(id);
+                testingFaculty = TestingFaculty.findById(id)
 
-                testingFaculty.fname = fName;
-                testingFaculty.mname = mName;
-                testingFaculty.lname = lName;
-                testingFaculty.username = username;
-                testingFaculty.email = email;
+                testingFaculty.fname = fName
+                testingFaculty.mname = mName
+                testingFaculty.lname = lName
+                testingFaculty.username = username
+                testingFaculty.email = email
                 testingFaculty.role = TestingRole.findByRole(role)
                 if (testingFaculty.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
@@ -857,7 +857,7 @@ class MainController {
     }
 
     def deleteForm(int id){
-        TestingForm testingForm = TestingForm.findById(id);
+        TestingForm testingForm = TestingForm.findById(id)
 
         JSON resultJson
 
@@ -866,10 +866,15 @@ class MainController {
         }
         else {
             expandExpiration(request.getHeader('Authorization'))
-            if (testingForm.delete(flush: true)) {
-                resultJson = [status: 0, message: "Success"] as JSON
-            } else {
-                resultJson = [status: 1, message: "Error"] as JSON
+            if(!TestingGradeStore.findByForForm(testingForm)){
+                if (testingForm.delete(flush: true)) {
+                    resultJson = [status: 0, message: "Success"] as JSON
+                } else {
+                    resultJson = [status: 1, message: "Error"] as JSON
+                }
+            }
+            else{
+                resultJson = [status: 2, message: "Error"] as JSON
             }
         }
         render resultJson
@@ -944,7 +949,6 @@ class MainController {
     }
 
     def login(String username, String password){
-
         TestingFaculty testingFaculty = TestingFaculty.findByUsernameAndPassword(username, md5passService.getEncryptedPass(password))
 
         if(testingFaculty){
@@ -1008,7 +1012,7 @@ class MainController {
         }
         else{
             expandExpiration(request.getHeader('Authorization'))
-            def departments = TestingDepartment.findAll();
+            def departments = TestingDepartment.findAll()
             render (template: "formPublish", model: [departments: departments, id: id])
         }
     }
@@ -1021,14 +1025,22 @@ class MainController {
         }
     }
 
+    private sendPublishMail(TestingFaculty user, TestingForm form){
+        sendMail {
+            to user.email
+            subject "Assessment Form Published"
+            html g.render(template:'/mail/publishedForm', model:[user:user, form:form])
+        }
+    }
+
     def loadDepartmentCourses(String departmentName) {
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
         }
         else {
             expandExpiration(request.getHeader('Authorization'))
-            TestingDepartment testingDepartment = TestingDepartment.findByName(departmentName);
-            render(template: 'formPublishingCourses', model: [courses: testingDepartment.courses]);
+            TestingDepartment testingDepartment = TestingDepartment.findByName(departmentName)
+            render(template: 'formPublishingCourses', model: [courses: testingDepartment.courses])
         }
     }
 
@@ -1038,13 +1050,13 @@ class MainController {
         }
         else {
             expandExpiration(request.getHeader('Authorization'))
-            render(template: 'analysisCreationStoredGrades', model: [storedGradeItem: TestingGradeStore.findAllByForForm(TestingForm.findById(id))]);
+            render(template: 'analysisCreationStoredGrades', model: [storedGradeItem: TestingGradeStore.findAllByForForm(TestingForm.findById(id))])
         }
     }
 
     def publishForm(String courseName, int id) {
 
-        JSON resultJson;
+        JSON resultJson
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -1052,30 +1064,49 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
 
-            TestingForm testingForm = TestingForm.findById(id);
+            TestingForm testingForm = TestingForm.findById(id)
+
+            Date d
+            if(testingForm.publishDate){
+                d = new Date(testingForm.publishDate)
+            }
+            else{
+                d = new Date()
+            }
+            Date currentD = new Date()
 
             if (testingForm) {
-                testingForm.published = 1;
-                testingForm.course = TestingCourse.findByName(courseName);
-                testingForm.publishDate = new Date().getDateString();
+                testingForm.published = 1
+                testingForm.course = TestingCourse.findByName(courseName)
+                if((currentD.getYear()>=d.getYear())&&(currentD.getMonth()+1>=testingForm.automationDate)){
+                    testingForm.publishDate = new Date().getDateString()
 
-                if (testingForm.save(flush: true)) {
-                    resultJson = [status: 0, message: "Success"] as JSON
+                    if (testingForm.save(flush: true)) {
+                        testingForm.course.sections.each{
+                            sendPublishMail(it.professor, testingForm)
+                        }
+                        resultJson = [status: 0, message: "Success"] as JSON
+                    } else {
+                        resultJson = [status: 1, message: "Error"] as JSON
+                    }
                 } else {
-                    resultJson = [status: 1, message: "Error"] as JSON
+                    if (testingForm.save(flush: true)) {
+                        resultJson = [status: 0, message: "Success"] as JSON
+                    } else {
+                        resultJson = [status: 1, message: "Error"] as JSON
+                    }
                 }
             } else {
                 resultJson = [status: 1, message: "Error"] as JSON
             }
         }
-        //todo notify professors that they have forms waiting
-        render(resultJson);
+        render(resultJson)
     }
 
     def unpublishForm(Integer id){
         JSON resultJson = [status: 1, message: "Error"] as JSON
-        TestingForm testingForm;
-        testingForm = TestingForm.findById(id);
+        TestingForm testingForm
+        testingForm = TestingForm.findById(id)
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -1083,7 +1114,9 @@ class MainController {
         else {
             expandExpiration(request.getHeader('Authorization'))
             if (testingForm) {
-                testingForm.published = 0;
+                testingForm.published = 0
+                testingForm.course = null
+                testingForm.publishDate = null
                 if (testingForm.save(flush: true)) {
                     resultJson = [status: 0, message: "Success"] as JSON
                 } else {
@@ -1100,7 +1133,7 @@ class MainController {
         }
         else {
             expandExpiration(request.getHeader('Authorization'))
-            render(template: 'formCopy', model: [form: TestingForm.findById(id)]);
+            render(template: 'formCopy', model: [form: TestingForm.findById(id)])
         }
     }
 
@@ -1111,17 +1144,37 @@ class MainController {
         else{
             expandExpiration(request.getHeader('Authorization'))
 
-            TestingFaculty currentUser = TestingFaculty.findByToken(request.getHeader('Authorization'));
+            TestingFaculty currentUser = TestingFaculty.findByToken(request.getHeader('Authorization'))
 
             def allForms = TestingForm.findAllByPublished(1)
             def forms = []
             def sections = []
 
             for(TestingForm tf in allForms){
-                for(TestingSection ts in tf.course.sections){
-                    if(ts.professor == currentUser){
-                        forms.add(tf)
-                        sections.add(ts)
+                if(tf.publishDate){
+                    for(TestingSection ts in tf.course.sections){
+                        if(ts.professor == currentUser){
+                            TestingGradeStore testingGradeStore = TestingGradeStore.findByForFormAndForSectionAndStoredBy(tf,ts,currentUser)
+                            if(testingGradeStore){
+                                Date storageDate = new Date(testingGradeStore.storeDate)
+
+                                Date publishDate = new Date(tf.publishDate)
+
+                                Calendar cal = Calendar.getInstance()
+                                cal.setTime(publishDate)
+                                cal.add(Calendar.YEAR, 1)
+                                publishDate = cal.getTime()
+
+                                if (storageDate>publishDate){
+                                    forms.add(tf)
+                                    sections.add(ts)
+                                }
+                            }
+                            else{
+                                forms.add(tf)
+                                sections.add(ts)
+                            }
+                        }
                     }
                 }
             }
@@ -1135,7 +1188,7 @@ class MainController {
 
             render (template: "listAvailableForms", model: [forms: forms, sections: sections, assessmentCoordinators:assessmentCoordinators])
         }
-    };
+    }
 
     def loadDataInput(int id, int sectionId){
         if(checkExpiration(request.getHeader('Authorization'))){
@@ -1144,17 +1197,18 @@ class MainController {
         else {
 
             expandExpiration(request.getHeader('Authorization'))
-            render(template: 'dataInput', model: [id: id, sectionId: sectionId, cName:TestingForm.findById(id).course.name, sTitle:TestingSection.findById(sectionId).title]);
+            render(template: 'dataInput', model: [id: id, sectionId: sectionId, cName:TestingForm.findById(id).course.name, sTitle:TestingSection.findById(sectionId).title])
         }
     }
 
     def saveGradeData(Integer id, String grades, Integer sectionId, Integer gradeRange){
+        //todo preradit skroz
         JSON resultJson
-        TestingForm testingForm;
-        testingForm = TestingForm.findById(id);
-        TestingFaculty testingFaculty = TestingFaculty.findByToken(request.getHeader('Authorization'));
+        TestingForm testingForm
+        testingForm = TestingForm.findById(id)
+        TestingFaculty testingFaculty = TestingFaculty.findByToken(request.getHeader('Authorization'))
         TestingGradeStore testingGradeStore = TestingGradeStore.findByForFormAndStoredByAndForSection(testingForm, testingFaculty, TestingSection.findById(sectionId))
-        Date now = new Date();
+        Date now = new Date()
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -1163,9 +1217,9 @@ class MainController {
             expandExpiration(request.getHeader('Authorization'))
             if (testingGradeStore) {
                 if (testingForm.id == id) {
-                    testingGradeStore.grades = grades;
-                    testingGradeStore.gradeRange = gradeRange;
-                    testingGradeStore.storeDate = now.getDateString();
+                    testingGradeStore.grades = grades
+                    testingGradeStore.gradeRange = gradeRange
+                    testingGradeStore.storeDate = now.getDateString()
 
                     if (testingGradeStore.save(flush: true)) {
                         resultJson = [status: 0, message: "Success"] as JSON
@@ -1196,7 +1250,14 @@ class MainController {
 
         allPublishedForms.each {
 
-            Date d = new Date(it.publishDate)
+            Date d
+            if(it.publishDate){
+                d= new Date(it.publishDate)
+            }
+            else{
+                d = new Date()
+            }
+
             Date currentD = new Date()
 
             if((currentD.getYear()>d.getYear())&&(currentD.getMonth()+1>=it.automationDate)){
@@ -1207,25 +1268,48 @@ class MainController {
         republishForms(toRepublish)
     }
 
+    def testDates(){
+
+        Date d = new Date()
+
+        Date b = new Date("2/29/2015")
+
+        println d
+        println b
+        println d-b
+
+        Calendar cal = Calendar.getInstance()
+        cal.setTime(b)
+        cal.add(Calendar.YEAR, 1)
+        b = cal.getTime();
+
+
+        println d
+        println b
+        println d>b
+
+        render "OK"
+    }
+
     protected static republishForms(toRepublish){
-        def arrProf = [];
-        def arrCouSec = [];
+        def arrProf = []
+        def arrCouSec = []
         toRepublish.each {
-            TestingForm form = it;
-            it.publishDate = new Date().getDateString();
-            it.save(flush: true);
+            TestingForm form = it
+            it.publishDate = new Date().getDateString()
+            it.save(flush: true)
 
             for(TestingSection ts in form.course.sections) {
-                arrCouSec.add(form.course.name + " - " + ts.title);
-                arrProf.add(ts.professor);
+                arrCouSec.add(form.course.name + " - " + ts.title)
+                arrProf.add(ts.professor)
             }
         }
         //todo notify professors that they have forms waiting
 
-        //publishEmail(arrProf, arrCouSec);
+        //republishEmail(arrProf, arrCouSec)
     }
 
-    protected static publishEmail(professors, courseSections){
+    protected static republishEmail(professors, courseSections){
             professors.eachWithIndex { professor, index ->
             sendMail {
                 to professor.email

@@ -124,8 +124,10 @@ function deleteForm(that){
             if(data.status===5){
                 loadExpiredSession();
             }
+            else if(data.status===2){
+                $.growl.error({ message: "Assessment form has data connected to it and cannot be deleted" });
+            }
             else{
-                // loadForms();
                 table.row($(nthParent(that,1))).remove();
                 $(nthParent(that,1)).tooltip('destroy');
                 $(nthParent(that,1)).remove();
@@ -1658,6 +1660,7 @@ function unpublishForm(that) {
                 $(nthParent(that,0)).append("<i class='fa fa-trash-o deleteBtn fa-2x' aria-hidden='true'></i>");
 
                 $(nthParent(that,1)).children().eq(3).html("N/A");
+                $(nthParent(that,1)).children().eq(4).html("N/A");
                 $(nthParent(that,0)).find('.fa-ban').remove();
 
             }

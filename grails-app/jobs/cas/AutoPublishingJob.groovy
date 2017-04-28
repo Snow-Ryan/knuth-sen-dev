@@ -11,6 +11,6 @@ class AutoPublishingJob {
     def execute() {
         // execute job
 
-        MainController.findFormsToRepublish();
+        MainController.findFormsToRepublish()
     }
 }
