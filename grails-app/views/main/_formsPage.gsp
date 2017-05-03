@@ -1,11 +1,12 @@
 <div class="card text-center flex-item ">
     <div class="card-header">
         <h2>Forms</h2>
+        <i class="fa fa-question-circle" aria-hidden="true" style="float: right; margin-top: -20px" id="asscoord-help"></i>
     </div>
     <div class="card-block">
 
         %{--Tabbed table filter--}%
-        <ul class="nav nav-pills" style="float:right">
+        <ul class="nav nav-pills" style="float:right; display:none">
             <li class="active"><a class="tab-filter-all" href="#">All</a></li>
             <li><a class="tab-filter-uncompleted" href="#" >Uncompleted</a></li>
             <li><a class="tab-filter-completed"  href="#">Completed</a></li>

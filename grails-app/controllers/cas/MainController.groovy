@@ -1199,12 +1199,13 @@ class MainController {
         else {
 
             expandExpiration(request.getHeader('Authorization'))
-            render(template: 'dataInput', model: [id: id, sectionId: sectionId, cName:TestingForm.findById(id).course.name, sTitle:TestingSection.findById(sectionId).title])
+            TestingForm form = TestingForm.findById(id)
+            render(template: 'dataInput', model: [id: id, sectionId: sectionId, cName:form.course.name, sTitle:TestingSection.findById(sectionId).title, question:form.question])
         }
     }
 
     def saveGradeData(Integer id, String grades, Integer sectionId, Integer gradeRange){
-        //todo preradit skroz
+
         JSON resultJson
         TestingForm testingForm
         testingForm = TestingForm.findById(id)
@@ -1254,54 +1255,24 @@ class MainController {
         republishForms(toRepublish)
     }
 
-    def testDates(){
-
-        Date d = new Date()
-
-        Date b = new Date("2/29/2015")
-
-        println d
-        println b
-        println d-b
-
-        Calendar cal = Calendar.getInstance()
-        cal.setTime(b)
-        cal.add(Calendar.YEAR, 1)
-        b = cal.getTime();
-
-
-        println d
-        println b
-        println d>b
-
-        render "OK"
-    }
-
     protected static republishForms(toRepublish){
-        def arrProf = []
-        def arrCouSec = []
         toRepublish.each {
             TestingForm form = it
             it.publishDate = new Date().getDateString()
             it.save(flush: true)
 
             for(TestingSection ts in form.course.sections) {
-                arrCouSec.add(form.course.name + " - " + ts.title)
-                arrProf.add(ts.professor)
+
+                sendPublishMail(ts.professor, form)
             }
         }
-        //todo notify professors that they have forms waiting
-
-        //republishEmail(arrProf, arrCouSec)
     }
 
-    protected static republishEmail(professors, courseSections){
-            professors.eachWithIndex { professor, index ->
-            sendMail {
-                to professor.email
-                subject "Published Template For " + courseSections[index]
-                html g.render(template:'/main/formPublishMail', model:[lname: professor.lName])
-            }
+    protected static republishEmail(TestingFaculty user, TestingForm form){
+        sendMail {
+            to user.email
+            subject "Assessment Form Published"
+            html g.render(template:'/mail/publishedForm', model:[user:user, form:form])
         }
     }
 
