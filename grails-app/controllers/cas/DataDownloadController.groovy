@@ -2,12 +2,14 @@ package cas
 
 import grails.converters.JSON
 import jxl.Workbook
+import jxl.write.DateTime
 import jxl.write.Label
 import jxl.write.WritableSheet
 import jxl.write.WritableWorkbook
 import jxl.write.WritableFont
 import jxl.write.Number;
 import jxl.write.WritableCellFormat
+import org.codehaus.groovy.grails.web.json.JSONElement
 import org.codehaus.groovy.grails.web.json.JSONObject
 
 class DataDownloadController {
@@ -31,7 +33,7 @@ class DataDownloadController {
                 instructor += it.forSection.professor.fname + " " + it.forSection.professor.lname + ", "
                 received += it.storeDate + ", "
 
-                JSONObject grades = JSON.parse(it.grades)
+                JSONElement grades = JSON.parse(it.grades)
                 grades.each { n, data ->
                     data.eachWithIndex { grade, index ->
                         gradesCount++
@@ -48,7 +50,7 @@ class DataDownloadController {
             instructor = testingAnalysis.grades[0].forSection.professor.fname + " " + testingAnalysis.grades[0].forSection.professor.lname
             received = testingAnalysis.grades[0].storeDate
 
-            JSONObject grades = JSON.parse(testingAnalysis.grades[0].grades)
+            JSONElement grades = JSON.parse(testingAnalysis.grades[0].grades)
             grades.each { n, data ->
                 data.eachWithIndex { grade, index ->
                     gradesCount++
@@ -85,7 +87,7 @@ class DataDownloadController {
         sheet1.setColumnView(7,20);
 
         sheet1.addCell(new Label(0,0, "Analyzed on: ", cellFormatBold))
-        sheet1.addCell(new Label(1,0, date as String))
+        sheet1.addCell(new Label(0,1, date))
 
         sheet1.addCell(new Label(1,0, "Course: ", cellFormatBold))
         sheet1.addCell(new Label(1,1, course))

@@ -1,6 +1,7 @@
 package cas
 
 class TestingAnalysis {
+    Integer id
     String name
     TestingFaculty madeBy
     TestingComment comment
