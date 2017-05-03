@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96558d68-82a3-4e99-8a53-4a52ccfdf32b" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.slcache/grails_plugin_cache_CustomCacheKeyGenerator_2257.bytes" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.slcache/grails_plugin_cache_util_ClassUtils_1750.bytes" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.slcache/jxl_common_Logger_2249.bytes" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.slcache/org_codehaus_groovy_grails_commons_GrailsDomainConfigurationUtil_14761.bytes" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.slcache/org_codehaus_groovy_grails_web_json_JSONObject_18139.bytes" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.slcache/org_grails_datastore_gorm_finders_DynamicFinder_18945.bytes" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.slcache/.index" afterPath="$PROJECT_DIR$/.slcache/.index" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/stacktrace.log" afterPath="$PROJECT_DIR$/target/stacktrace.log" />
     </list>
     <ignored path="knuth-sen-dev.iws" />
@@ -165,6 +158,8 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -179,8 +174,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="Grails" />
     </panes>
   </component>
@@ -709,11 +702,14 @@
       <workItem from="1487236434545" duration="717000" />
       <workItem from="1493387114783" duration="48000" />
       <workItem from="1493387197851" duration="324000" />
+      <workItem from="1493649576004" duration="346000" />
+      <workItem from="1493821189902" duration="366000" />
+      <workItem from="1493852176294" duration="37000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72127000" />
+    <option name="totallyTimeSpent" value="72876000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -745,7 +741,7 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297929" sideWeight="0.49893954" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32232705" sideWeight="0.4925769" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3207547" sideWeight="0.4925769" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297929" sideWeight="0.49787912" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
