@@ -4,8 +4,11 @@
 <div class="card text-center flex-item">
     <div class="card-header">
         <h2>Enter Grades</h2>
+        <i class="fa fa-question-circle" aria-hidden="true" style="float: right; margin-top: -20px" id="gradeEntry-help"></i>
     </div>
-    <h3>${cName} - ${sTitle}</h3>
+    <h3 class="geTitle">${cName} - ${sTitle}</h3>
+    <h4 class = "geItem">${question}</h4>
+
     <div class="input-group" style="width:220px; top:-50px; padding:15px;">
         <span class="input-group-addon">Grade Threshold</span>
         <input id="gradeThreshold" type="text" class="form-control" name="gradeThreshold" value="100">
@@ -15,7 +18,7 @@
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
 
-                <div class="panel-heading">
+                <div class="panel-heading multipleGradesHelp">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" style="color:black; float:none">Multiple grades</a>
                     </h4>
@@ -38,7 +41,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title">
+                    <h4 class="panel-title individualGradesHelp">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" style="color:black;">Individual grades</a>
                     </h4>
                 </div>

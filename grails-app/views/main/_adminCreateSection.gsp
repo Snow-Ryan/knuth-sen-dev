@@ -30,7 +30,8 @@
     <g:else>
         <div class="card text-center flex-item">
             <div class="card-header">
-                <h2>Create Sections</h2>
+                <h2>Create Section</h2>
+                <i class="fa fa-question-circle" aria-hidden="true" style="float: right; margin-top: -20px" id="sectionCreate-help"></i>
             </div>
             <div class="card-block">
                 <div>

@@ -16,6 +16,7 @@
     <div class="card text-center flex-item">
         <div class="card-header">
             <h2>Create Department</h2>
+            <i class="fa fa-question-circle" aria-hidden="true" style="float: right; margin-top: -20px" id="departmentCreation-help"></i>
         </div>
         <div class="card-block">
             <div>

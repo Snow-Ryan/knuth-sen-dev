@@ -1,11 +1,12 @@
 <div class="card text-center flex-item ">
     <div class="card-header">
         <h2>Forms</h2>
+        <i class="fa fa-question-circle" aria-hidden="true" style="float: right; margin-top: -20px" id="asscoord-help"></i>
     </div>
     <div class="card-block">
 
         %{--Tabbed table filter--}%
-        <ul class="nav nav-pills" style="float:right">
+        <ul class="nav nav-pills" style="float:right; display:none">
             <li class="active"><a class="tab-filter-all" href="#">All</a></li>
             <li><a class="tab-filter-uncompleted" href="#" >Uncompleted</a></li>
             <li><a class="tab-filter-completed"  href="#">Completed</a></li>
@@ -70,7 +71,12 @@
                                     <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
                                 </td>
                                 <td>${it.course.name}</td>
-                                <td>${it.publishDate}</td>
+                                <g:if test="${!it.publishDate}">
+                                    <td>N/A</td>
+                                </g:if>
+                                <g:else>
+                                    <td>${it.publishDate}</td>
+                                </g:else>
                                 <td>
                                     <label class="hiddenId" style="display: none">${it.id}</label>
                                     <i class="fa fa-download downloadBtn fa-2x" aria-hidden="true"></i>

@@ -1,6 +1,7 @@
 <div class="card text-center flex-item ">
     <div class="card-header">
         <h2>Analysis</h2>
+        <i class="fa fa-question-circle" aria-hidden="true" style="float: right; margin-top: -20px" id="analysis-help"></i>
     </div>
     <div class="card-block">
         <g:if test="${!analysis}">

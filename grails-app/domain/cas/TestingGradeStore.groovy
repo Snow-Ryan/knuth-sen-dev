@@ -1,6 +1,7 @@
 package cas
 
 class TestingGradeStore {
+    Integer id
     String grades
     TestingForm forForm
     TestingFaculty storedBy

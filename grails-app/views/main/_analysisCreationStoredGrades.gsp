@@ -8,6 +8,7 @@
             <tr>
                 <th>Select</th>
                 <th>Grades For</th>
+                <th>Stored By</th>
                 <th>Store Date</th>
             </tr>
             </thead>
@@ -16,11 +17,13 @@
                     <td><input type="checkbox" name="grades" value="0"></td>
                     <td>All Stored Grades</td>
                     <td>N/A</td>
+                    <td>N/A</td>
                 </tr>
                 <g:each in="${storedGradeItem}">
                     <tr>
                         <td><input type="checkbox" name="grades" value="${it.id}"></td>
                         <td>${it.forSection.title}</td>
+                        <td>${it.storedBy.fname} ${it.storedBy.lname}</td>
                         <td>${it.storeDate}</td>
                     </tr>
                 </g:each>
