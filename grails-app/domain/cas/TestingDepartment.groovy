@@ -1,5 +1,8 @@
 package cas
 
+/**
+ * GORM class for interacting with the TestingDepartment table
+ */
 class TestingDepartment {
     TestingFaculty departmentCoordinator
     String name

@@ -287,24 +287,24 @@ class MainController {
     }
 
     /**
-     *
+     * /main/saveNewAnalysis
+     * Endpoint stores new analysis
      * @param name
-     * @param benchmark
+     * @param benchmark - target score that has to be reached for grade item to be successful
      * @param formId
-     * @param grades
-     * @return
+     * @param grades - id of stored grades in database
+     * @return a value denoting weather or not a new form was saved successfully or not
      */
     def saveNewAnalysis(String name, Integer benchmark, Integer formId, Integer grades){
         JSON resultJson
-        TestingAnalysis testingAnalysis
-        testingAnalysis = TestingAnalysis.findByName(name)
+        TestingAnalysis testingAnalysis = TestingAnalysis.findByName(name) //used to check if the analysis name is already taken
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
         }
         else {
             expandExpiration(request.getHeader('Authorization'))
-            if (!testingAnalysis) {
+            if (!testingAnalysis) { // check if name is available
                 TestingForm form = TestingForm.findById(formId)
                 def gradesList = []
 
@@ -317,6 +317,7 @@ class MainController {
                     gradesList.add(TestingGradeStore.findById(grades))
                 }
 
+                //create analysis
                 testingAnalysis = new TestingAnalysis(benchmark: benchmark, name: name, madeBy: TestingFaculty.findByToken(request.getHeader('Authorization')), gradeItem: form.question, forForm: form, grades: gradesList, createdOn: new Date().getDateString())
 
                 if (testingAnalysis.save(flush: true)) {
@@ -331,18 +332,28 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/saveNewCourse
+     * Endpoint for saving new courses
+     * @param faculty - name of course coordinator
+     * @param name - name of the course
+     * @param department - name of the department to which the course belongs to
+     * @param description
+     * @return a value denoting weather or not a new form was saved successfully or not
+     */
     def saveNewCourse(String faculty, String name, String department, String description){
         JSON resultJson
-        TestingCourse testingCourse = TestingCourse.findByName(name)
-        TestingDepartment testingDepartment = TestingDepartment.findByName(department)
-        TestingFaculty testingFaculty = TestingFaculty.findByUsername(faculty)
+
+        TestingCourse testingCourse = TestingCourse.findByName(name) //used to check if the course name is taken
+        TestingDepartment testingDepartment = TestingDepartment.findByName(department) //used to check if the department name is correct
+        TestingFaculty testingFaculty = TestingFaculty.findByUsername(faculty) //used to check if the course coordinator name is correct
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
         }
         else {
             expandExpiration(request.getHeader('Authorization'))
-            if (!testingCourse && testingFaculty && testingDepartment) {
+            if (!testingCourse && testingFaculty && testingDepartment) { // check
                 testingCourse = new TestingCourse(name: name, courseCoordinator: testingFaculty, description: description)
 
                 if (testingCourse.save(flush: true)) {
@@ -373,11 +384,22 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/saveNewFaculty
+     * Endpoint for storing new faculty accounts
+     * @param fName
+     * @param mName
+     * @param lName
+     * @param username
+     * @param email
+     * @param role
+     * @return a value denoting weather or not a new form was saved successfully or not
+     */
     def saveNewFaculty(String fName, String mName, String lName, String username, String email, String role){
         JSON resultJson
-        TestingFaculty testingFaculty = TestingFaculty.findByUsername(username)
-        TestingFaculty testingFaculty2 = TestingFaculty.findByEmail(email)
-        TestingRole testingRole = TestingRole.findByRole(role)
+        TestingFaculty testingFaculty = TestingFaculty.findByUsername(username)  //used to check if the username is taken
+        TestingFaculty testingFaculty2 = TestingFaculty.findByEmail(email) //used to check if the email is already taken
+        TestingRole testingRole = TestingRole.findByRole(role) //used to check if the role is correct
 
         String password = passwordRandomizerService.getRandomPass()
 
@@ -386,8 +408,8 @@ class MainController {
         }
         else {
             expandExpiration(request.getHeader('Authorization'))
-            if (!testingFaculty && !testingFaculty2) {
-                if(testingRole){
+            if (!testingFaculty && !testingFaculty2) { //check
+                if(testingRole){ //check
                     testingFaculty = new TestingFaculty(fname: fName, mname: mName, lname: lName, username: username, email: email, role: testingRole, password: md5passService.getEncryptedPass(password))
 
                     if (testingFaculty.save(flush: true)) {
@@ -415,18 +437,24 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/saveNewDepartment
+     * Endpoint used to creatne new departments
+     * @param name
+     * @param faculty - name of the department coordinator
+     * @return a value denoting weather or not a new form was saved successfully or not
+     */
     def saveNewDepartment(String name, String faculty){
         JSON resultJson
-        TestingDepartment testingDepartment
-        testingDepartment = TestingDepartment.findByName(name)
-        TestingFaculty testingFaculty = TestingFaculty.findByUsername(faculty)
+        TestingDepartment testingDepartment = TestingDepartment.findByName(name) //used to check if the department name is taken
+        TestingFaculty testingFaculty = TestingFaculty.findByUsername(faculty) //used to check if the coordinator is valid
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
         }
         else {
             expandExpiration(request.getHeader('Authorization'))
-            if (!testingDepartment && testingFaculty) {
+            if (!testingDepartment && testingFaculty) { //check
                 testingDepartment = new TestingDepartment(name: name, departmentCoordinator: testingFaculty)
 
                 if (testingDepartment.save(flush: true)) {
@@ -446,6 +474,12 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/loadForms
+     * Endpoint used to load form editing
+     * @param id
+     * @return either expired session template or the form editing page filled with the form that needs to be edited
+     */
     def loadFormEdit(int id){
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
@@ -456,6 +490,12 @@ class MainController {
         }
     }
 
+    /**
+     * /main/loadFacultyEdit
+     * Endpoint used to load faculty account editing
+     * @param id
+     * @return either expired session template or the faculty account editing page filled with the faculty account that needs to be edited
+     */
     def loadFacultyEdit(int id){
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
@@ -466,6 +506,11 @@ class MainController {
         }
     }
 
+    /**
+     * /main/loadDepartmentEdit
+     * @param id
+     * @return either expired session template or the department editing page filled with the department that needs to be edited
+     */
     def loadDepartmentEdit(int id){
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
@@ -476,6 +521,11 @@ class MainController {
         }
     }
 
+    /**
+     * /main/loadSectionEdit
+     * @param id
+     * @return either expired session template or the section editing page filled with the section that needs to be edited
+     */
     def loadSectionEdit(int id){
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
@@ -484,11 +534,17 @@ class MainController {
             expandExpiration(request.getHeader('Authorization'))
             TestingSection testingSection = TestingSection.findById(id)
 
+            //get the course that has this section in it
             def courses = TestingCourse.executeQuery("FROM TestingCourse as tc WHERE :section in elements(tc.sections)", [section : testingSection])
             render(template: 'adminEditSection', model: [section: testingSection, faculty: TestingFaculty.findAll(), course:courses[0], courses: TestingCourse.findAll()])
         }
     }
 
+    /**
+     * /main/loadCourseEdit
+     * @param id
+     * @return either expired session template or the course editing page filled with the course that needs to be edited
+     */
     def loadCourseEdit(int id){
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
@@ -497,15 +553,25 @@ class MainController {
             expandExpiration(request.getHeader('Authorization'))
             TestingCourse testingCourse = TestingCourse.findById(id)
 
+            //get the department that has this course in it
             def departments = TestingDepartment.executeQuery("FROM TestingDepartment as td WHERE :course in elements(td.courses)", [course : testingCourse])
             render(template: 'adminEditCourse', model: [course: testingCourse, faculty: TestingFaculty.findAll(), department:departments[0], departments: TestingDepartment.findAll()])
         }
     }
 
+    /**
+     * /main/loadExpiredSession
+     * @return expired session page
+     */
     def loadExpiredSession(){
         render template: "expiredSession"
     }
 
+    /**
+     * /main/disableFaculty
+     * @param id
+     * @return a value denoting weather or not it was a success
+     */
     def disableFaculty(int id){
         JSON resultJson = [status: 1, message: "Error"] as JSON
         TestingFaculty testingFaculty
@@ -528,6 +594,11 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/enableDepartment
+     * @param id
+     * @return a value denoting weather or not it was a success
+     */
     def enableDepartment(int id){
         JSON resultJson = [status: 1, message: "Error"] as JSON
         TestingDepartment testingDepartment
@@ -550,6 +621,11 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/disableDepartment
+     * @param id
+     * @return a value denoting weather or not it was a success
+     */
     def disableDepartment(int id){
         JSON resultJson = [status: 1, message: "Error"] as JSON
         TestingDepartment testingDepartment
@@ -572,6 +648,11 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/enableCourse
+     * @param id
+     * @return a value denoting weather or not it was a success
+     */
     def enableCourse(int id){
         JSON resultJson = [status: 1, message: "Error"] as JSON
         TestingCourse testingCourse
@@ -594,6 +675,11 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/disableCourse
+     * @param id
+     * @return a value denoting weather or not it was a success
+     */
     def disableCourse(int id){
         JSON resultJson = [status: 1, message: "Error"] as JSON
         TestingCourse testingCourse
@@ -616,6 +702,11 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/enableFaculty
+     * @param id
+     * @return a value denoting weather or not it was a success
+     */
     def enableFaculty(int id){
         JSON resultJson = [status: 1, message: "Error"] as JSON
         TestingFaculty testingFaculty
@@ -638,6 +729,11 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/disableSection
+     * @param id
+     * @return a value denoting weather or not it was a success
+     */
     def disableSection(int id){
         JSON resultJson = [status: 1, message: "Error"] as JSON
         TestingSection testingSection
@@ -660,6 +756,11 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/enableSection
+     * @param id
+     * @return a value denoting weather or not it was a success
+     */
     def enableSection(int id){
         JSON resultJson = [status: 1, message: "Error"] as JSON
         TestingSection testingSection
@@ -682,10 +783,20 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/saveEditForm
+     * Endpoint saves edited form
+     * @param title
+     * @param question
+     * @param description
+     * @param id
+     * @param automationDate
+     * @return a value denoting weather or not the form was updated successfully or not
+     */
     def saveEditForm(String title, String question, String description, int id, Integer automationDate){
         JSON resultJson
         TestingForm testingForm
-        testingForm = TestingForm.findByTitle(title)
+        testingForm = TestingForm.findByTitle(title) //used to check if the new title is already taken
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
@@ -723,20 +834,34 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/saveEditCourse
+     * Endpoint saves edited courses
+     * We check if the new course name is taken and if the other values are correct
+     * If the course name is taken we check if it is taken by the course that is being editted
+     * We update the course or report failure
+     * @param name
+     * @param faculty
+     * @param department
+     * @param description
+     * @param id
+     * @return a value denoting weather or not the course was updated successfully or not
+     */
     def saveEditCourse(String name, String faculty, String department, String description, int id){
         JSON resultJson
-        TestingCourse testingCourse = TestingCourse.findByName(name)
-        TestingDepartment testingDepartment = TestingDepartment.findByName(department)
-        TestingFaculty testingFaculty = TestingFaculty.findByUsername(faculty)
+        TestingCourse testingCourse = TestingCourse.findByName(name) //used to check if the new course name is taken
+        TestingDepartment testingDepartment = TestingDepartment.findByName(department) //used to check if the department name is correct
+        TestingFaculty testingFaculty = TestingFaculty.findByUsername(faculty) //used to check if the faculty username is correct
 
         if(checkExpiration(request.getHeader('Authorization'))){
             resultJson = [status: 5, message: "Expired"] as JSON
         }
         else {
             expandExpiration(request.getHeader('Authorization'))
-            if(testingFaculty && testingDepartment){
-                if (testingCourse) {
-                    if (testingCourse.id == id) {
+            if(testingFaculty && testingDepartment){ //check
+                if (testingCourse) { //check
+                    if (testingCourse.id == id) { //check if course name is taken by the course which is being edited
+                        //update everything
                         testingCourse.name = name
                         testingCourse.courseCoordinator = testingFaculty
                         testingCourse.description = description
@@ -817,6 +942,15 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/saveEditSection
+     * Similar to saveEditCourse
+     * @param title
+     * @param faculty
+     * @param course
+     * @param id
+     * @return a value denoting weather or not the section was updated successfully or not
+     */
     def saveEditSection(String title, String faculty, String course, int id){
         JSON resultJson
         TestingSection testingSection
@@ -905,6 +1039,14 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/saveEditDepartment
+     * Similar to saveEditCourse
+     * @param name
+     * @param faculty
+     * @param id
+     * @return a value denoting weather or not the department was updated successfully or not
+     */
     def saveEditDepartment(String name, String faculty, int id){
         JSON resultJson
         TestingDepartment testingDepartment = TestingDepartment.findByName(name)
@@ -947,6 +1089,18 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/saveEditFaculty
+     * Similar to saveEditCourse
+     * @param fName
+     * @param mName
+     * @param lName
+     * @param username
+     * @param email
+     * @param role
+     * @param id
+     * @return a value denoting weather or not the faculty was updated successfully or not
+     */
     def saveEditFaculty(String fName, String mName, String lName, String username, String email, String role, int id){
         JSON resultJson
         TestingFaculty testingFaculty = TestingFaculty.findByUsername(username)
@@ -1008,6 +1162,12 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/deleteForm
+     * Deletes a form which has no data connected to it
+     * @param id
+     * @return a value denoting weather or not the form was deleted successfully or not
+     */
     def deleteForm(int id){
         TestingForm testingForm = TestingForm.findById(id)
 
@@ -1032,10 +1192,18 @@ class MainController {
         render resultJson
     }
 
+    /**
+     * /main/loadingScreen
+     * @return loading screen page
+     */
     def loadingScreen(){
         render template: "loadingScreen"
     }
 
+    /**
+     * /main/resetPasswordScreen
+     * @return either expired session template or the forms page filled with created assessment forms
+     */
     def resetPasswordScreen(){
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
@@ -1046,6 +1214,16 @@ class MainController {
         }
     }
 
+    /**
+     * /main/resetPassword
+     * Used to update the users password
+     * Checks if the old password is correct
+     * Checks if the new password was entered correctly twice
+     * @param oldpassword
+     * @param newpassword
+     * @param confirmpassword
+     * @return a value denoting weather or not the password was updated successfully or not
+     */
     def resetPassword(String oldpassword, String newpassword, String confirmpassword){
         JSON resultJson
 
@@ -1080,6 +1258,11 @@ class MainController {
         render resultJson
     }
 
+    /**
+     * /main/loadLogIn
+     * This endpoint creates the roles and the admin user the first time that the application is used
+     * @return login page
+     */
     def loadLogIn(){
         TestingFaculty testingUser
 
@@ -1100,6 +1283,13 @@ class MainController {
         render template: 'loginPage'
     }
 
+    /**
+     * /main/login
+     * Used to verify user credentials and assign a token to them
+     * @param username
+     * @param password
+     * @return users role and token
+     */
     def login(String username, String password){
         TestingFaculty testingFaculty = TestingFaculty.findByUsernameAndPassword(username, md5passService.getEncryptedPass(password))
 
@@ -1122,6 +1312,12 @@ class MainController {
         }
     }
 
+    /**
+     * /main/getRole
+     * Used to get the current users role
+     * Used to check if the user is logged in at the moment or his session expired
+     * @return users role
+     */
     def getRole(){
 
         JSON resultJson
@@ -1140,6 +1336,14 @@ class MainController {
         render resultJson
     }
 
+    /**
+     * Private method, not an endpoint
+     * Used to prevent the token from expiring
+     * Activated on every action that a logged in user performs
+     * Extends the token by 10 minutes
+     * @param token
+     * @return no return
+     */
     private expandExpiration(String token){
         TestingFaculty testingFaculty = TestingFaculty.findByToken(token)
 
@@ -1148,6 +1352,12 @@ class MainController {
         testingFaculty.save(flush: true)
     }
 
+    /**
+     * Private method, not an endpoint
+     * Used to check whether the current user is still logged in or his session expired
+     * @param token
+     * @return boolean
+     */
     private checkExpiration(String token){
         TestingFaculty testingFaculty = TestingFaculty.findByToken(token)
 
@@ -1163,6 +1373,11 @@ class MainController {
         }
     }
 
+    /**
+     * /main/loadFormPublishing
+     * @param id
+     * @return either expired session template or the forms publishing which is displayed in a modal box
+     */
     def loadFormPublishing(int id) {
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
@@ -1174,6 +1389,13 @@ class MainController {
         }
     }
 
+    /**
+     * Used to notify a user that an account was created for him
+     * Not an endpoint
+     * @param user
+     * @param pass
+     * @return
+     */
     private notifyUser(TestingFaculty user, pass){
         sendMail {
             to user.email
@@ -1182,6 +1404,13 @@ class MainController {
         }
     }
 
+    /**
+     * Used to notify a user that a form was published for him
+     * Not an endpoint
+     * @param user
+     * @param form
+     * @return
+     */
     private sendPublishMail(TestingFaculty user, TestingForm form){
         sendMail {
             to user.email
@@ -1190,6 +1419,12 @@ class MainController {
         }
     }
 
+    /**
+     * /main/loadDepartmentCourses
+     * @param departmentName
+     * @return either expired session template or the list of courses used in form publishing, or a value
+     * which denotes that an invalid department name was provided
+     */
     def loadDepartmentCourses(String departmentName) {
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
@@ -1207,6 +1442,11 @@ class MainController {
         }
     }
 
+    /**
+     * /main/loadStoredGrades
+     * @param id
+     * @return either expired session template or the list of stored grades used in analysis creation
+     */
     def loadStoredGrades(Integer id) {
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
@@ -1217,6 +1457,15 @@ class MainController {
         }
     }
 
+    /**
+     * /main/publishForm
+     * Checks if the form publishing attempt happens before or after the automatic publishing date
+     * If it is after than the form is published and users are notified
+     * Otherwise the form is published but unavailable for grade data entry
+     * @param courseName
+     * @param id
+     * @return a value denoting weather or not a form was published successfully or not
+     */
     def publishForm(String courseName, int id) {
 
         JSON resultJson
@@ -1267,6 +1516,11 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/unpublishForm
+     * @param id
+     * @return a value denoting weather or not a form was unpublished successfully or not
+     */
     def unpublishForm(Integer id){
         JSON resultJson = [status: 1, message: "Error"] as JSON
         TestingForm testingForm
@@ -1291,6 +1545,11 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * /main/copyFormEdit
+     * @param id
+     * @return either expired session page or the form copy page
+     */
     def copyFormEdit(int id){
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
@@ -1301,6 +1560,12 @@ class MainController {
         }
     }
 
+    /**
+     * /main/loadUserForms
+     * Checks who is the current user and if he has published forms waiting for data entry
+     * Checks if the user has already added data to those forms
+     * @return either expired session page or the Grade Data Page with a list of forms available for the current user
+     */
     def loadUserForms(){
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
@@ -1350,6 +1615,12 @@ class MainController {
         }
     }
 
+    /**
+     * /main/loadDataInput
+     * @param id
+     * @param sectionId
+     * @return either expired session page or the Grade input page
+     */
     def loadDataInput(int id, int sectionId){
         if(checkExpiration(request.getHeader('Authorization'))){
             render template: "expiredSession"
@@ -1362,6 +1633,14 @@ class MainController {
         }
     }
 
+    /**
+     * /main/saveGradeData
+     * @param id
+     * @param grades
+     * @param sectionId
+     * @param gradeRange
+     * @return a value denoting weather or not grades were saved successfully or not
+     */
     def saveGradeData(Integer id, String grades, Integer sectionId, Integer gradeRange){
 
         JSON resultJson
@@ -1388,6 +1667,11 @@ class MainController {
         render(resultJson)
     }
 
+    /**
+     * Static method used by the AutoPublishingJob to find forms that are due for publishing
+     * Not an endpoint
+     * @return
+     */
     protected static findFormsToRepublish(){
 
         def allPublishedForms = TestingForm.findAllByPublished(1)
@@ -1413,6 +1697,13 @@ class MainController {
         republishForms(toRepublish)
     }
 
+
+    /**
+     * Static method used republish any forms that are overdue
+     * Not an endpoint
+     * @param toRepublish
+     * @return
+     */
     protected static republishForms(toRepublish){
         toRepublish.each {
             TestingForm form = it
@@ -1426,6 +1717,13 @@ class MainController {
         }
     }
 
+    /**
+     * Static method used to notify users that a form was published for them
+     * Not an endpoint
+     * @param user
+     * @param form
+     * @return
+     */
     protected static republishEmail(TestingFaculty user, TestingForm form){
         sendMail {
             to user.email

@@ -1,5 +1,8 @@
 package cas
 
+/**
+ * GORM class for interacting with the TestingCourse table
+ */
 class TestingCourse {
     Integer id
     static hasMany = [sections: TestingSection]

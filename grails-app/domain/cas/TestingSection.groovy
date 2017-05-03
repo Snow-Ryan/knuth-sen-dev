@@ -1,5 +1,7 @@
 package cas
-
+/**
+ * GORM class for interacting with the TestingSection table
+ */
 class TestingSection {
     Integer id
     TestingFaculty professor
