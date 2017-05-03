@@ -1,3 +1,5 @@
+
+
 //Show login button and remove all navigation
 function showLoginBtn(){
     Cookies.remove('token');
@@ -1521,6 +1523,10 @@ function checkLogin( that){
 
 }
 
+/**
+ * @param role - the role associated with the user
+ * @param name - the username that was used to log in
+ */
 function displayOptions(role, name){
     console.log(role)
     console.log(name)
@@ -1571,6 +1577,10 @@ function displayOptions(role, name){
     }
 }
 
+
+/**
+ * @param that -
+ */
 function loadFormPublishing(that){
     $('.modal-body').empty();
     $('#myModalLabel').html("Publishing Forms");
@@ -1595,6 +1605,10 @@ function loadFormPublishing(that){
     });
 }
 
+
+/**
+ * Retrieves a list of courses for a specific department from the database to populate an option box
+ */
 function loadDepartmentCourses(){
     var departmentName = document.getElementById('option_boxDepartments').value;
 
@@ -1625,6 +1639,10 @@ function loadDepartmentCourses(){
     });
 }
 
+
+/**
+ * Retrieves grades from the database for a specific form
+ */
 function loadStoredGrades(){
     var id = $('#formSelect').val();
 
