@@ -1,3 +1,4 @@
+//Show login button and remove all navigation
 function showLoginBtn(){
     Cookies.remove('token');
     $('.navbar-header').css("visibility", "");
@@ -267,10 +268,16 @@ function saveEditCourse(){
             },
             success: function (data) {
                 if (data.status === 2) {
-                    $.growl.warning({message: "Section with that title already exists"});
+                    $.growl.warning({message: "Course with that name already exists"});
                 }
                 else if (data.status === 5) {
                     loadExpiredSession();
+                }
+                else if (data.status === 3) {
+                    $.growl.warning({message: "Invalid Course Coordinator selected"});
+                }
+                else if (data.status === 4) {
+                    $.growl.warning({message: "Invalid department selected"});
                 }
                 else {
                     loadAdminCourses();
@@ -312,10 +319,13 @@ function saveEditDepartment(){
             },
             success: function (data) {
                 if (data.status === 2) {
-                    $.growl.warning({message: "Section with that title already exists"});
+                    $.growl.warning({message: "Department with that name already exists"});
                 }
                 else if (data.status === 5) {
                     loadExpiredSession();
+                }
+                else if (data.status === 3) {
+                    $.growl.warning({message: "Invalid Department Coordinator selected"});
                 }
                 else {
                     loadAdminDepartments();
@@ -364,6 +374,12 @@ function saveEditSection(){
                 else if (data.status === 5) {
                     loadExpiredSession();
                 }
+                else if (data.status === 3) {
+                    $.growl.warning({message: "Invalid Professor selected"})
+                }
+                else if (data.status === 4) {
+                    $.growl.warning({message: "Invalid Course selected"})
+                }
                 else {
                     loadAdminSections();
                 }
@@ -398,8 +414,9 @@ function saveEditFaculty(){
     username = cleanData(username);
     email = cleanData(email);
 
-    if(role == "" || fName == "" || mName == "" || lName == "" || username == "" || email == ""){
+    if(role == "" || fName == "" || lName == "" || username == "" || email == ""){
         $.growl.warning({ message: "Please input all data" });
+        console.log(role)
     }
     else {
         var id = $('.card-block').find('.hiddenId').html();
@@ -426,13 +443,19 @@ function saveEditFaculty(){
                 else if (data.status === 5) {
                     loadExpiredSession();
                 }
+                else if (data.status === 3) {
+                    $.growl.warning({message: "Invalid role selected"});
+                }
+                else if (data.status === 4) {
+                    $.growl.warning({message: "Faculty member with that email already exists"});
+                }
                 else {
                     loadAdminFaculty();
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
-                loadForms();
+                loadAdminFaculty();
             }
         });
     }
@@ -1116,10 +1139,16 @@ function saveNewCourse() {
             },
             success: function (data) {
                 if (data.status === 2) {
-                    $.growl.warning({message: "Section with that title already exists"});
+                    $.growl.warning({message: "Course with that name already exists"});
                 }
                 else if (data.status === 5) {
                     loadExpiredSession();
+                }
+                else if (data.status === 4) {
+                    $.growl.warning({message: "Invalid Department selected"});
+                }
+                else if (data.status === 3) {
+                    $.growl.warning({message: "Invalid Course Coordinator selected"});
                 }
                 else {
                     loadAdminCourses();
@@ -1166,6 +1195,12 @@ function saveNewSection() {
                 else if (data.status === 5) {
                     loadExpiredSession();
                 }
+                else if (data.status === 3) {
+                    $.growl.warning({message: "Invalid course selected"});
+                }
+                else if (data.status === 4) {
+                    $.growl.warning({message: "Invalid Professor selected"});
+                }
                 else {
                     loadAdminSections();
                 }
@@ -1203,10 +1238,13 @@ function saveNewDepartment() {
             },
             success: function (data) {
                 if (data.status === 2) {
-                    $.growl.warning({message: "Faculty with that username already exists"});
+                    $.growl.warning({message: "Department with that name already exists"});
                 }
                 else if (data.status === 5) {
                     loadExpiredSession();
+                }
+                else if (data.status === 3) {
+                    $.growl.warning({message: "Invalid Department Coordinator selected"});
                 }
                 else {
                     loadAdminDepartments();
@@ -1241,7 +1279,7 @@ function saveNewFaculty() {
     username = cleanData(username);
     email = cleanData(email);
 
-    if(role == "" || fName == "" || mName == "" || lName == "" || username == ""  || email == ""){
+    if(role == "" || lName == "" || username == ""  || email == ""){
         $.growl.warning({ message: "Please input all data" });
     }
     else {
@@ -1265,6 +1303,12 @@ function saveNewFaculty() {
                 }
                 else if (data.status === 5) {
                     loadExpiredSession();
+                }
+                else if (data.status === 3) {
+                    $.growl.warning({message: "Invalid role selected"});
+                }
+                else if (data.status === 4) {
+                    $.growl.warning({message: "Faculty with that email already exists"});
                 }
                 else {
                     loadAdminFaculty();
@@ -1485,7 +1529,7 @@ function displayOptions(role, name){
     $('.analysisLi').css("display", "none");
     $('.pViewLiv').css("display", "none");
 
-    if(role==="Wizard"){
+    if(role==="Assessment Coordinator"){
          $('.secondNav').css("visibility", "");
         $('.userLocation').html(name);
         $('.userLocation').css("display", "");
@@ -1565,7 +1609,15 @@ function loadDepartmentCourses(){
             departmentName: departmentName
         },
         success: function (data) {
-            $('#courseList').append(data);
+            if(data==="fail"){
+                $('#myModal').modal('toggle');
+                $.growl.warning({ message: "Invalid Department selected" });
+                loadForms();
+            }
+            else
+            {
+                $('#courseList').append(data);
+            }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown)
@@ -1598,8 +1650,10 @@ function loadStoredGrades(){
     });
 }
 
+/**
+ * Initiate form publishing
+ */
 function publishForm() {
-
     var id = $('.modal-body').find('.hiddenId').html();
     var courseName = document.getElementById('option_boxCourses').value;
 
@@ -1619,6 +1673,7 @@ function publishForm() {
             }
             else{
                 $('#myModal').modal('toggle');
+                $.growl.warning({ message: "Invalid course selected" });
                 loadForms();
             }
         },
@@ -1629,6 +1684,9 @@ function publishForm() {
     });
 }
 
+/**
+ * @param that - form that needs to be unpublished
+ */
 function unpublishForm(that) {
     var id = $(that).parent().find('.hiddenId').html();
 
@@ -1646,6 +1704,7 @@ function unpublishForm(that) {
                 loadExpiredSession();
             }
             else{
+                //update the icons to reflect that the form was unpublished
                 $(nthParent(that,1)).children().eq(2).children().removeClass("fa-check");
                 $(nthParent(that,1)).children().eq(2).children().addClass("fa-times");
                 $(nthParent(that,1)).children().eq(2).children().css("color", "red");
@@ -1671,7 +1730,9 @@ function unpublishForm(that) {
         }
     });
 }
-
+/**
+ * @param that - selected form that will be copied
+ */
 function copyForm(that){
 
     $('#mainContainer').empty();
@@ -1688,7 +1749,8 @@ function copyForm(that){
             id:id
         },
         success: function (data) {
-            $('#mainContainer').append(data);
+            $('#mainContainer').append(data); //append received template
+            //check session
             if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
                 showLoginBtn();
             }
@@ -1700,8 +1762,11 @@ function copyForm(that){
     });
 }
 
+/**
+ * @param that - selected form for which grades will be entered
+ * @param singleGradeItem - a loaded template of a single grade item
+ */
 function loadDataInput(that, singleGradeItem){
-
     $('#mainContainer').empty();
 
     var id = $(that).parent().find('.hiddenId').html();
@@ -1717,13 +1782,14 @@ function loadDataInput(that, singleGradeItem){
             sectionId:sectionId
         },
         success: function (data) {
-            $('#mainContainer').append(data);
+            $('#mainContainer').append(data); //append received template
 
+            //check if session has expired
             if(document.getElementsByTagName("h2")[0].innerHTML==="Session Expired"){
                 showLoginBtn();
             }
             else{
-                dust.renderSource(singleGradeItem, {}, function (err, out) {
+                dust.renderSource(singleGradeItem, {}, function (err, out) { //add a single grade item to the new template
                     $('#singleGradeItems').append(out);
                 });
                 $(".removeGradeItem").css("visibility", "hidden");
@@ -1737,13 +1803,22 @@ function loadDataInput(that, singleGradeItem){
     });
 }
 
-
+/**
+ * Saves all entered grades
+ */
 function saveGrades(){
     var grades = [];
     var x = 0;
+    var f = false;
+
     $('.gradeItem').each(function() {
-        grades[x] = $(this).val();
-        x = x + 1;
+        if($.isNumeric($(this).val())){ //check if all grade items are numeric
+            grades[x] = $(this).val();
+            x = x + 1;
+        }
+        else{
+            f = true;
+        }
     });
 
     var json = {array:grades};
@@ -1752,6 +1827,9 @@ function saveGrades(){
 
     if(stringGrades == ""){
         $.growl.warning({ message: "Please input data" });
+    }
+    else if(f){
+        $.growl.warning({message: "Grades must be numeric"});
     }
     else {
         var id = $('.hiddenId').html();
@@ -1773,7 +1851,7 @@ function saveGrades(){
             },
             success: function (data) {
                 if (data.status === 2) {
-                    $.growl.warning({message: "Generic Error please change"});
+                    $.growl.warning({message: "Data entry failed"});
                 }
                 else if (data.status === 5) {
                     loadExpiredSession();
@@ -1790,6 +1868,10 @@ function saveGrades(){
     }
 }
 
+/*
+ Receives a loaded template of a single grade item
+ Splits all pasted grades and initiates the process of displaying them as single grade items
+ */
 function parseGrades(singleGradeItem){
     var grades = $('.multipleGradeItems').val();
     grades = grades.split(/,|\t|\n|\r|;| /);
@@ -1797,6 +1879,11 @@ function parseGrades(singleGradeItem){
     addMultipleGradeItems(singleGradeItem, grades);
 }
 
+/**
+ * @param singleGradeItem - a loaded template of a single grade item
+ * @param grades - array of grades that are being parsed
+ * Removes all existing single grade items and replaces them with new single grade items which contain parsed grades
+ */
 function addMultipleGradeItems(singleGradeItem, grades){
     removeAllGradeItems(singleGradeItem);
     $('.gradeItem').first().val(grades[0]);
@@ -1806,15 +1893,23 @@ function addMultipleGradeItems(singleGradeItem, grades){
     }
 }
 
+/**
+ * @param singleGradeItem - a loaded template of a single grade item
+ * Remove all single grade items when parsing multiple grades
+ * Add new single grade items
+ */
 function removeAllGradeItems(singleGradeItem){
     $("#singleGradeItems").empty();
     addSingleGradeItem(singleGradeItem);
     $(".removeGradeItem").css("visibility", "hidden");
 }
 
+/**
+ * @param singleGradeItem - a loaded template of a single grade item
+ * Add a single grade item to grade entry
+ */
 function addSingleGradeItem(singleGradeItem){
     $(".addGradeItem").css("visibility", "hidden");
-    // $(".removeGradeItem").css("display", "none");
 
     dust.renderSource(singleGradeItem, {}, function (err, out) {
         $('#singleGradeItems').append(out);
@@ -1822,6 +1917,10 @@ function addSingleGradeItem(singleGradeItem){
     $('.gradeItemLabel').last().html($('.gradeItem').length);
 }
 
+/**
+ * @param that - the clicked grade item
+ * Removes it from grade entry
+ */
 function removeGradeItem(that){
     $(nthParent(that, 1)).remove();
 
@@ -1834,6 +1933,7 @@ function removeGradeItem(that){
     }
 }
 
+//Function used when loading templates with DUST.js
 function commentToHtml(f) { // Multiline javascript string hack for templates
     return f.toString().
     replace(/^[^\/]+\/\*!?/, '').
@@ -1841,16 +1941,18 @@ function commentToHtml(f) { // Multiline javascript string hack for templates
 }
 
 var $body = $('body');
+//deprecated function, used to remove a spinner from AJAX calls
 function hideLoadingSpinner(){
     // $(".loading").css("display", "none");
     $body.removeClass("loading");;
 }
 
+//display a spinner on the page during an AJAX call
 function showLoadingSpinner(){
     $body.addClass("loading");;
 }
 
-
+//used to sanitize data
 function cleanData(data){
     data = data.trim();
     data = data.replace(/\\"/g, '"');
@@ -1858,6 +1960,7 @@ function cleanData(data){
     return data;
 }
 
+//function returns a specified parent of some element
 function nthParent(element,n){
     for (var i = 0; i <= n; i++) {
         element = element.parentNode;
@@ -1865,6 +1968,7 @@ function nthParent(element,n){
     return element;
 }
 
+//Update icons once a form is unpublished
 function disableStatus(ele){
     $(nthParent(ele,1)).children().eq(6).children().removeClass("fa-check");
     $(nthParent(ele,1)).children().eq(6).children().addClass("fa-times");
@@ -1872,6 +1976,7 @@ function disableStatus(ele){
 
 }
 
+//Update icons once a form is published
 function enableStatus(ele){
     $(nthParent(ele,1)).children().eq(6).children().removeClass("fa-times");
     $(nthParent(ele,1)).children().eq(6).children().addClass("fa-check");

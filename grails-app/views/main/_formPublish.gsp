@@ -7,7 +7,9 @@
         <input type="text" name = "departmentList" id="option_boxDepartments" list="json-datalistDepartment" placeholder="Select a Department">
         <datalist id="json-datalistDepartment">
             <g:each in="${departments}">
-                <option value="${it.name}"></option>
+                <g:if test="${it.active!=0}">
+                    <option value="${it.name}"></option>
+                </g:if>
             </g:each>
         </datalist>
     </div>

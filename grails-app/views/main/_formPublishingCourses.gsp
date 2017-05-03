@@ -4,7 +4,9 @@
         <input type="text" name = "departmentList" id="option_boxCourses" list="json-datalistCourses" placeholder="Select a Course">
         <datalist id="json-datalistCourses">
             <g:each in="${courses}">
-                <option value="${it.name}"></option>
+                <g:if test="${it.active!=0}">
+                    <option value="${it.name}"></option>
+                </g:if>
             </g:each>
         </datalist>
     </div>
