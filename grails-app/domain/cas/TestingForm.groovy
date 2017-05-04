@@ -1,5 +1,8 @@
 package cas
 
+/**
+ * GORM class for interacting with the TestingForm table
+ */
 class TestingForm {
     Integer id
     String title

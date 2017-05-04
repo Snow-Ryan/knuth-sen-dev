@@ -1,5 +1,8 @@
 package cas
 
+/**
+ * GORM class for interacting with the TestingFaculty table
+ */
 class TestingFaculty {
     Integer id
     String fname

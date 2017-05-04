@@ -12,9 +12,18 @@ import jxl.write.WritableCellFormat
 import org.codehaus.groovy.grails.web.json.JSONElement
 import org.codehaus.groovy.grails.web.json.JSONObject
 
+/**
+ * Controller used to handle all data download actions
+ */
 class DataDownloadController {
     def index() {}
 
+    /**
+     * /dataDownload/downloadAnalysisData
+     * Used to download excel sheet containing a summarized analysis of data
+     * @param id
+     * @return an excel sheet
+     */
     def downloadAnalysisData(Integer id){
         TestingAnalysis testingAnalysis = TestingAnalysis.findById(id)
 
@@ -28,7 +37,7 @@ class DataDownloadController {
         Integer gradesAboveBenchmark = 0
         Integer gradesCount = 0
 
-        if(testingAnalysis.grades.size()>1){
+        if(testingAnalysis.grades.size()>1){ //check if all grades are being analyzed or a subset of grades
             testingAnalysis.grades.each {
                 instructor += it.forSection.professor.fname + " " + it.forSection.professor.lname + ", "
                 received += it.storeDate + ", "
@@ -71,12 +80,14 @@ class DataDownloadController {
         cellFont.setBoldStyle(WritableFont.BOLD);
         WritableCellFormat cellFormatBold = new WritableCellFormat(cellFont)
 
+        //create response in form of an excel file
         response.setContentType('application/vnd.ms-excel')
         response.setHeader('Content-Disposition', 'Attachment;Filename='+fileName)
 
         WritableWorkbook workbook = Workbook.createWorkbook(response.outputStream)
         WritableSheet sheet1 = workbook.createSheet("Analysis", 0)
 
+        //adjust columns
         sheet1.setColumnView(0,20);
         sheet1.setColumnView(1,20);
         sheet1.setColumnView(2,20);
@@ -86,6 +97,7 @@ class DataDownloadController {
         sheet1.setColumnView(6,20);
         sheet1.setColumnView(7,20);
 
+        //add cells
         sheet1.addCell(new Label(0,0, "Analyzed on: ", cellFormatBold))
         sheet1.addCell(new Label(0,1, date))
 
@@ -114,6 +126,12 @@ class DataDownloadController {
         workbook.close();
     }
 
+    /**
+     * /dataDownload/downloadAllData
+     * used to download all data connected to a form
+     * @param id
+     * @return returns an excel sheet with all grade data
+     */
     def downloadAllData(Integer id){
         TestingForm testingForm = TestingForm.findById(id)
         def allGradeData = TestingGradeStore.findAllByForForm(testingForm)
@@ -133,15 +151,18 @@ class DataDownloadController {
         cellFont.setBoldStyle(WritableFont.BOLD);
         WritableCellFormat cellFormatBold = new WritableCellFormat(cellFont);
 
+        //create response in form of an excel file
         response.setContentType('application/vnd.ms-excel')
         response.setHeader('Content-Disposition', 'Attachment;Filename='+fileName)
 
         WritableWorkbook workbook = Workbook.createWorkbook(response.outputStream)
         WritableSheet sheet1 = workbook.createSheet("AllGrades", 0)
 
+        //adjust cells
         sheet1.setColumnView(0,20);
         sheet1.setColumnView(1,20);
 
+        //add cells
         sheet1.addCell(new Label(0,0, "All data for: ", cellFormatBold))
         sheet1.addCell(new Label(1,0, formTitle))
         sheet1.addCell(new Label(0,1, "Grade item: ", cellFormatBold))
@@ -178,8 +199,8 @@ class DataDownloadController {
             }
             y++
         }
-        workbook.write();
-        workbook.close();
+        workbook.write()
+        workbook.close()
     }
 }
 
