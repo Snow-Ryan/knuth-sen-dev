@@ -1,3 +1,8 @@
+%{--
+Name: _listAvailableForms.gsp
+Purpose: Used to show all forms
+--}%
+
 <div class="card text-center flex-item ">
     <div class="card-header">
         <h2 class="prof-all-forms">Available Forms</h2>

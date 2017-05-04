@@ -1,3 +1,8 @@
+%{--
+Name: _formCopy.gsp
+Purpose: Used to copy a form
+--}%
+
 <div class="card text-center flex-item">
     <div class="card-header">
         <h2>Edit Form</h2>

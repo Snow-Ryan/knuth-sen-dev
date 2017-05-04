@@ -1,3 +1,8 @@
+%{--
+Name: _expiredSession.gsp
+Purpose: Used to show the user when their session has expired
+--}%
+
 <div class="card text-center flex-item">
     <div class="card-header">
         <h2>Session Expired</h2>

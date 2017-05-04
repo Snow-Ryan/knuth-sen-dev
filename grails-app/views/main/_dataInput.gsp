@@ -1,3 +1,7 @@
+%{--
+Name: _dataInput.gsp
+Purpose: Used to input data
+--}%
 <label class="hiddenId" style="display: none">${id}</label>
 <label class="hiddenSectionId" style="display: none">${sectionId}</label>
 
