@@ -1,3 +1,7 @@
+%{--
+Name: _adminEditCourse.gsp
+Purpose: Displays a a form populated with current data for a specific course that the admin can then edit
+--}%
 <div class="card text-center flex-item">
     <div class="card-header">
         <h2>Edit Courses</h2>

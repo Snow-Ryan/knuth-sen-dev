@@ -1,3 +1,7 @@
+%{--
+Name: _analysisd.gsp
+Purpose: Displays a list of created analyses
+--}%
 <div class="card text-center flex-item ">
     <div class="card-header">
         <h2>Analysis</h2>

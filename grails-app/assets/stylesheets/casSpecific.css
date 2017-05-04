@@ -1,3 +1,19 @@
+/***
+CAS stylesheet
+CAS was developed by Team Knuth
+This contains the styles that the UI uses in CAS
+
+COLOR PALETTE
+
+#F36E21 - header background, navbar background, card header background
+#FFFFFF - card wrapper background
+#513127 - navbar background
+#666666 - navbar dropdown background
+#262626 - default button color
+#191919 - default button hover color
+#69c773 - regular button color
+***/
+
 body , html{
     height: 100%;
     width: 100%;

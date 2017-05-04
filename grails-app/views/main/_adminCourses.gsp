@@ -1,3 +1,7 @@
+%{--
+Name: _adminCourses.gsp
+Purpose: Displays a list of courses to the admin for viewing/editing
+--}%
 <div class="card text-center flex-item">
     <div class="card-header">
         <h2>Courses</h2>
