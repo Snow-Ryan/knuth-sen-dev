@@ -1,4 +1,10 @@
-
+/**
+ * Created by Antonio Sutalo
+ * Contributions by Ivan Ostojic, Matija Gjurin, Michael Hanson, Ryan Mason, Ryan Snow
+ *
+ * This file contains calls to all essential functions of The CAS
+ * If there is an issue with functionality or a feature to be added it can be done here
+ */
 
 //Show login button and remove all navigation
 function showLoginBtn(){
@@ -13,6 +19,9 @@ function showLoginBtn(){
     $('.secondNav').css("height", "36px");
 }
 
+/**
+ * Reloads the session to display a login prompt
+ */
 function loadExpiredSession(){
     showLoadingSpinner();
     $('#mainContainer').empty();
@@ -28,6 +37,9 @@ function loadExpiredSession(){
     });
 }
 
+/**
+ * Displays the login page
+ */
 function loadLogInPage(){
     showLoadingSpinner();
     $('#mainContainer').empty();
@@ -46,6 +58,9 @@ function loadLogInPage(){
     });
 }
 
+/**
+ * Displays the reset password screen
+ */
 function loadresetPasswordScreen(){
     $('#mainContainer').empty();
     showLoadingSpinner();
@@ -63,6 +78,9 @@ function loadresetPasswordScreen(){
     });
 }
 
+/**
+ * Confirms the change of the users password
+ */
 function confirmPassword(){
     var oldpassword = $('.oldpasswordInput').val();
     var newpassword = $('.newpasswordInput').val();
@@ -111,6 +129,9 @@ function confirmPassword(){
     }
 }
 
+/**
+ * Deletes a form entry from the database
+ */
 function deleteForm(that){
     var id = $(that).parent().find('.hiddenId').html();
     var table = $('.formsDisplayTable').DataTable();
@@ -143,6 +164,9 @@ function deleteForm(that){
     });
 }
 
+/**
+ * Writes the data pertaining to a form to the database
+ */
 function saveNewForm(){
     var title = $('.titleInput').val();
     var question = $('.questionInput').val();
@@ -188,6 +212,9 @@ function saveNewForm(){
     }
 }
 
+/**
+ * Writes the data to the database on the corresponding entry
+ */
 function saveEditForm(){
     var title = $('.titleInput').val();
     var question = $('.questionInput').val();
@@ -235,6 +262,9 @@ function saveEditForm(){
     }
 }
 
+/**
+ * Writes the data to the database on the corresponding entry
+ */
 function saveEditCourse(){
     var name = null;
     var faculty = null;
@@ -293,6 +323,9 @@ function saveEditCourse(){
     }
 }
 
+/**
+ * Writes the data to the database on the corresponding entry
+ */
 function saveEditDepartment(){
     var name = null;
     var faculty = null;
@@ -341,6 +374,9 @@ function saveEditDepartment(){
     }
 }
 
+/**
+ * Writes the data to the database on the corresponding entry
+ */
 function saveEditSection(){
     var title = null;
     var faculty = null;
@@ -394,6 +430,9 @@ function saveEditSection(){
     }
 }
 
+/**
+ * Writes the data to the database on the corresponding entry
+ */
 function saveEditFaculty(){
     var fName = null;
     var mName = null;
@@ -463,6 +502,9 @@ function saveEditFaculty(){
     }
 }
 
+/**
+ * Displays the form edit page and populates it with current data
+ */
 function loadFormEdit(that){
     $('#mainContainer').empty();
 
@@ -490,6 +532,9 @@ function loadFormEdit(that){
     });
 }
 
+/**
+ * Displays the course edit page and populates it with current data
+ */
 function loadCourseEdit(that){
     $('#mainContainer').empty();
 
@@ -517,6 +562,10 @@ function loadCourseEdit(that){
     });
 }
 
+
+/**
+ * Displays the department edit page and populates it with current data
+ */
 function loadDepartmentEdit(that){
     $('#mainContainer').empty();
 
@@ -544,6 +593,9 @@ function loadDepartmentEdit(that){
     });
 }
 
+/**
+ * Displays the section edit page and populates it with current data
+ */
 function loadSectionEdit(that){
     $('#mainContainer').empty();
 
@@ -571,6 +623,9 @@ function loadSectionEdit(that){
     });
 }
 
+/**
+ * Displays the faculty edit page and populates it with current data
+ */
 function loadFacultyEdit(that){
     $('#mainContainer').empty();
 
@@ -598,6 +653,9 @@ function loadFacultyEdit(that){
     });
 }
 
+/**
+ * @param that - the course-section
+ */
 function disableSection(that){
     var id = $(that).parent().find('.hiddenId').html();
 
@@ -631,6 +689,9 @@ function disableSection(that){
     });
 }
 
+/**
+ * @param that - the course
+ */
 function enableCourse(that){
     var id = $(that).parent().find('.hiddenId').html();
 
@@ -664,6 +725,9 @@ function enableCourse(that){
     });
 }
 
+/**
+ * @param that - the course
+ */
 function disableCourse(that){
     var id = $(that).parent().find('.hiddenId').html();
 
@@ -697,6 +761,9 @@ function disableCourse(that){
     });
 }
 
+/**
+ * @param that - the course-section
+ */
 function enableSection(that){
     var id = $(that).parent().find('.hiddenId').html();
 
@@ -731,6 +798,9 @@ function enableSection(that){
     });
 }
 
+/**
+ * @param that - the faculty
+ */
 function disableFaculty(that){
     var id = $(that).parent().find('.hiddenId').html();
 
@@ -762,6 +832,9 @@ function disableFaculty(that){
     });
 }
 
+/**
+ * @param that - the department
+ */
 function enableDepartment(that){
     var id = $(that).parent().find('.hiddenId').html();
 
@@ -795,6 +868,9 @@ function enableDepartment(that){
     });
 }
 
+/**
+ * @param that - the department
+ */
 function disableDepartment(that){
     var id = $(that).parent().find('.hiddenId').html();
 
@@ -828,6 +904,9 @@ function disableDepartment(that){
     });
 }
 
+/**
+ * @param that - the faculty member
+ */
 function enableFaculty(that){
     var id = $(that).parent().find('.hiddenId').html();
 
@@ -859,6 +938,9 @@ function enableFaculty(that){
     });
 }
 
+/**
+ * Displays the list of sections for viewing by the admin
+ */
 function loadAdminSections(){
     $('#mainContainer').empty();
 
@@ -886,6 +968,9 @@ function loadAdminSections(){
     });
 }
 
+/**
+ * Displays the list of courses for viewing by the admin
+ */
 function loadAdminCourses(){
     $('#mainContainer').empty();
     showLoadingSpinner();
@@ -913,6 +998,9 @@ function loadAdminCourses(){
     });
 }
 
+/**
+ * Displays the list of departments for viewing by the admin
+ */
 function loadAdminDepartments(){
     $('#mainContainer').empty();
     showLoadingSpinner();
@@ -940,6 +1028,9 @@ function loadAdminDepartments(){
     });
 }
 
+/**
+ * Displays the list of faculty for viewing by the admin
+ */
 function loadAdminFaculty(){
     $('#mainContainer').empty();
     showLoadingSpinner();
@@ -967,6 +1058,9 @@ function loadAdminFaculty(){
     });
 }
 
+/**
+ * Displays the section creation page
+ */
 function loadSectionCreation(){
     $('#mainContainer').empty();
     showLoadingSpinner();
@@ -988,6 +1082,9 @@ function loadSectionCreation(){
     });
 }
 
+/**
+ * Displays the course creation page
+ */
 function loadCourseCreation(){
     $('#mainContainer').empty();
     showLoadingSpinner();
@@ -1009,6 +1106,9 @@ function loadCourseCreation(){
     });
 }
 
+/**
+ * Displays the faculty creation page
+ */
 function loadFacultyCreation(){
     $('#mainContainer').empty();
     showLoadingSpinner();
@@ -1030,6 +1130,9 @@ function loadFacultyCreation(){
     });
 }
 
+/**
+ * Displays the department creation page
+ */
 function loadDepartmentCreation(){
     $('#mainContainer').empty();
     showLoadingSpinner();
@@ -1051,6 +1154,9 @@ function loadDepartmentCreation(){
     });
 }
 
+/**
+ * Writes data pertaining to an analysis to the database
+ */
 function saveNewAnalysis() {
     var name = $('.titleInput').val();
     var benchmark =  $('.benchmarkInput').val();
@@ -1109,6 +1215,9 @@ function saveNewAnalysis() {
     });
 }
 
+/**
+ * Writes data pertaining to a course to the database
+ */
 function saveNewCourse() {
     var name = null;
     var faculty = null;
@@ -1164,6 +1273,9 @@ function saveNewCourse() {
     }
 }
 
+/**
+ * Writes data pertaining to a course section to the database
+ */
 function saveNewSection() {
     var title = null;
     var faculty = null;
@@ -1215,6 +1327,9 @@ function saveNewSection() {
     }
 }
 
+/**
+ * Writes data pertaining to a department to the database
+ */
 function saveNewDepartment() {
     var name = null;
     var faculty = null;
@@ -1259,6 +1374,10 @@ function saveNewDepartment() {
         });
     }
 }
+
+/**
+ * Writes data pertaining to faculty to the database
+ */
 function saveNewFaculty() {
     var fName = null;
     var mName = null;
@@ -1324,6 +1443,9 @@ function saveNewFaculty() {
     }
 }
 
+/**
+ * Attempts to perform a login
+ */
 function attemptLogin(){
     showLoadingSpinner();
     var username = $('.usernameInput').val();
@@ -1353,6 +1475,9 @@ function attemptLogin(){
     });
 }
 
+/**
+ * Displays the form creation page
+ */
 function loadFormCreation(){
     $('#mainContainer').empty();
     showLoadingSpinner();
@@ -1374,6 +1499,9 @@ function loadFormCreation(){
     });
 }
 
+/**
+ * Displays the analysis creation page
+ */
 function loadAnalysisCreation(){
     $('#mainContainer').empty();
     showLoadingSpinner();
@@ -1395,6 +1523,9 @@ function loadAnalysisCreation(){
     });
 }
 
+/**
+ * Displays the professor page and retrieves relevant data
+ */
 function loadProfView(){
     $('#mainContainer').empty();
     showLoadingSpinner();
@@ -1428,6 +1559,9 @@ function loadProfView(){
     });
 }
 
+/**
+ * Displays the analysis page and retrieves analysis data
+ */
 function loadAnalysis(){
     showLoadingSpinner();
     $('#mainContainer').empty();
@@ -1455,6 +1589,9 @@ function loadAnalysis(){
     });
 }
 
+/**
+ * Displays the forms page and retrieves all relevant forms
+ */
 function loadForms(){
     showLoadingSpinner();
     $('#mainContainer').empty();
@@ -1483,6 +1620,9 @@ function loadForms(){
     });
 }
 
+/**
+ * Displays the loading screen pop-up
+ */
 function loadLoadingScreen(){
     $('#mainContainer').empty();
     showLoadingSpinner();
@@ -1497,6 +1637,9 @@ function loadLoadingScreen(){
     });
 }
 
+/**
+ * @param token - the token that is assigned when a user is logged in
+ */
 function checkLoginStatus(token){
     $.ajax({
         url: "/knuth-sen-dev/main/getRole",
@@ -1517,10 +1660,6 @@ function checkLoginStatus(token){
             console.log('textStatus: ' + textStatus + '  errorThrown: ' + errorThrown);
         }
     });
-}
-
-function checkLogin( that){
-
 }
 
 /**
@@ -1579,7 +1718,7 @@ function displayOptions(role, name){
 
 
 /**
- * @param that -
+ * @param that - the specific form to be published
  */
 function loadFormPublishing(that){
     $('.modal-body').empty();
