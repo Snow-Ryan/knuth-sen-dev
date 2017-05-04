@@ -1,3 +1,7 @@
+%{--
+Name: _adminEditFaculty.gsp
+Purpose: Displays a a form populated with current data for a specific faculty member that the admin can then edit
+--}%
 <div class="card text-center flex-item">
     <div class="card-header">
         <h2>Edit Faculty</h2>

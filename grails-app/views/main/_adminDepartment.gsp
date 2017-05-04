@@ -1,3 +1,7 @@
+%{--
+Name: _adminDepartment.gsp
+Purpose: Displays a list of all departments registered within The CAS to the admin
+--}%
 <div class="card text-center flex-item">
     <div class="card-header">
         <h2>Departments</h2>

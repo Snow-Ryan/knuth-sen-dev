@@ -1,6 +1,7 @@
 /**
  * Created by Antonio Sutalo
  * Contributions by Ivan Ostojic, Matija Gjurin, Michael Hanson, Ryan Mason, Ryan Snow
+ * CAS was developed by Team Knuth
  *
  * This file contains calls to all essential functions of The CAS
  * If there is an issue with functionality or a feature to be added it can be done here

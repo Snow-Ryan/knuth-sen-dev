@@ -1,3 +1,7 @@
+%{--
+Name: _adminCreateSection.gsp
+Purpose: Displays a form in which the admin can enter information to create a new course-section for The CAS
+--}%
 <g:if test="${!faculty}">
     <div class="card text-center flex-item">
         <div class="card-header">

@@ -1,3 +1,7 @@
+%{--
+Name: _analysisCreationStoredGrades.gsp
+Purpose: Displays a list of grades that are stored in a specified assessment form
+--}%
 <g:if test="${storedGradeItem}">
 <div class="form-group">
     <label>Analyze Data For </label>

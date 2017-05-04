@@ -1,3 +1,7 @@
+%{--
+Name: _adminFaculty.gsp
+Purpose: Displays a list of all faculty registered within The CAS to the admin
+--}%
 <div class="card text-center flex-item">
     <div class="card-header">
         <h2>Faculty</h2>

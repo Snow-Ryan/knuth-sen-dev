@@ -1,3 +1,7 @@
+%{--
+Name: _analysisCreation.gsp
+Purpose: Displays a Form that allows for the analysis of completed forms
+--}%
 <div class="card text-center flex-item">
     <div class="card-header">
         <h2>Create Analysis</h2>

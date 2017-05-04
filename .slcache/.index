@@ -4118,3 +4118,5 @@ n:3227:org/codehaus/groovy/grails/compiler/WatchServiceDirectoryWatcher$1
 n:1900:grails/util/PluginBuildSettings$getPluginSourceDirectories$13
 n:2519:org/codehaus/groovy/grails/project/compiler/GrailsProjectWatcher$1
 n:3103:jline/console/history/MemoryHistory$EntriesIterator
+n:2879:org/apache/commons/lang/RandomStringUtils
+n:289:org/codehaus/groovy/classgen/asm/OptimizingStatementWriter$1

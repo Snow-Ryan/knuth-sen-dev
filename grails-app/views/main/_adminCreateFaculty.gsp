@@ -1,3 +1,7 @@
+%{--
+Name: _adminCreateFaculty.gsp
+Purpose: Displays a form in which the admin can enter information to create a new faculty member for The CAS
+--}%
 <div class="card text-center flex-item">
     <div class="card-header">
         <h2>Create Faculty</h2>
