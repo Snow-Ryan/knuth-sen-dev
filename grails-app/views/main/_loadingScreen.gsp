@@ -1,3 +1,7 @@
+%{--
+Name: _loadingScreen.gsp
+Purpose: Used to display a landing page to the user before they login
+--}%
 <div class="card text-center flex-item">
     <div class="card-header">
         <h2>Welcome</h2>

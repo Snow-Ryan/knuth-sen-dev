@@ -1,3 +1,8 @@
+%{--
+Name: _formPage.gsp
+Purpose: Used to show all forms
+--}%
+
 <div class="card text-center flex-item ">
     <div class="card-header">
         <h2>Forms</h2>

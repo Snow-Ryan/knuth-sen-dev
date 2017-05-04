@@ -1,3 +1,8 @@
+%{--
+Name: _formCreate.gsp
+Purpose: Used to create a form
+--}%
+
 <div class="card text-center flex-item">
     <div class="card-header">
         <h2>Create Form</h2>

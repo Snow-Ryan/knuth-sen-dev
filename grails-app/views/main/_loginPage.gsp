@@ -1,3 +1,7 @@
+%{--
+Name: _loginPage.gsp
+Purpose: Used to login to the system 
+--}%
 <div class="card text-center flex-item">
     <div class="card-header">
         <h2>Log In</h2>
