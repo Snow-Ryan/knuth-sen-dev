@@ -1,3 +1,8 @@
+%{--
+Name: _formPublish.gsp
+Purpose: Used to Publish a form
+--}%
+
 <label class="hiddenId" style="display: none">${id}</label>
 
 <div>

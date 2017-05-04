@@ -1,3 +1,8 @@
+%{--
+Name: _formCopy.gsp
+Purpose: Used to copy a form
+--}%
+
 <g:if test="${courses}">
     <div class="form-group">
         <label for="option_boxCourses">Choose a Course</label>

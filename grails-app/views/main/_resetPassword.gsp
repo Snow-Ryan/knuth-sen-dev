@@ -1,9 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Shadow/Michael Hanson
-  Date: 4/7/2017
-  Time: 11:50 PM
---%>
+%{--
+Name: _resetPassword.gsp
+Purpose: Used to reset a users password
+--}%
 
 <div class="card text-center flex-item">
     <div class="card-header">

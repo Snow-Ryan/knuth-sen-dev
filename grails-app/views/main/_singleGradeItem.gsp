@@ -1,3 +1,7 @@
+%{--
+Name: _singleGradeItem.gsp
+Purpose: Used to show a single grade item
+--}%
 /*!
 
 <tr class="aGradeItem">
