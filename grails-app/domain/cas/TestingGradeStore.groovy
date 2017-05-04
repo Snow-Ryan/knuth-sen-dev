@@ -1,5 +1,8 @@
 package cas
 
+/**
+ * GORM class for interacting with the TestingGradeStore table
+ */
 class TestingGradeStore {
     Integer id
     String grades

@@ -1,5 +1,8 @@
 package cas
 
+/**
+ * GORM class for interacting with the TestingAnalysis table
+ */
 class TestingAnalysis {
     Integer id
     String name

@@ -2,6 +2,9 @@ package cas
 
 import grails.transaction.Transactional
 
+/**
+ * Job that runs every 24 hours to check if any forms need to be republished
+ */
 @Transactional
 class AutoPublishingJob {
     static triggers = {
